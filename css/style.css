@@ -1,40 +1,42 @@
 :root{
-  --bg:#1E2B2B;               /* Deep forest slate backdrop */
-  --surface:#2A4343;          /* Palette primary dark slate */
-  --card-bg:#233737;          /* Card container */
-  --text:#F7F4EB;             /* Soft parchment white */
-  --muted:#C0C29D;            /* Palette soft sage grey */
-  --coral:#D35E36;            /* Palette rust terracotta accent */
-  --ember:#F1D49A;            /* Palette warm sand gold */
-  --sage:#416B66;             /* Palette teal pine */
-  --lilac:#B897DB;
-  --glacier:#416B66;          /* Replaced cold blue with palette teal pine */
-  --turq:#C0C29D;             /* Replaced cold turq with soft sage */
-  --terracotta:#D35E36;
-  --gold:#F1D49A;
-  --line:rgba(241,212,154,.18);
-  --hi:'Tiro Devanagari Hindi',serif;
-  --en:'Cormorant Garamond',serif;
+  /* Holst Single Unified Palette */
+  --bg:#0D1B2A;               /* Dark Navy Twilight */
+  --surface:#1B263B;          /* Slate Indigo Surface */
+  --card-bg:#162132;          /* Card backdrop */
+  --text:#F4F1DE;             /* Warm Ecru Cream White */
+  --muted:#D4C4A8;            /* Soft Sand Ochre */
+  --muted-dark:#778D7A;       /* Sage Moss Grey */
+  --coral:#D4C4A8;            /* Elegant warm accent */
+  --accent:#D4C4A8;           /* Primary highlight */
+  --ember:#778D7A;            /* Secondary sage accent */
+  --sage:#778D7A;             /* Sage slate */
+  --indigo:#415A77;           /* Muted steel indigo */
+  --navy:#1B263B;
+  --line:rgba(244,241,222,.15);
+  
+  /* Modern Indian Heritage + Editorial Serifs */
+  --hi:'Yatra One','Vesper Devanagari','Rozha One','Tiro Devanagari Hindi',serif;
+  --en:'Cinzel','Playfair Display','Cormorant Garamond',serif;
   --ui:'Jost',sans-serif;
   --hand:'Kalam',cursive;
-  --ripped-shadow:0 20px 40px -15px rgba(10,20,20,.6);
+  --ripped-shadow:0 20px 45px -15px rgba(5,12,20,.7);
 }
 :root[data-mode=paper]{
-  --bg:#F7F4EB;               /* Warm cream paper */
-  --surface:#EAE4D2;          /* Soft parchment container */
-  --card-bg:#FAF7EF;          /* Card paper */
-  --text:#243232;             /* Deep slate ink */
-  --muted:#646756;            /* Palette earthy olive grey */
-  --coral:#D35E36;            /* Palette rust terracotta */
-  --ember:#B8681A;
-  --sage:#416B66;             /* Palette pine teal */
-  --lilac:#6E4F8A;
-  --glacier:#416B66;
-  --turq:#416B66;
-  --terracotta:#D35E36;
-  --gold:#B3832B;
-  --line:rgba(36,50,50,.16);
-  --ripped-shadow:0 15px 35px -10px rgba(42,67,67,.18);
+  /* Single Holst Paper Mode: Inversion of Holst Palette */
+  --bg:#F4F1DE;               /* Warm Ecru Cream Paper */
+  --surface:#E8E3CB;          /* Soft Sand Surface */
+  --card-bg:#FAF8F0;          /* Clean Card Parchment */
+  --text:#0D1B2A;             /* Deep Navy Ink */
+  --muted:#415A77;            /* Steel Slate Grey */
+  --muted-dark:#1B263B;
+  --coral:#1B263B;            /* Deep Indigo Accent */
+  --accent:#1B263B;
+  --ember:#778D7A;            /* Sage Moss Accent */
+  --sage:#778D7A;
+  --indigo:#415A77;
+  --navy:#0D1B2A;
+  --line:rgba(13,27,42,.15);
+  --ripped-shadow:0 15px 35px -10px rgba(13,27,42,.15);
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:4rem}
