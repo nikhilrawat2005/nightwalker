@@ -96,7 +96,11 @@ function route(){
     $('post').hidden=true;
     $('index').hidden=false;
     if(fsWrap)fsWrap.hidden=true;
-    if(readBtn)readBtn.hidden=true;
+    if(readBtn){
+      readBtn.hidden=true;
+      readBtn.setAttribute('aria-pressed','false');
+    }
+    document.body.classList.remove('reading');
     document.title='डायरी · Nightwalker';
   }
   onScroll();
