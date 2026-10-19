@@ -23,24 +23,27 @@
 <body class="pw">
 <div class="grain" aria-hidden="true"></div>
 <header class="top">
-  <a class="mark" href="index.html" aria-label="Nightwalker, home">निघ्त वल्केर</a>
+  <div class="top-left">
+    <a class="back-btn" href="index.html" aria-label="Go back to Home">← Home</a>
+    <a class="mark" href="index.html" aria-label="Nightwalker home">Nightwalker <span>कविताएँ</span></a>
+  </div>
   <nav aria-label="Main">
-    <a href="poetry.html" aria-current="page">Poetry</a><a href="novel.html">Novel</a><a href="blog.html">Blog</a><a href="photos.html">Photography</a><a href="sketches.html">Sketches</a>
+    <a href="poetry.html" aria-current="page">Poetry</a><a href="novel.html">Novels</a><a href="blog.html">Blog</a><a href="photos.html">Photography</a><a href="sketches.html">Sketches</a>
   </nav>
   <span class="tools">
-    <button class="mode" id="read" aria-pressed="false" hidden>पढ़ने का मोड</button>
-    <button class="mode" id="mode" aria-label="Switch between night and paper">रात ⇄ कागज़</button>
+    <button class="mode" id="read" aria-pressed="false" hidden>Reading Mode</button>
+    <button class="mode" id="mode" aria-label="Switch between night and paper">Night ⇄ Paper</button>
   </span>
 </header>
 
 <main>
-<section id="toc" aria-label="सारी कविताएँ">
+<section id="toc" aria-label="Poetry Collection">
   <div class="toc-head">
-    <p class="eyebrow">कविताओं का संग्रह</p>
-    <h1><span lang="hi">इशारे शब्दों के</span></h1>
-    <p class="epi2">“कि ये कलम उठी हर उस वक्त पे है,<br>जब कोई उस वक्त को समझ न सका।”</p>
-    <div class="moods" id="moods" role="group" aria-label="मूड से छाँटें"></div>
-    <div class="toc-actions"><button class="btn" id="first">पहली कविता से पढ़ें →</button><button class="btn ghost" id="rand">कोई एक कविता</button></div>
+    <p class="eyebrow">The Poetry Notebook · 120+ Verses</p>
+    <h1>Echoes &amp; Shadows <span class="hi-pill lilac" style="font-size:.55em;vertical-align:middle">इशारे शब्दों के</span></h1>
+    <p class="epi2">“कि ये कलम उठी हर उस वक्त पे है, जब कोई उस वक्त को समझ न सका।”</p>
+    <div class="moods" id="moods" role="group" aria-label="Filter by mood"></div>
+    <div class="toc-actions"><button class="btn" id="first">Start From First Poem →</button><button class="btn ghost" id="rand">Pick a Random Verse</button></div>
   </div>
   <ol class="list" id="list"></ol>
 </section>
@@ -48,24 +51,26 @@
 <section id="reader" aria-label="कविता" hidden>
   <div class="book">
     <aside class="verso">
+      <button class="back-btn" id="tocD" style="align-self:flex-start;margin-bottom:1rem">← All Poems</button>
       <p class="stamp" id="stamp">№ 01</p>
       <p class="mood-tag" id="mtag"></p>
       <h2 id="rtitle"></h2>
       <p class="count" id="count"></p>
       <div class="pbar"><i id="pfill"></i></div>
-      <div class="side-nav"><button class="ln" id="prevD">← पिछली</button><button class="ln" id="tocD">सूची</button><button class="ln" id="nextD">अगली →</button></div>
+      <div class="side-nav"><button class="ln" id="prevD">← Previous</button><button class="ln" id="nextD">Next →</button></div>
     </aside>
     <article class="leaf" id="leaf" tabindex="0" aria-live="polite">
+      <button class="back-btn m" id="tocM" style="margin-bottom:1rem">← All Poems</button>
       <p class="stamp m" id="stampM"></p>
       <h2 class="m" id="rtitleM"></h2>
       <div class="poem" id="poem"></div>
-      <p class="sig">— निघ्त वल्केर</p>
+      <p class="sig">— Nightwalker (Nikhil Rawat)</p>
     </article>
   </div>
-  <nav class="dock" aria-label="कविता नेविगेशन">
-    <button id="prev" aria-label="पिछली कविता">←</button><button id="toc2" aria-label="सूची">सूची</button><button id="next" aria-label="अगली कविता">→</button>
+  <nav class="dock" aria-label="Poem navigation">
+    <button id="prev" aria-label="Previous poem">←</button><button id="toc2" aria-label="Index">Index</button><button id="next" aria-label="Next poem">→</button>
   </nav>
-  <p class="hint" id="hint">दाएँ-बाएँ swipe करें, या ← → दबाएँ</p>
+  <p class="hint" id="hint">Swipe left/right or use ← → keys</p>
 </section>
 </main>
 <script src="js/poems.js"></script>

@@ -1,9 +1,44 @@
-:root{--bg:#0D0E1B;--surface:#171A2E;--text:#ECE8F2;--muted:#9C98B5;--coral:#E8795A;--ember:#F2A65A;--lilac:#A98BC2;--glacier:#7FA6C9;--line:rgba(236,232,242,.14);--hi:'Tiro Devanagari Hindi',serif;--en:'Cormorant Garamond',serif;--ui:'Jost',sans-serif;--hand:'Kalam',cursive}
-:root[data-mode=paper]{--bg:#EFE7D8;--surface:#E4DAC6;--text:#2A2622;--muted:#6B6358;--coral:#B4472B;--ember:#9A5B1C;--lilac:#6E4F8A;--glacier:#3E6A92;--line:rgba(42,38,34,.18)}
+:root{
+  --bg:#0D0E1B;
+  --surface:#151829;
+  --card-bg:#1A1E35;
+  --text:#ECE8F2;
+  --muted:#A5A0BD;
+  --coral:#FF6B4A;
+  --ember:#F59E3F;
+  --sage:#7BB38E;
+  --lilac:#B897DB;
+  --glacier:#6FA7D4;
+  --turq:#38D9A9;
+  --terracotta:#C85A3E;
+  --gold:#E5B869;
+  --line:rgba(236,232,242,.15);
+  --hi:'Tiro Devanagari Hindi',serif;
+  --en:'Cormorant Garamond',serif;
+  --ui:'Jost',sans-serif;
+  --hand:'Kalam',cursive;
+  --ripped-shadow:0 20px 40px -15px rgba(0,0,0,.6);
+}
+:root[data-mode=paper]{
+  --bg:#F5EFE3;
+  --surface:#EADFCB;
+  --card-bg:#FAF4E8;
+  --text:#241E19;
+  --muted:#6B5F52;
+  --coral:#C44525;
+  --ember:#B8681A;
+  --sage:#4E7C5D;
+  --lilac:#78549C;
+  --glacier:#3A6F99;
+  --turq:#1D8A68;
+  --terracotta:#9C3E26;
+  --gold:#B3832B;
+  --line:rgba(36,30,25,.16);
+  --ripped-shadow:0 15px 35px -10px rgba(70,50,30,.2);
+}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:4rem}
 body{background:var(--bg);color:var(--text);font:400 1.125rem/1.8 var(--en);transition:background .6s,color .6s;overflow-x:hidden;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-:lang(hi),.epi,.poem,h2,h3,.mark,h1 span{font-family:var(--hi);letter-spacing:0;font-style:normal}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px}
 .grain{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -11,56 +46,206 @@ a{color:inherit;text-decoration:none}
 .rail i{width:5px;height:5px;border-radius:50%;background:var(--line);transition:background .3s,transform .3s}
 .rail i.on{background:var(--coral);transform:scale(1.5)}
 @media(min-width:900px){.rail{display:flex}}
-.top{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:calc(.9rem + env(safe-area-inset-top)) clamp(1rem,4vw,3rem) .9rem;background:linear-gradient(var(--bg),transparent)}
-.mark{font-size:1.25rem}
-.top nav{display:none;gap:1.8rem;font:300 .9rem var(--ui);letter-spacing:.08em}
-.top nav a{background:linear-gradient(var(--coral),var(--coral)) 0 100%/0 1px no-repeat;transition:background-size .4s}
-.top nav a:hover{background-size:100% 1px}
+
+/* Bilingual street stamp accents */
+.hi-pill{
+  font-family:var(--hi);
+  font-size:.9em;
+  font-style:normal;
+  padding:.08em .45em;
+  border-radius:3px;
+  background:color-mix(in srgb,var(--coral) 18%,transparent);
+  color:var(--coral);
+  border:1px solid color-mix(in srgb,var(--coral) 35%,transparent);
+  display:inline-block;
+  margin:0 .2em;
+  vertical-align:baseline;
+}
+.hi-pill.gold{background:color-mix(in srgb,var(--gold) 20%,transparent);color:var(--gold);border-color:color-mix(in srgb,var(--gold) 40%,transparent)}
+.hi-pill.sage{background:color-mix(in srgb,var(--sage) 20%,transparent);color:var(--sage);border-color:color-mix(in srgb,var(--sage) 40%,transparent)}
+.hi-pill.turq{background:color-mix(in srgb,var(--turq) 20%,transparent);color:var(--turq);border-color:color-mix(in srgb,var(--turq) 40%,transparent)}
+.hi-pill.lilac{background:color-mix(in srgb,var(--lilac) 20%,transparent);color:var(--lilac);border-color:color-mix(in srgb,var(--lilac) 40%,transparent)}
+
+/* Ripped paper edge dividers */
+.torn-divider{
+  width:100%;
+  height:32px;
+  background-repeat:repeat-x;
+  background-size:240px 32px;
+  opacity:.85;
+  margin:-1px 0;
+  position:relative;
+  z-index:3;
+}
+
+/* Nav header with back-action capability & modern typography */
+.top{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:calc(.85rem + env(safe-area-inset-top)) clamp(1rem,4vw,3.5rem) .85rem;background:linear-gradient(var(--bg) 65%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.top-left{display:flex;align-items:center;gap:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:.35rem;font:300 .85rem var(--ui);letter-spacing:.08em;color:var(--muted);border:1px solid var(--line);border-radius:2rem;padding:.3rem .8rem;transition:all .3s ease;background:var(--surface)}
+.back-btn:hover{color:var(--coral);border-color:var(--coral);transform:translateX(-2px)}
+.mark{font-size:1.25rem;font-family:var(--en);letter-spacing:.06em;font-weight:600;color:var(--text)}
+.mark span{font-family:var(--hi);font-size:.9em;color:var(--coral);margin-left:.35rem;font-weight:400}
+.top nav{display:none;gap:1.8rem;font:300 .9rem var(--ui);letter-spacing:.1em;text-transform:uppercase}
+.top nav a{background:linear-gradient(var(--coral),var(--coral)) 0 100%/0 1px no-repeat;transition:background-size .4s;color:var(--muted)}
+.top nav a:hover,.top nav a[aria-current]{background-size:100% 1px;color:var(--text)}
 @media(min-width:760px){.top nav{display:flex}}
-.mode{font:300 .8rem var(--hi);color:var(--muted);background:none;border:1px solid var(--line);border-radius:2rem;padding:.35rem .9rem;cursor:pointer}
-.mode:hover{color:var(--text)}
-.hero{min-height:100svh;display:grid;gap:2rem;align-items:center;padding:6.5rem clamp(1.2rem,6vw,5rem) 3rem;grid-template-columns:1fr}
-@media(min-width:900px){.hero{grid-template-columns:1.15fr .85fr}}
-.epi{font-size:clamp(1.35rem,3.4vw,2.2rem);line-height:1.7;color:var(--muted)}
-h1{margin:2.2rem 0 1rem;font-weight:400;line-height:1.1}
-h1 span{display:block;font-size:clamp(3rem,10vw,6.5rem);color:var(--text)}
-h1 small{display:block;font:italic 400 clamp(1.3rem,3vw,2rem)/1.4 var(--en);color:var(--coral);margin-top:.4rem}
-.sign{max-width:34ch;font:300 1.05rem/1.9 var(--hi);color:var(--muted)}
-.arch{justify-self:center;width:min(78vw,420px);aspect-ratio:3/4;border-radius:999px 999px 14px 14px;overflow:hidden;border:1px solid var(--coral);padding:10px;background:var(--surface)}
-.arch img{width:100%;height:100%;object-fit:cover;object-position:60% 40%;border-radius:999px 999px 6px 6px;display:block}
-.hl{opacity:0;transform:translateY(.6rem);animation:rise 1.4s cubic-bezier(.2,.7,.2,1) forwards}
-.hl:nth-child(1){animation-delay:.3s}.hl:nth-child(2){animation-delay:1s}.hl:nth-child(3){animation-delay:1.9s}.hl:nth-child(4){animation-delay:2.6s}
-@keyframes rise{to{opacity:1;transform:none}}
-.ridge{margin-top:-4rem;height:clamp(110px,18vw,220px);position:relative;z-index:2}
-.ridge svg{width:100%;height:100%;display:block}
-.ridge path{transition:transform .2s linear}
-.r1{fill:var(--surface)}.r2{fill:color-mix(in srgb,var(--surface) 70%,var(--lilac))}.r3{fill:color-mix(in srgb,var(--surface) 45%,var(--coral))}
-.rooms{background:linear-gradient(var(--surface),var(--bg));padding:3rem clamp(1.2rem,6vw,5rem) 5rem;margin-top:-1px}
-h2{font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:2rem}
-.room{display:grid;gap:.4rem 2rem;padding:1.8rem 0;border-top:1px solid var(--line);grid-template-columns:1fr;position:relative;transition:padding-left .5s}
-.room:hover{padding-left:1rem}
-@media(min-width:800px){.room{grid-template-columns:minmax(14rem,1fr) 1.4fr auto;align-items:baseline}.room:nth-of-type(even){margin-left:8%}}
-.room h3{font-weight:400;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.4}
-.room p{color:var(--muted);max-width:44ch}
-.state{font:300 .85rem var(--hi);color:var(--muted)}
-.poetry h3{color:var(--lilac)}.novel h3{color:var(--glacier);font-family:var(--en);font-style:italic}.blog h3{color:var(--ember)}.photo h3{color:var(--text)}.sketch h3{color:var(--coral)}
-.soon{cursor:default}
-.room:not(.soon) .state{color:var(--coral)}
-.more{display:inline-block;margin-top:.8rem;font:300 .95rem var(--hi);color:var(--coral)}
-.pinned{padding:4rem clamp(1.2rem,6vw,5rem);display:flex;justify-content:center}
-.poster{width:min(100%,560px);padding:clamp(1.8rem,5vw,3.5rem);background:var(--surface);border:1px solid var(--line);transform:rotate(-1.2deg);box-shadow:0 30px 60px -30px #000}
-.poem{font-size:clamp(1.15rem,3.2vw,1.4rem);line-height:2.1;margin:1.2rem 0}
-.poem p{opacity:.15;transition:opacity 1.2s}
-.poem p.on{opacity:1}
-.poem p:nth-child(even){margin-bottom:.9rem}
-.sig{font:400 1.3rem var(--hand);color:var(--coral)}
-.about{position:relative;min-height:70vh;display:grid;align-items:end}
-.about img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.about::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--bg),transparent 35%,rgba(13,14,27,.85))}
-.about-text{position:relative;z-index:2;padding:4rem clamp(1.2rem,6vw,5rem);max-width:40rem;color:#ECE8F2}
-.about-text p:first-child{font-size:clamp(1.15rem,2.6vw,1.5rem);line-height:2}
-footer{padding:2rem;text-align:center;font:300 .85rem var(--ui);color:var(--muted)}
-@media(max-width:899px){body{font-size:1.2rem}.epi{font-size:1.45rem}}
+.mode{font:300 .8rem var(--ui);letter-spacing:.06em;color:var(--muted);background:none;border:1px solid var(--line);border-radius:2rem;padding:.35rem .9rem;cursor:pointer}
+.mode:hover{color:var(--text);border-color:var(--coral)}
+
+/* Hero section: Street-style cutout & eclectic typography */
+.hero{min-height:94svh;display:grid;gap:2.5rem;align-items:center;padding:7.5rem clamp(1.2rem,6vw,5rem) 3.5rem;grid-template-columns:1fr;position:relative}
+@media(min-width:900px){.hero{grid-template-columns:1.2fr .8fr}}
+.hero-tag{font:300 .85rem var(--ui);letter-spacing:.25em;text-transform:uppercase;color:var(--ember);display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem}
+.hero-tag::before{content:"";width:18px;height:2px;background:var(--ember);display:inline-block}
+.hero-text h1{margin:0 0 1.2rem;font-weight:400;line-height:1.02}
+.hero-text h1 .line-lead{display:block;font-size:clamp(2.4rem,8vw,4.8rem);font-family:var(--en);font-style:italic;color:var(--text);letter-spacing:-.02em}
+.hero-text h1 .line-accent{display:block;font-size:clamp(3.2rem,11vw,6.8rem);font-weight:600;font-family:var(--en);color:var(--coral);letter-spacing:.02em;text-transform:uppercase;line-height:.95}
+.hero-text .intro-quote{font:400 1.25rem/1.85 var(--en);color:var(--muted);max-width:38ch;margin:1.2rem 0 1.8rem}
+.hero-text .intro-quote .bold-hi{color:var(--gold);font-family:var(--hi);font-style:normal}
+.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.cta-pill{font:400 .95rem var(--ui);letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.6rem;border-radius:2rem;background:var(--coral);color:#0D0E1B;border:1px solid var(--coral);cursor:pointer;transition:all .3s ease}
+.cta-pill:hover{transform:translateY(-2px);box-shadow:0 8px 20px -4px rgba(255,107,74,.4)}
+:root[data-mode=paper] .cta-pill{color:#fff}
+.cta-ghost{font:300 .95rem var(--ui);letter-spacing:.1em;color:var(--muted);padding:.75rem 1.4rem;border:1px solid var(--line);border-radius:2rem;transition:all .3s}
+.cta-ghost:hover{color:var(--text);border-color:var(--muted)}
+
+/* Delhi street collage hero visual */
+.collage-frame{
+  justify-self:center;
+  position:relative;
+  width:min(82vw,390px);
+}
+.cutout-wrapper{
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+  border:2px solid color-mix(in srgb,var(--coral) 50%,transparent);
+  box-shadow:var(--ripped-shadow);
+  background:var(--surface);
+  transform:rotate(-1.5deg);
+  transition:transform .4s ease;
+}
+.cutout-wrapper:hover{transform:rotate(0deg) scale(1.02)}
+.cutout-wrapper img{width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:4/5}
+.sticker-badge{
+  position:absolute;
+  top:-14px;
+  right:-14px;
+  background:var(--ember);
+  color:#0D0E1B;
+  font:600 .75rem var(--ui);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  padding:.4rem .9rem;
+  border-radius:4px;
+  transform:rotate(12deg);
+  box-shadow:0 6px 14px rgba(0,0,0,.35);
+}
+.polaroid-caption{
+  position:absolute;
+  bottom:-16px;
+  left:8px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  padding:.35rem .9rem;
+  border-radius:3px;
+  font:400 .92rem var(--hand);
+  color:var(--gold);
+  transform:rotate(-3deg);
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+}
+
+/* Featured Poetry Curation (Street-styled 3 cards from collection) */
+.poetry-curation{
+  padding:4rem clamp(1.2rem,6vw,5rem) 5rem;
+  background:color-mix(in srgb,var(--surface) 40%,var(--bg));
+  border-top:1px dashed var(--line);
+  border-bottom:1px dashed var(--line);
+}
+.curation-header{margin-bottom:2.6rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.2rem}
+.curation-header h2{font:italic 400 clamp(2rem,6vw,3.2rem) var(--en);margin:0;color:var(--text)}
+.curation-header p{color:var(--muted);font:300 .95rem var(--ui);letter-spacing:.08em;margin-top:.3rem}
+.curation-header .view-all{font:300 .92rem var(--ui);letter-spacing:.1em;color:var(--coral);text-transform:uppercase;border-bottom:1px solid var(--coral);padding-bottom:.15rem}
+.poetry-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(290px, 1fr));
+  gap:1.8rem;
+}
+.poem-card{
+  background:var(--card-bg);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:2.2rem 1.8rem;
+  position:relative;
+  transition:all .35s ease;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.poem-card:hover{
+  transform:translateY(-6px);
+  border-color:color-mix(in srgb,var(--coral) 60%,transparent);
+  box-shadow:var(--ripped-shadow);
+}
+.poem-card .card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.2rem}
+.poem-card .p-num{font:300 .8rem var(--ui);letter-spacing:.2em;color:var(--muted)}
+.poem-card .p-tag{font:400 .82rem var(--hi);padding:.15rem .6rem;border-radius:2rem;background:rgba(232,121,90,.15);color:var(--coral)}
+.poem-card h3{font:400 1.7rem/1.3 var(--hi);color:var(--text);margin-bottom:1rem}
+.poem-card .p-lines{font:400 1.15rem/1.9 var(--hi);color:var(--muted);margin-bottom:1.8rem;white-space:pre-line}
+.poem-card .read-link{font:300 .88rem var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--coral);display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
+.poem-card:hover .read-link{gap:.6rem;color:var(--ember)}
+
+/* Rooms / Chapters of Nightwalker - Multi-color street palette */
+.rooms{padding:4.5rem clamp(1.2rem,6vw,5rem) 5.5rem;position:relative}
+.rooms h2{font:italic 400 clamp(2.2rem,6vw,3.4rem) var(--en);margin-bottom:.4rem;color:var(--text)}
+.rooms .section-sub{color:var(--muted);font:300 1rem var(--ui);margin-bottom:2.6rem;letter-spacing:.05em}
+.room-cards{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:1.6rem}
+.room-box{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:1.8rem;
+  position:relative;
+  overflow:hidden;
+  transition:all .35s ease;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:210px;
+}
+.room-box::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:var(--accent-col, var(--coral));
+}
+.room-box:hover{transform:translateY(-5px);box-shadow:var(--ripped-shadow);border-color:var(--accent-col, var(--coral))}
+.room-box.poetry{--accent-col:var(--lilac)}
+.room-box.novel{--accent-col:var(--glacier)}
+.room-box.blog{--accent-col:var(--ember)}
+.room-box.photo{--accent-col:var(--sage)}
+.room-box.sketch{--accent-col:var(--turq)}
+.room-box .rb-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.room-box .rb-category{font:300 .78rem var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.room-box .rb-status{font:400 .8rem var(--ui);letter-spacing:.05em;color:var(--accent-col)}
+.room-box h3{font:400 1.55rem/1.3 var(--en);margin-bottom:.5rem;color:var(--text)}
+.room-box p{font:400 1.05rem/1.65 var(--en);color:var(--muted);margin-bottom:1.2rem}
+.room-box .rb-link{font:300 .85rem var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-col);display:inline-flex;align-items:center;gap:.3rem}
+
+/* Author / Delhi Wanderer statement */
+.about{position:relative;min-height:65vh;display:grid;align-items:end;margin-top:2rem}
+.about img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.75)}
+.about::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--bg),transparent 30%,rgba(13,14,27,.92))}
+:root[data-mode=paper] .about::after{background:linear-gradient(var(--bg),transparent 30%,rgba(245,239,227,.94))}
+.about-text{position:relative;z-index:2;padding:4rem clamp(1.2rem,6vw,5rem);max-width:44rem}
+.about-text .manifesto{font:italic 400 clamp(1.25rem,3.2vw,1.75rem)/1.8 var(--en);color:var(--text);margin-bottom:1rem}
+.about-text .manifesto span{color:var(--coral);font-family:var(--hi);font-style:normal}
+.sig{font:400 1.4rem var(--hand);color:var(--ember)}
+footer{padding:2.5rem;text-align:center;font:300 .85rem var(--ui);color:var(--muted);border-top:1px solid var(--line)}
+@media(max-width:899px){body{font-size:1.15rem}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;transition:none!important}.poem p{opacity:1}html{scroll-behavior:auto}}
 
 /* ---- Stage 6: polish ---- */

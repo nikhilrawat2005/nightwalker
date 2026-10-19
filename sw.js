@@ -2,10 +2,10 @@
    - pages/css/js/data: pehle network (taaki naya content turant dikhe), 4 sec mein na aaye to cache
    - images/fonts: cache se turant, peeche se refresh
    VERSION badlo to purana cache saaf ho jaata hai. */
-const VERSION='nw-v8';
+const VERSION='nw-v9';
 const SHELL=['./','index.html','poetry.html','novel.html','blog.html','photos.html','sketches.html','offline.html',
  'css/style.css','css/poetry.css','css/novel.css','css/blog.css','css/gallery.css',
- 'js/app.js','js/main.js','js/poetry.js','js/poems.js','js/novel.js','js/chapters.js','js/blog.js','js/posts.js','js/gallery.js','js/photos.js','js/sketches.js',
+ 'js/app.js','js/main.js','js/poetry.js','js/poems.js','js/novel.js','js/novels_data.js','js/chapters.js','js/blog.js','js/posts.js','js/gallery.js','js/photos.js','js/sketches.js',
  'assets/hero.webp','assets/peaks.webp','icons/icon-192.png','manifest.webmanifest'];
 const IMG_MAX=80;
 self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSION).then(c=>Promise.all(SHELL.map(u=>c.add(u).catch(()=>{})))).then(()=>self.skipWaiting()))});

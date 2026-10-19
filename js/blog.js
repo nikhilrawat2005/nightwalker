@@ -77,13 +77,16 @@ function open(p){
 
   $('body').innerHTML=html;
   $('sample').hidden=!p.sample;
-  document.title=`${p.title} · डायरी · Nightwalker`;
+  document.title=`${p.title} · Diary · Nightwalker`;
   $('index').hidden=true;
   $('post').hidden=false;
   if(fsWrap)fsWrap.hidden=false;
   if(readBtn)readBtn.hidden=false;
   scrollTo(0,0);
 }
+
+if($('topBack'))$('topBack').onclick=()=>location.hash='';
+if($('back'))$('back').onclick=e=>{e.preventDefault();location.hash=''};
 
 function route(){
   const p=P.find(x=>x.slug===decodeURIComponent(location.hash.slice(1)));

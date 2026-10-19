@@ -58,6 +58,9 @@ addEventListener('hashchange',route);
 const step=d=>{const n=cur+1+d;if(n>=1&&n<=P.length)go(n)};
 $('prev').onclick=$('prevD').onclick=()=>step(-1);
 $('next').onclick=$('nextD').onclick=()=>step(1);
+$('tocD').onclick=()=>location.hash='';
+if($('tocM'))$('tocM').onclick=()=>location.hash='';
+if($('toc2'))$('toc2').onclick=()=>location.hash='';
 const backToc=()=>{history.pushState('',document.title,location.pathname);showToc()};
 $('toc2').onclick=$('tocD').onclick=backToc;
 addEventListener('keydown',e=>{
