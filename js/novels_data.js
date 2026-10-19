@@ -11,16 +11,5 @@ window.NOVELS=[
     "color": "#D35E36",
     "coverDesc": "A story of silence, attention, heartbreak, and unlearning the habits you once built to survive.",
     "chaptersFile": "js/chapters.js"
-  },
-  {
-    "id": "future-work",
-    "title": "Untitled Second Novel",
-    "genre": "Fiction · In Development",
-    "tagline": "A new story being outlined in the shadows. Details will appear as chapters take shape.",
-    "status": "Writing",
-    "badge": "Upcoming",
-    "color": "#416B66",
-    "coverDesc": "Currently in drafting notes.",
-    "chaptersFile": null
   }
 ];
