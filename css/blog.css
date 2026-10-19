@@ -108,7 +108,5 @@
 .cnav{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid var(--line)}
 .ln{font:400 1rem var(--en);color:var(--muted);transition:color .2s}.ln:hover{color:var(--ember)}
 
-body.reading{--bg:#F1E6CF;--surface:#E8DBBF;--text:#3A2F22;--muted:#6E6150;--coral:#A8431F;--ember:#8A5314;--glacier:#365B7E;--line:rgba(58,47,34,.2)}
-body.reading .page-sheet{background:#FAF5EC;box-shadow:0 12px 30px rgba(60,40,20,.1)}
 body.reading .top{opacity:0;pointer-events:none;transition:opacity .5s}
 body.reading .top:hover,body.reading .top:focus-within{opacity:1;pointer-events:auto}

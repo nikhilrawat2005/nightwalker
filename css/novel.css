@@ -91,12 +91,10 @@ section#toc,section#reader{position:relative}
  .prail button:hover span,.prail button:focus-visible span{opacity:1}
  .prail li{margin-top:-5px}
 }
-body.reading{--bg:#F1E6CF;--surface:#E8DBBF;--text:#3A2F22;--muted:#6E6150;--coral:#A8431F;--ember:#8A5314;--glacier:#365B7E;--line:rgba(58,47,34,.2)}
 body.reading .grain{opacity:.04}
 body.reading .lamp{opacity:0}
 body.reading .prose{font-size:calc(var(--fs)*1.12)}
 body.reading .top{opacity:0;pointer-events:none;transition:opacity .5s}
 body.reading .top:hover,body.reading .top:focus-within{opacity:1;pointer-events:auto}
-:root[data-mode=paper] body.reading{--bg:#F1E6CF}
 @media(max-width:600px){.chapters a{grid-template-columns:1fr auto}.chapters .no{grid-column:1/-1}.fs{display:none}.page{--fs:1.25rem}.en-title{word-break:normal}}
 @media(prefers-reduced-motion:reduce){.prose .rv{opacity:1;transform:none}}
