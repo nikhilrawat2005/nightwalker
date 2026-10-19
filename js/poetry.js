@@ -6,7 +6,7 @@ try{const m=localStorage.getItem('nw-mode');if(m)root.dataset.mode=m}catch(e){}
 const themeMeta=document.querySelector('meta[name=theme-color]');
 const syncTheme=()=>themeMeta.content=root.dataset.mode==='paper'?'#EFE7D8':'#0D0E1B';syncTheme();
 $('mode').onclick=()=>{const m=root.dataset.mode==='paper'?'night':'paper';root.dataset.mode=m;syncTheme();try{localStorage.setItem('nw-mode',m)}catch(e){}};
-const toc=$('toc'),reader=$('reader'),leaf=$('leaf'),read=$('read');
+const toc=$('toc'),reader=$('reader'),leaf=$('leaf');
 let cur=0,timers=[],mood='सब',busy=false;
 /* index */
 const moods=['सब',...new Set(P.map(p=>p.mood))];
@@ -38,7 +38,7 @@ function breathe(){
 }
 function show(n,dir){
   const i=Math.max(0,Math.min(P.length-1,n-1));
-  toc.hidden=true;reader.hidden=false;read.hidden=false;
+  toc.hidden=true;reader.hidden=false;
   const swap=()=>{fill(i);scrollTo(0,0);breathe()};
   if(reduce||busy||dir===0){swap();return}
   busy=true;window.NW&&NW.flip();
@@ -47,7 +47,7 @@ function show(n,dir){
   const inn=wide?[{transform:'rotateY(80deg)',opacity:0},{transform:'rotateY(0)',opacity:1}]:[{transform:`translateX(${dir*40}px)`,opacity:0},{transform:'translateX(0)',opacity:1}];
   leaf.animate(out,{duration:380,easing:'ease-in'}).onfinish=()=>{swap();leaf.animate(inn,{duration:420,easing:'ease-out'}).onfinish=()=>busy=false};
 }
-function showToc(){timers.forEach(clearTimeout);reader.hidden=true;toc.hidden=false;read.hidden=true;document.body.classList.remove('reading');read.setAttribute('aria-pressed','false');document.title='कविताएँ · Nightwalker';scrollTo(0,0)}
+function showToc(){timers.forEach(clearTimeout);reader.hidden=true;toc.hidden=false;document.title='कविताएँ · Nightwalker';scrollTo(0,0)}
 function go(n){location.hash=n}
 function route(){
   const n=parseInt(location.hash.slice(1),10);

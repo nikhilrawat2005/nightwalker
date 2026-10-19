@@ -16,19 +16,6 @@ const sorted=[...P].sort((a,b)=>b.date.localeCompare(a.date));
 $('posts').innerHTML=sorted.map(p=>`<li><a href="#${esc(p.slug)}"><img src="${esc(p.slides[0]?.img||'')}" alt="" loading="lazy"><div><p class="m">${fmt(p.date)} · ${esc(p.place||'')}</p><h3>${esc(p.title)}</h3><p class="s">${esc(p.sub||'')}</p></div></a></li>`).join('');
 const track=null;let cur=null;
 
-/* font resize & reading mode */
-let fsi=1;const fss=['1rem','1.08rem','1.18rem','1.28rem'];
-const fsWrap=$('fs'),fsm=$('fsm'),fsp=$('fsp'),readBtn=$('read');
-function setFs(i){fsi=Math.max(0,Math.min(fss.length-1,i));document.documentElement.style.setProperty('--blog-fs',fss[fsi]);if(fsm)fsm.disabled=fsi===0;if(fsp)fsp.disabled=fsi===fss.length-1}
-if(fsm&&fsp){fsm.onclick=()=>setFs(fsi-1);fsp.onclick=()=>setFs(fsi+1);setFs(1)}
-if(readBtn){
-  readBtn.onclick=()=>{
-    const on=document.body.classList.toggle('reading');
-    readBtn.setAttribute('aria-pressed',on);
-    store.set('nw-read',on?'1':'0');
-  };
-  if(store.get('nw-read')==='1'){document.body.classList.add('reading');readBtn.setAttribute('aria-pressed','true')}
-}
 
 function open(p){
   cur=p;
@@ -80,8 +67,6 @@ function open(p){
   document.title=`${p.title} · Diary · Nightwalker`;
   $('index').hidden=true;
   $('post').hidden=false;
-  if(fsWrap)fsWrap.hidden=false;
-  if(readBtn)readBtn.hidden=false;
   scrollTo(0,0);
 }
 
@@ -95,12 +80,6 @@ function route(){
   }else{
     $('post').hidden=true;
     $('index').hidden=false;
-    if(fsWrap)fsWrap.hidden=true;
-    if(readBtn){
-      readBtn.hidden=true;
-      readBtn.setAttribute('aria-pressed','false');
-    }
-    document.body.classList.remove('reading');
     document.title='डायरी · Nightwalker';
   }
   onScroll();

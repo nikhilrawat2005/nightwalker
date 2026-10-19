@@ -91,10 +91,6 @@ section#toc,section#reader{position:relative}
  .prail button:hover span,.prail button:focus-visible span{opacity:1}
  .prail li{margin-top:-5px}
 }
-body.reading .grain{opacity:.04}
-body.reading .lamp{opacity:0}
-body.reading .prose{font-size:calc(var(--fs)*1.12)}
-body.reading .top{opacity:0;pointer-events:none;transition:opacity .5s}
-body.reading .top:hover,body.reading .top:focus-within{opacity:1;pointer-events:auto}
+
 @media(max-width:600px){.chapters a{grid-template-columns:1fr auto}.chapters .no{grid-column:1/-1}.fs{display:none}.page{--fs:1.25rem}.en-title{word-break:normal}}
 @media(prefers-reduced-motion:reduce){.prose .rv{opacity:1;transform:none}}

@@ -51,10 +51,5 @@ body.pw{min-height:100svh}
  .leaf .m{display:none}
  .dock{display:none}
 }
-body.reading .top,body.reading .hint,body.reading .dock{opacity:0;pointer-events:none;transition:opacity .5s}
-body.reading .top:hover,body.reading .top:focus-within{opacity:1;pointer-events:auto}
-body.reading .leaf .poem{font-size:clamp(1.4rem,5.6vw,1.75rem);line-height:2.15}
-body.reading .leaf{background:transparent;border-color:transparent;box-shadow:none}
-body.reading .book{border-color:transparent;box-shadow:none;background:none}
-body.reading .verso{opacity:.35;transition:opacity .4s}body.reading .verso:hover{opacity:1}
+
 @media(prefers-reduced-motion:reduce){.leaf .poem p{opacity:1;transform:none}}

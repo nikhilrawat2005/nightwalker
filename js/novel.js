@@ -89,15 +89,13 @@ addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onS
 
 function showLibrary(){
   library.hidden=false;toc.hidden=true;reader.hidden=true;
-  read.hidden=true;fs.hidden=true;document.body.classList.remove('reading');
-  read.setAttribute('aria-pressed','false');sync();
+  sync();
   document.title='Novels & Memoirs · Nightwalker';scrollTo(0,0);onScroll();
 }
 
 function showToc(){
   library.hidden=true;reader.hidden=true;toc.hidden=false;
-  read.hidden=true;fs.hidden=true;document.body.classList.remove('reading');
-  read.setAttribute('aria-pressed','false');sync();
+  sync();
   document.title=`${N.title} · Nightwalker`;scrollTo(0,0);onScroll();
 }
 
@@ -111,7 +109,7 @@ function route(){
     const n=parseInt(h.split('ch=')[1],10),i=idx(n);
     if(i>=0){
       const was=!reader.hidden&&cur!==i;
-      library.hidden=true;toc.hidden=true;reader.hidden=false;read.hidden=false;fs.hidden=false;
+      library.hidden=true;toc.hidden=true;reader.hidden=false;
       fill(i);
       if(was&&window.NW)NW.flip();
       page.focus({preventScroll:true});
@@ -133,12 +131,5 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'&&e.altKey)step(1);else if(e.key==='ArrowLeft'&&e.altKey)step(-1);
   else if(e.key==='Escape'){document.body.classList.contains('reading')?read.click():$('tocC').click()}
 });
-/* reading mode + font size */
-read.onclick=()=>{const on=document.body.classList.toggle('reading');if(on)read.blur();read.setAttribute('aria-pressed',on);sync()};
-let size=parseFloat(store.get('nw-novel-fs'))||1.3;
-const applySize=()=>{page.style.setProperty('--fs',size+'rem');store.set('nw-novel-fs',size)};
-if(store.get('nw-novel-fs'))applySize();
-$('fsm').onclick=()=>{size=Math.max(1.05,size-.1);applySize()};
-$('fsp').onclick=()=>{size=Math.min(1.9,size+.1);applySize()};
 route();
 })();

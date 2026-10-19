@@ -108,5 +108,3 @@
 .cnav{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid var(--line)}
 .ln{font:400 1rem var(--en);color:var(--muted);transition:color .2s}.ln:hover{color:var(--ember)}
 
-body.reading:has(#post:not([hidden])) .top{opacity:0;pointer-events:none;transition:opacity .5s}
-body.reading:has(#post:not([hidden])) .top:hover,body.reading:has(#post:not([hidden])) .top:focus-within{opacity:1;pointer-events:auto}
