@@ -12,27 +12,25 @@
 .bw img{filter:grayscale(1) contrast(1.08)}
 .stampc{position:absolute;left:.7rem;bottom:.7rem;right:.7rem;font:300 .72rem var(--ui);letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px #000;pointer-events:none;display:flex;gap:.6rem;flex-wrap:wrap}
 .stampc b{font-weight:400;color:var(--coral);background:rgba(13,14,27,.7);padding:.1rem .4rem}
-/* Pinterest puzzle mosaic styling with handcrafted frames */
+/* Pinterest mosaic: Masonry columns to preserve every photo's natural true aspect ratio */
 .pinterest-mosaic{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
-  grid-auto-flow:dense;
-  gap:1.6rem;
+  columns:3 280px;
+  column-gap:1.6rem;
   padding:0 clamp(1rem,4vw,3.5rem) 5rem;
   max-width:1380px;
   margin:0 auto;
 }
 .pinterest-mosaic .g-item{
+  break-inside:avoid;
+  margin-bottom:1.6rem;
   position:relative;
   background:var(--surface);
   border:1px solid var(--line);
   padding:8px 8px 12px;
   border-radius:4px;
   box-shadow:0 6px 18px -4px rgba(0,0,0,.35);
-  display:flex;
-  flex-direction:column;
+  display:block;
   transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease;
-  overflow:hidden;
 }
 :root[data-mode=paper] .pinterest-mosaic .g-item{
   background:#fff;
@@ -45,43 +43,24 @@
   z-index:2;
 }
 
-/* Puzzle variations: portrait, square, wide landscape */
-.pinterest-mosaic .g-item.v-tall{
-  grid-row:span 2;
-}
-.pinterest-mosaic .g-item.v-wide{
-  grid-column:span 2;
-}
-@media(max-width:680px){
-  .pinterest-mosaic{grid-template-columns:1fr;gap:1.4rem}
-  .pinterest-mosaic .g-item.v-wide{grid-column:auto}
-  .pinterest-mosaic .g-item.v-tall{grid-row:auto}
-}
-
 .pinterest-mosaic .g-item button{
   position:relative;
   width:100%;
-  flex:1;
   display:block;
   overflow:hidden;
   border-radius:2px;
-  background:#090a12;
+  background:#111;
 }
 .pinterest-mosaic .g-item img{
   width:100%;
-  height:100%;
-  object-fit:cover;
-  min-height:220px;
+  height:auto;
+  max-height:none;
+  display:block;
+  object-fit:contain; /* Keeps exact real aspect ratio! */
   transition:transform .45s ease;
 }
 .pinterest-mosaic .g-item:hover img{
-  transform:scale(1.04);
-}
-.pinterest-mosaic .g-item.v-tall img{
-  min-height:360px;
-}
-.pinterest-mosaic .g-item.v-wide img{
-  aspect-ratio:16/9;
+  transform:scale(1.03);
 }
 .pinterest-mosaic .g-item .stampc{
   position:static;

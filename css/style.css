@@ -1,40 +1,40 @@
 :root{
-  --bg:#0D0E1B;
-  --surface:#151829;
-  --card-bg:#1A1E35;
-  --text:#ECE8F2;
-  --muted:#A5A0BD;
-  --coral:#FF6B4A;
-  --ember:#F59E3F;
-  --sage:#7BB38E;
+  --bg:#1E2B2B;               /* Deep forest slate backdrop */
+  --surface:#2A4343;          /* Palette primary dark slate */
+  --card-bg:#233737;          /* Card container */
+  --text:#F7F4EB;             /* Soft parchment white */
+  --muted:#C0C29D;            /* Palette soft sage grey */
+  --coral:#D35E36;            /* Palette rust terracotta accent */
+  --ember:#F1D49A;            /* Palette warm sand gold */
+  --sage:#416B66;             /* Palette teal pine */
   --lilac:#B897DB;
-  --glacier:#6FA7D4;
-  --turq:#38D9A9;
-  --terracotta:#C85A3E;
-  --gold:#E5B869;
-  --line:rgba(236,232,242,.15);
+  --glacier:#416B66;          /* Replaced cold blue with palette teal pine */
+  --turq:#C0C29D;             /* Replaced cold turq with soft sage */
+  --terracotta:#D35E36;
+  --gold:#F1D49A;
+  --line:rgba(241,212,154,.18);
   --hi:'Tiro Devanagari Hindi',serif;
   --en:'Cormorant Garamond',serif;
   --ui:'Jost',sans-serif;
   --hand:'Kalam',cursive;
-  --ripped-shadow:0 20px 40px -15px rgba(0,0,0,.6);
+  --ripped-shadow:0 20px 40px -15px rgba(10,20,20,.6);
 }
 :root[data-mode=paper]{
-  --bg:#F5EFE3;
-  --surface:#EADFCB;
-  --card-bg:#FAF4E8;
-  --text:#241E19;
-  --muted:#6B5F52;
-  --coral:#C44525;
+  --bg:#F7F4EB;               /* Warm cream paper */
+  --surface:#EAE4D2;          /* Soft parchment container */
+  --card-bg:#FAF7EF;          /* Card paper */
+  --text:#243232;             /* Deep slate ink */
+  --muted:#646756;            /* Palette earthy olive grey */
+  --coral:#D35E36;            /* Palette rust terracotta */
   --ember:#B8681A;
-  --sage:#4E7C5D;
-  --lilac:#78549C;
-  --glacier:#3A6F99;
-  --turq:#1D8A68;
-  --terracotta:#9C3E26;
+  --sage:#416B66;             /* Palette pine teal */
+  --lilac:#6E4F8A;
+  --glacier:#416B66;
+  --turq:#416B66;
+  --terracotta:#D35E36;
   --gold:#B3832B;
-  --line:rgba(36,30,25,.16);
-  --ripped-shadow:0 15px 35px -10px rgba(70,50,30,.2);
+  --line:rgba(36,50,50,.16);
+  --ripped-shadow:0 15px 35px -10px rgba(42,67,67,.18);
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:4rem}

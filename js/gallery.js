@@ -11,13 +11,7 @@ G.items.forEach(it=>{if(!it.date){const m=/(\d{4})(\d{2})(\d{2})/.exec(it.img);i
 const photo=document.body.classList.contains('photo');
 $('g').innerHTML=G.items.map((it,i)=>{
   const st=photo?`<span class="stampc">${it.date?`<b>${fmt(it.date)}</b>`:''}${esc(it.place)}${it.title?' · '+esc(it.title):''}</span>`:'';
-  // Give varied puzzle frame sizes for a Pinterest mosaic look
-  let puzzleClass='';
-  if(photo){
-    if(i%7===0||i%7===4)puzzleClass=' v-tall';
-    else if(i%7===2)puzzleClass=' v-wide';
-  }
-  return`<figure class="g-item${it.bw?' bw':''}${puzzleClass}"><button data-i="${i}" aria-label="${esc(it.title||'Photo')} bada dekhein"><img src="${esc(it.img)}" alt="${esc(it.alt||it.title||'')}"${i>2?' loading="lazy"':''}></button>${st}</figure>`}).join('');
+  return`<figure class="g-item${it.bw?' bw':''}"><button data-i="${i}" aria-label="${esc(it.title||'Photo')} bada dekhein"><img src="${esc(it.img)}" alt="${esc(it.alt||it.title||'')}"${i>2?' loading="lazy"':''}></button>${st}</figure>`}).join('');
 if(!G.items.length)$('g').innerHTML='<p class="empty" lang="hi">कागज़ अभी सूख रहा है…<br><small>रेखाचित्र जल्दी ही यहाँ आएँगे।</small></p>';
 $('sample').hidden=!G.sample;
 const lb=$('lb');let cur=0;
