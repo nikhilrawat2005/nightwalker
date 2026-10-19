@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0D0E1B">
+<title>रेखाचित्र · Nightwalker</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nightwalker">
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&family=Kalam:wght@300;400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/gallery.css">
+</head>
+<body class="gw sketch">
+<div class="grain" aria-hidden="true"></div>
+<header class="top">
+  <a class="mark" href="index.html" aria-label="Nightwalker, home">निघ्त वल्केर</a>
+  <nav aria-label="Main">
+    <a href="poetry.html">Poetry</a><a href="novel.html">Novel</a><a href="blog.html">Blog</a><a href="photos.html">Photography</a><a href="sketches.html" aria-current="page">Sketches</a>
+  </nav>
+  <span class="tools"><button class="mode" id="mode" aria-label="Switch between night and paper">रात ⇄ कागज़</button></span>
+</header>
+<main>
+<section class="ghead">
+  <p class="eyebrow">kagaz ke hashiye</p>
+  <h1><span lang="hi">रेखाचित्र</span></h1>
+  <p class="gsub">Sab ek saath, ek hi baar mein.</p>
+</section>
+<section class="mason" id="g" aria-label="रेखाचित्र"></section>
+<p class="sample" id="sample" hidden>✎ namuna: asli photos/sketches aate hi ye note hat jaayega</p>
+</main>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Bada dekhein">
+  <button class="lx" id="lx" aria-label="Band karo">✕</button>
+  <button class="lp" id="lp" aria-label="Pichli">←</button>
+  <figure><img id="li" alt=""><figcaption id="lc"></figcaption></figure>
+  <button class="ln2" id="ln" aria-label="Agli">→</button>
+</div>
+<footer><span>© Nightwalker</span></footer>
+<script src="js/sketches.js"></script>
+<script src="js/gallery.js"></script>
+<noscript><p style="position:fixed;inset:auto 0 0 0;padding:1rem;text-align:center;background:#171A2E;color:#ECE8F2;font:1rem sans-serif">यह घर JavaScript के बिना नहीं खुलता। कृपया उसे चालू करें।</p></noscript>
+<script src="js/app.js" defer></script>
+</body>
+</html>

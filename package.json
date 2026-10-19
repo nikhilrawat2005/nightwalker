@@ -1,0 +1,14 @@
+{
+  "name": "nightwalker",
+  "version": "1.0.0",
+  "description": "Nightwalker personal creative portfolio, poems, novel, diary & photography",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000",
+    "sync": "python tools/sync_docs.py",
+    "optimize": "python tools/optimize_images.py"
+  },
+  "keywords": ["portfolio", "poems", "photography", "novel", "blog"],
+  "author": "Nightwalker",
+  "license": "ISC"
+}
