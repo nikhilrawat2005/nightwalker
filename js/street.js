@@ -38,7 +38,6 @@ function initLightTable() {
       <div class="light-table-caption">
         <div class="title-row">
           <span class="title">${item.title}</span>
-          <span class="place">${item.place || 'Street'}</span>
         </div>
         <p class="marker-text">${item.caption || item.alt || ''}</p>
       </div>
