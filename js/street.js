@@ -12,9 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initStreetPoetry();
   initStreetLightbox();
 
-  // Register clean service worker for instant page prefetching
-  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+  // Automatically unregister any old/broken service worker and clean browser cache
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(regs => {
+      for (let reg of regs) {
+        reg.unregister();
+      }
+    }).catch(() => {});
   }
 });
 
