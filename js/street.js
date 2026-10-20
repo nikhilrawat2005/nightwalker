@@ -7,7 +7,6 @@
  * - Poetry reading scraps
  */
 document.addEventListener('DOMContentLoaded', () => {
-  initPaintSplatter();
   initLightTable();
   initStreetBookshop();
   initStreetPoetry();
@@ -15,64 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================================================
-   1. SPRAY-CAN PAINT SPLAT ON CLICK & CURSOR
+   1. SPRAY-CAN PAINT SPLAT ON CLICK (DISABLED ON USER REQUEST)
    ========================================================= */
 function initPaintSplatter() {
-  const canvas = document.createElement('canvas');
-  canvas.className = 'splat-canvas';
-  document.body.appendChild(canvas);
-  const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const colors = ['#D7FF1F', '#FF2D2D', '#2B3BFF', '#F4ECD8'];
-  let splatters = [];
-
-  window.addEventListener('click', (e) => {
-    // Only splat if not clicking an interactive button
-    if (e.target.closest('button, a, input, .turn-btn, .btn-bookshop-turn')) return;
-
-    const x = e.clientX;
-    const y = e.clientY;
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const count = 12 + Math.floor(Math.random() * 10);
-
-    for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = Math.random() * 45;
-      const radius = 2 + Math.random() * 6;
-      splatters.push({
-        x: x + Math.cos(angle) * dist,
-        y: y + Math.sin(angle) * dist,
-        r: radius,
-        color: color,
-        alpha: 0.95
-      });
-    }
-
-    // Keep splatter count restrained for performance
-    if (splatters.length > 100) {
-      splatters.splice(0, 25);
-    }
-    drawSplatters();
-  });
-
-  function drawSplatters() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    splatters.forEach(s => {
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.color;
-      ctx.globalAlpha = s.alpha;
-      ctx.fill();
-    });
-    ctx.globalAlpha = 1.0;
-  }
+  // Disabled: No random color marks on clicks
 }
 
 /* =========================================================
@@ -120,6 +65,9 @@ function initStreetBookshop() {
   const bookmarkBtns = document.querySelectorAll('.torn-bookmark-btn');
   const prevBtn = document.getElementById('prevBookshopPage');
   const nextBtn = document.getElementById('nextBookshopPage');
+
+  // Only run on pages that actually contain the bookshop widget.
+  if (!document.getElementById('bookshopSpread')) return;
 
   function buildBookshopPages(filter = 'skills') {
     bookshopPages = [];

@@ -37,20 +37,29 @@
     <div class="page-title-banner">
       <div>
         <span class="funky-word funky-yellow" style="font-size:0.75rem;letter-spacing:0.18em;margin-bottom:0.6rem;">
-          THE ORIGINAL NOVEL // CHAPTER ARCHIVE
+          THE NOVEL LIBRARY // CHAPTER ARCHIVE
         </span>
         <h1>The Novel</h1>
-        <p class="sub">~ The Skills I Don’t Use Anymore. Ek aisi kahani jo bina plan ke shuru hui. Pure turn-by-turn reading (100–150 words per page).</p>
+        <p class="sub">~ Multiple novels &amp; memoirs. Pick a book, open its chapter index, then read chapter by chapter (100–150 words per page) with your arrow keys.</p>
       </div>
       <span class="funky-word funky-red" style="font-size:0.85rem;padding:0.4rem 0.9rem;">
         IN PROGRESS
       </span>
     </div>
 
-    <!-- Chapter Index Board (User request: "ek novel jiske ander index hoga and then us index me uske chapter honge") -->
-    <div class="novel-index-board" id="novelIndexBoard">
+    <!-- Novel Library (post-style listing of multiple novels) -->
+    <div id="novelLibraryView">
+      <p class="skip-hint">Choose a book to open ↓</p>
+      <div class="novel-library-grid" id="novelLibraryGrid">
+        <!-- Rendered dynamically from window.NOVELS -->
+      </div>
+    </div>
+
+    <!-- Chapter Index Board (shown after picking a novel) -->
+    <div class="novel-index-board" id="novelIndexBoard" hidden>
+      <button class="novel-back-link" id="novelBackToLibrary">← All Novels</button>
       <div class="novel-index-header">
-        <h2 class="novel-index-title">CHAPTER INDEX // The Skills I Don’t Use Anymore</h2>
+        <h2 class="novel-index-title" id="novelIndexTitle">CHAPTER INDEX</h2>
         <span class="novel-index-badge">SELECT A CHAPTER TO READ</span>
       </div>
 
@@ -60,7 +69,7 @@
     </div>
 
     <!-- Paginated Turn-by-Turn Book Spread (100-150 words per page) -->
-    <article class="paginated-book-spread page-flip-anim" id="novelPageSpread">
+    <article class="paginated-book-spread page-flip-anim" id="novelPageSpread" tabindex="-1" hidden>
       <div class="book-reading-content">
         <div class="book-page-header">
           <span class="header-label" id="novelChapterLabel">Chapter 0</span>
@@ -73,12 +82,16 @@
         </div>
       </div>
 
+      <div class="reader-arrow-hint">
+        Use <kbd>←</kbd> <kbd>→</kbd> arrow keys or the buttons to turn the page
+      </div>
+
       <footer class="book-turn-bar">
         <button class="turn-btn" id="prevNovelPageBtn">
           ← Previous Page
         </button>
         <span class="page-counter-badge" id="novelPageCounter">
-          Page 1 of 11
+          Page 1 of 1
         </span>
         <button class="turn-btn" id="nextNovelPageBtn">
           Next Page →
@@ -100,67 +113,123 @@
     </p>
   </footer>
 
+  <script src="js/posts.js"></script>
   <script src="js/chapters.js"></script>
+  <script src="js/novels_data.js"></script>
+  <script src="js/novel_content.js"></script>
   <script src="js/street.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const novel = window.NOVEL;
-      if (!novel || !novel.chapters) return;
+      const novels = window.NOVELS || [];
+      const content = window.NOVEL_CONTENT || {};
 
-      const grid = document.getElementById('novelChaptersGrid');
+      const libraryView = document.getElementById('novelLibraryView');
+      const libraryGrid = document.getElementById('novelLibraryGrid');
+      const indexBoard = document.getElementById('novelIndexBoard');
+      const indexTitle = document.getElementById('novelIndexTitle');
+      const chaptersGrid = document.getElementById('novelChaptersGrid');
+      const backToLibrary = document.getElementById('novelBackToLibrary');
+      const spread = document.getElementById('novelPageSpread');
+      const chapterLabel = document.getElementById('novelChapterLabel');
+      const sheetNum = document.getElementById('novelSheetNum');
+      const textContent = document.getElementById('novelTextContent');
+      const counter = document.getElementById('novelPageCounter');
+      const prevBtn = document.getElementById('prevNovelPageBtn');
+      const nextBtn = document.getElementById('nextNovelPageBtn');
+
       let allPages = [];
       let pageIdx = 0;
-      let activeChapter = 'all';
+      let activeNovel = null;
 
-      // Render the Chapter Index Cards
-      novel.chapters.forEach((ch, idx) => {
-        const card = document.createElement('div');
-        card.className = 'novel-ch-card';
-        card.innerHTML = `
-          <div class="novel-ch-num">${ch.label.toUpperCase()}</div>
-          <h3 class="novel-ch-title">${ch.sub || ch.title}</h3>
-          <p class="novel-ch-blurb">
-            ${idx === 0 
-              ? 'I did not wake up one day and decide to become that guy. Sach ye hai ki main bas akela ho gaya tha...' 
-              : 'Jab tum kisi ko pehli baar approach karte ho, tumhara intention clear hona chahiye...'}
-          </p>
-          <div style="font-family:var(--font-hand);font-size:1.15rem;color:var(--signal-red);">
-            Click to read this chapter →
-          </div>
-        `;
+      /* ---------- Level 1: Novel Library ---------- */
+      function renderLibrary() {
+        libraryGrid.innerHTML = '';
+        novels.forEach((book) => {
+          const hasContent = !!(content[book.id] && content[book.id].length);
+          const card = document.createElement('article');
+          card.className = 'novel-lib-card';
+          card.innerHTML = `
+            <div class="novel-lib-cover">
+              <img src="${book.coverImg}" alt="${book.title}" loading="lazy">
+              <span class="novel-lib-badge">${book.badge || 'Novel'}</span>
+            </div>
+            <div class="novel-lib-body">
+              <span class="novel-lib-genre">${book.genre || 'Story'}</span>
+              <h3 class="novel-lib-title">${book.title}</h3>
+              <p class="novel-lib-desc">${book.tagline || book.coverDesc || ''}</p>
+              <span class="novel-lib-link">${hasContent ? 'Open Chapters →' : 'Drafting soon…'}</span>
+            </div>
+          `;
+          if (hasContent) {
+            card.addEventListener('click', () => openNovel(book.id));
+          }
+          libraryGrid.appendChild(card);
+        });
+      }
 
-        card.addEventListener('click', () => {
-          document.querySelectorAll('.novel-ch-card').forEach(c => c.classList.remove('active'));
-          card.classList.add('active');
-          activeChapter = idx.toString();
-          pageIdx = 0;
-          buildPages(activeChapter);
-          renderPage();
-          document.getElementById('novelPageSpread').scrollIntoView({ behavior: 'smooth' });
+      /* ---------- Level 2: Chapter Index ---------- */
+      function openNovel(bookId) {
+        const book = novels.filter((b) => b.id === bookId)[0];
+        const chapters = content[bookId] || [];
+        activeNovel = book;
+
+        indexTitle.textContent = 'CHAPTER INDEX // ' + book.title;
+        chaptersGrid.innerHTML = '';
+
+        chapters.forEach((ch, idx) => {
+          const card = document.createElement('div');
+          card.className = 'novel-ch-card';
+          card.innerHTML = `
+            <div class="novel-ch-num">${(ch.label || ('Chapter ' + idx)).toUpperCase()}</div>
+            <h3 class="novel-ch-title">${ch.sub || ch.title || ''}</h3>
+            <p class="novel-ch-blurb">${(ch.blocks && ch.blocks[0]) ? ch.blocks[0].x.split('\n')[0].slice(0, 130) : ''}…</p>
+            <div style="font-family:var(--font-hand);font-size:1.15rem;color:var(--signal-red);">
+              Click to read this chapter →
+            </div>
+          `;
+          card.addEventListener('click', () => {
+            document.querySelectorAll('.novel-ch-card').forEach((c) => c.classList.remove('active'));
+            card.classList.add('active');
+            pageIdx = 0;
+            buildPages(chapters, idx);
+            renderPage();
+            spread.scrollIntoView({ behavior: 'smooth' });
+            spread.focus({ preventScroll: true });
+          });
+          chaptersGrid.appendChild(card);
         });
 
-        grid.appendChild(card);
+        // Only the index board is visible at this level
+        libraryView.hidden = true;
+        spread.hidden = true;
+        indexBoard.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      backToLibrary.addEventListener('click', () => {
+        indexBoard.hidden = true;
+        spread.hidden = true;
+        libraryView.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      function buildPages(filter = 'all') {
+      /* ---------- Level 3: Paginated Reader (100–150 words/page) ---------- */
+      function buildPages(chapters, onlyIdx) {
         allPages = [];
-        const chapters = (filter === 'all') 
-          ? novel.chapters 
-          : [novel.chapters[parseInt(filter)]];
+        const list = (typeof onlyIdx === 'number') ? [chapters[onlyIdx]] : chapters;
 
-        chapters.forEach(ch => {
-          let blocks = [];
-          blocks.push({ t: 'h', x: `${ch.label} — ${ch.sub}` });
-          blocks.push(...ch.blocks);
+        list.forEach((ch) => {
+          const blocks = [];
+          blocks.push({ t: 'h', x: `${ch.label || ''} — ${ch.sub || ch.title || ''}` });
+          (ch.blocks || []).forEach((b) => blocks.push(b));
 
           let currPage = [];
           let currWords = 0;
 
-          blocks.forEach(b => {
-            const w = b.x.split(/\s+/).length;
-            // Target 100 - 150 words per page
-            if (currWords + w > 130 && currPage.length > 0) {
-              allPages.push({ chapterLabel: `${novel.title} · ${ch.label}`, blocks: currPage });
+          blocks.forEach((b) => {
+            const w = String(b.x || '').split(/\s+/).filter(Boolean).length;
+            if (currWords + w > 140 && currPage.length > 0) {
+              allPages.push({ chapterLabel: `${activeNovel.title} · ${ch.label || ''}`, blocks: currPage });
               currPage = [b];
               currWords = w;
             } else {
@@ -168,29 +237,21 @@
               currWords += w;
             }
           });
-
           if (currPage.length > 0) {
-            allPages.push({ chapterLabel: `${novel.title} · ${ch.label}`, blocks: currPage });
+            allPages.push({ chapterLabel: `${activeNovel.title} · ${ch.label || ''}`, blocks: currPage });
           }
         });
       }
 
       function renderPage() {
-        const pageSpread = document.getElementById('novelPageSpread');
-        const chapterLabel = document.getElementById('novelChapterLabel');
-        const sheetNum = document.getElementById('novelSheetNum');
-        const textContent = document.getElementById('novelTextContent');
-        const counter = document.getElementById('novelPageCounter');
-        const prevBtn = document.getElementById('prevNovelPageBtn');
-        const nextBtn = document.getElementById('nextNovelPageBtn');
-
-        pageSpread.classList.remove('page-flip-anim');
-        void pageSpread.offsetWidth;
-        pageSpread.classList.add('page-flip-anim');
+        spread.classList.remove('page-flip-anim');
+        void spread.offsetWidth;
+        spread.classList.add('page-flip-anim');
 
         const pageData = allPages[pageIdx];
         if (!pageData) return;
 
+        spread.hidden = false;
         chapterLabel.textContent = pageData.chapterLabel;
         sheetNum.textContent = `Page ${pageIdx + 1}`;
         counter.textContent = `Page ${pageIdx + 1} of ${allPages.length}`;
@@ -199,7 +260,7 @@
         nextBtn.disabled = (pageIdx >= allPages.length - 1);
 
         textContent.innerHTML = '';
-        pageData.blocks.forEach(b => {
+        pageData.blocks.forEach((b) => {
           if (b.t === 'h') {
             const h = document.createElement('h3');
             h.textContent = b.x;
@@ -211,29 +272,34 @@
           } else {
             const p = document.createElement('p');
             p.textContent = b.x;
+            p.style.whiteSpace = 'pre-line';
             textContent.appendChild(p);
           }
         });
       }
 
-      buildPages('all');
-      renderPage();
-
-      document.getElementById('prevNovelPageBtn').addEventListener('click', () => {
-        if (pageIdx > 0) {
-          pageIdx--;
+      function step(delta) {
+        const target = pageIdx + delta;
+        if (target >= 0 && target < allPages.length) {
+          pageIdx = target;
           renderPage();
-          document.getElementById('novelPageSpread').scrollIntoView({ behavior: 'smooth' });
+          spread.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          spread.focus({ preventScroll: true });
         }
+      }
+
+      prevBtn.addEventListener('click', () => step(-1));
+      nextBtn.addEventListener('click', () => step(1));
+
+      document.addEventListener('keydown', (e) => {
+        if (spread.hidden) return;
+        const t = e.target;
+        if (t && typeof t.closest === 'function' && t.closest('input, textarea')) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
       });
 
-      document.getElementById('nextNovelPageBtn').addEventListener('click', () => {
-        if (pageIdx < allPages.length - 1) {
-          pageIdx++;
-          renderPage();
-          document.getElementById('novelPageSpread').scrollIntoView({ behavior: 'smooth' });
-        }
-      });
+      renderLibrary();
     });
   </script>
 </body>

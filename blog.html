@@ -47,14 +47,18 @@
       </span>
     </div>
 
-    <!-- Blogs Directory Grid (User request: "ek ek page bnao jisme sare blogs dikhe... and more blogs add karunga") -->
-    <div class="blog-directory-grid" id="blogDirectoryGrid">
-      <!-- Populated dynamically from window.POSTS -->
+    <!-- Blogs Directory Grid (post-style listing) -->
+    <div id="blogDirectoryView">
+      <p class="skip-hint">Choose a story to read ↓</p>
+      <div class="blog-directory-grid" id="blogDirectoryGrid">
+        <!-- Populated dynamically from window.POSTS -->
+      </div>
     </div>
 
     <!-- Paginated Turn-by-Turn Spread (100-150 words per page + photo slide reels) -->
-    <article class="paginated-book-spread page-flip-anim" id="blogPageSpread">
+    <article class="paginated-book-spread page-flip-anim" id="blogPageSpread" tabindex="-1" hidden>
       <div class="book-reading-content">
+        <button class="novel-back-link" id="blogBackToDirectory">← All Stories</button>
         <div class="book-page-header">
           <span class="header-label" id="blogChapterLabel">म्यर पहाड़</span>
           <span class="sheet-number" id="blogSheetNum">Page 1</span>
@@ -65,12 +69,16 @@
         </div>
       </div>
 
+      <div class="reader-arrow-hint">
+        Use <kbd>←</kbd> <kbd>→</kbd> arrow keys or the buttons to turn the page
+      </div>
+
       <footer class="book-turn-bar">
         <button class="turn-btn" id="prevBlogPageBtn">
           ← Previous Page
         </button>
         <span class="page-counter-badge" id="blogPageCounter">
-          Page 1 of 14
+          Page 1 of 1
         </span>
         <button class="turn-btn" id="nextBlogPageBtn">
           Next Page →
@@ -99,95 +107,103 @@
       const posts = window.POSTS;
       if (!posts || !posts.length) return;
 
+      const dirView = document.getElementById('blogDirectoryView');
       const dirGrid = document.getElementById('blogDirectoryGrid');
+      const spread = document.getElementById('blogPageSpread');
+      const backToDir = document.getElementById('blogBackToDirectory');
+      const chapterLabel = document.getElementById('blogChapterLabel');
+      const sheetNum = document.getElementById('blogSheetNum');
+      const textContent = document.getElementById('blogTextContent');
+      const counter = document.getElementById('blogPageCounter');
+      const prevBtn = document.getElementById('prevBlogPageBtn');
+      const nextBtn = document.getElementById('nextBlogPageBtn');
+
       let currentPostIndex = 0;
       let blogPages = [];
       let blogPageIdx = 0;
 
-      // Render the Blogs Directory Cards
-      posts.forEach((post, pIdx) => {
-        const card = document.createElement('article');
-        card.className = `blog-dir-card ${pIdx === 0 ? 'active' : ''}`;
-        card.innerHTML = `
-          <div class="blog-dir-thumb">
-            <img src="${post.cover}" alt="${post.title}" loading="lazy">
-            <span class="blog-dir-tag">${post.place || 'Journal'}</span>
-          </div>
-          <div class="blog-dir-meta">
-            <div class="blog-dir-date">${post.date} · ${post.mood || 'Reflections'}</div>
-            <h3 class="blog-dir-title">${post.title}</h3>
-            <p class="blog-dir-sub">${post.sub || ''}</p>
-            <p class="blog-dir-excerpt">${post.excerpt}</p>
-            <span class="blog-dir-link">Open Story &amp; Turn Pages →</span>
-          </div>
-        `;
+      /* ---------- Post-style Directory ---------- */
+      function renderDirectory() {
+        dirGrid.innerHTML = '';
+        posts.forEach((post, pIdx) => {
+          const card = document.createElement('article');
+          card.className = 'blog-dir-card';
+          card.innerHTML = `
+            <div class="blog-dir-thumb">
+              <img src="${post.cover}" alt="${post.title}" loading="lazy">
+              <span class="blog-dir-tag">${post.place || 'Journal'}</span>
+            </div>
+            <div class="blog-dir-meta">
+              <div class="blog-dir-date">${post.date} · ${post.mood || 'Reflections'}</div>
+              <h3 class="blog-dir-title">${post.title}</h3>
+              <p class="blog-dir-sub">${post.sub || ''}</p>
+              <p class="blog-dir-excerpt">${post.excerpt}</p>
+              <span class="blog-dir-link">Open Story &amp; Turn Pages →</span>
+            </div>
+          `;
 
-        card.addEventListener('click', () => {
-          document.querySelectorAll('.blog-dir-card').forEach(c => c.classList.remove('active'));
-          card.classList.add('active');
-          currentPostIndex = pIdx;
-          blogPageIdx = 0;
-          buildBlogPages(currentPostIndex);
-          renderBlogPage();
-          document.getElementById('blogPageSpread').scrollIntoView({ behavior: 'smooth' });
+          card.addEventListener('click', () => {
+            currentPostIndex = pIdx;
+            blogPageIdx = 0;
+            buildBlogPages(currentPostIndex);
+            renderBlogPage();
+            dirView.hidden = true;
+            spread.hidden = false;
+            spread.scrollIntoView({ behavior: 'smooth' });
+            spread.focus({ preventScroll: true });
+          });
+
+          dirGrid.appendChild(card);
         });
+      }
 
-        dirGrid.appendChild(card);
+      backToDir.addEventListener('click', () => {
+        spread.hidden = true;
+        dirView.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
+      /* ---------- Paginated Reader (100–150 words/page + slides) ---------- */
       function buildBlogPages(postIdx) {
         blogPages = [];
         const post = posts[postIdx];
         if (!post || !post.body) return;
 
         const slides = post.slides || [];
+        const PARAGRAPHS_PER_PAGE_TARGET = 140; // words
+
         let currPageBlocks = [];
-        let currSlide = null;
         let currWords = 0;
         let slideCursor = 0;
 
-        post.body.forEach((b, bIdx) => {
-          const w = b.x.split(/\s+/).length;
+        post.body.forEach((b) => {
+          const w = String(b.x || '').split(/\s+/).filter(Boolean).length;
 
-          // When starting a new page and we have photos, attach a slide photo every ~2 pages
-          if (currPageBlocks.length === 0 && slideCursor < slides.length && (blogPages.length % 2 === 0)) {
-            currSlide = slides[slideCursor];
-            slideCursor++;
-          }
-
-          if (currWords + w > 130 && currPageBlocks.length > 0) {
-            blogPages.push({
-              title: post.title,
-              blocks: currPageBlocks,
-              slide: currSlide
-            });
+          if (currWords + w > PARAGRAPHS_PER_PAGE_TARGET && currPageBlocks.length > 0) {
+            blogPages.push({ title: post.title, blocks: currPageBlocks });
             currPageBlocks = [b];
             currWords = w;
-            currSlide = null;
           } else {
             currPageBlocks.push(b);
             currWords += w;
           }
         });
-
         if (currPageBlocks.length > 0) {
-          blogPages.push({
-            title: post.title,
-            blocks: currPageBlocks,
-            slide: currSlide
+          blogPages.push({ title: post.title, blocks: currPageBlocks });
+        }
+
+        // Distribute slide photos evenly across the pages
+        if (slides.length && blogPages.length) {
+          blogPages.forEach((pg) => (pg.slide = null));
+          slides.forEach((slide, i) => {
+            const target = Math.round((i + 1) * blogPages.length / (slides.length + 1)) - 1;
+            const idx = Math.max(0, Math.min(blogPages.length - 1, target));
+            if (!blogPages[idx].slide) blogPages[idx].slide = slide;
           });
         }
       }
 
       function renderBlogPage() {
-        const spread = document.getElementById('blogPageSpread');
-        const chapterLabel = document.getElementById('blogChapterLabel');
-        const sheetNum = document.getElementById('blogSheetNum');
-        const textContent = document.getElementById('blogTextContent');
-        const counter = document.getElementById('blogPageCounter');
-        const prevBtn = document.getElementById('prevBlogPageBtn');
-        const nextBtn = document.getElementById('nextBlogPageBtn');
-
         spread.classList.remove('page-flip-anim');
         void spread.offsetWidth;
         spread.classList.add('page-flip-anim');
@@ -195,6 +211,7 @@
         const pageData = blogPages[blogPageIdx];
         if (!pageData) return;
 
+        spread.hidden = false;
         chapterLabel.textContent = pageData.title;
         sheetNum.textContent = `Page ${blogPageIdx + 1}`;
         counter.textContent = `Page ${blogPageIdx + 1} of ${blogPages.length}`;
@@ -204,7 +221,6 @@
 
         textContent.innerHTML = '';
 
-        // If page has an integrated photography slide, render it
         if (pageData.slide) {
           const photoDiv = document.createElement('div');
           photoDiv.className = 'blog-inpage-photo';
@@ -215,7 +231,7 @@
           textContent.appendChild(photoDiv);
         }
 
-        pageData.blocks.forEach(b => {
+        pageData.blocks.forEach((b) => {
           if (b.t === 'h') {
             const h = document.createElement('h3');
             h.textContent = b.x;
@@ -227,30 +243,34 @@
           } else {
             const p = document.createElement('p');
             p.textContent = b.x;
+            p.style.whiteSpace = 'pre-line';
             textContent.appendChild(p);
           }
         });
       }
 
-      // Initialize with first post
-      buildBlogPages(0);
-      renderBlogPage();
-
-      document.getElementById('prevBlogPageBtn').addEventListener('click', () => {
-        if (blogPageIdx > 0) {
-          blogPageIdx--;
+      function step(delta) {
+        const target = blogPageIdx + delta;
+        if (target >= 0 && target < blogPages.length) {
+          blogPageIdx = target;
           renderBlogPage();
-          document.getElementById('blogPageSpread').scrollIntoView({ behavior: 'smooth' });
+          spread.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          spread.focus({ preventScroll: true });
         }
+      }
+
+      prevBtn.addEventListener('click', () => step(-1));
+      nextBtn.addEventListener('click', () => step(1));
+
+      document.addEventListener('keydown', (e) => {
+        if (spread.hidden) return;
+        const t = e.target;
+        if (t && typeof t.closest === 'function' && t.closest('input, textarea')) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
       });
 
-      document.getElementById('nextBlogPageBtn').addEventListener('click', () => {
-        if (blogPageIdx < blogPages.length - 1) {
-          blogPageIdx++;
-          renderBlogPage();
-          document.getElementById('blogPageSpread').scrollIntoView({ behavior: 'smooth' });
-        }
-      });
+      renderDirectory();
     });
   </script>
 </body>

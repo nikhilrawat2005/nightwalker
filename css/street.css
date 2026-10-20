@@ -845,66 +845,226 @@ body.poetry-page {
   margin: 0 auto;
 }
 
+/* ---------------------------------------------------------
+   NOVEL LIBRARY (post-style listing of multiple novels)
+   --------------------------------------------------------- */
+.novel-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.novel-lib-card {
+  background: #161719;
+  border: 2px solid rgba(244, 236, 216, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.novel-lib-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--acid-yellow);
+  box-shadow: 6px 6px 0 var(--signal-red);
+}
+
+.novel-lib-cover {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+}
+
+.novel-lib-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.novel-lib-card:hover .novel-lib-cover img {
+  transform: scale(1.05);
+}
+
+.novel-lib-badge {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  font-family: var(--font-typewriter);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--acid-yellow);
+  color: var(--ink);
+  padding: 0.28rem 0.65rem;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.novel-lib-body {
+  padding: 1.6rem 1.7rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.novel-lib-genre {
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--acid-yellow);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.novel-lib-title {
+  font-family: var(--font-hi-heavy);
+  font-size: 1.75rem;
+  color: var(--old-paper);
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.novel-lib-desc {
+  font-size: 0.96rem;
+  color: #B5B0A4;
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+  flex: 1;
+}
+
+.novel-lib-link {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: var(--signal-red);
+}
+
+.novel-lib-card:hover .novel-lib-link {
+  color: var(--acid-yellow);
+}
+
 /* Chapter Index Box */
 .novel-index-board {
   background: #151618;
-  border: 2px solid var(--line-dark);
-  padding: 2.5rem;
+  border: 2px solid rgba(244, 236, 216, 0.18);
+  padding: clamp(1.6rem, 4vw, 2.5rem);
   box-shadow: 0 20px 50px rgba(0,0,0,0.8);
   margin-bottom: 3.5rem;
 }
 
-.novel-index-board h2 {
-  font-family: var(--font-marker);
-  font-size: 1.8rem;
-  color: var(--acid-yellow);
-  margin-bottom: 0.5rem;
+.novel-index-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  border-bottom: 2px dashed rgba(244, 236, 216, 0.22);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.8rem;
 }
 
-.chapter-index-list {
+.novel-index-title {
+  font-family: var(--font-marker);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: var(--acid-yellow);
+}
+
+.novel-index-badge {
+  font-family: var(--font-typewriter);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--signal-red);
+  color: #fff;
+  padding: 0.3rem 0.7rem;
+  transform: rotate(2deg);
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Back-to-library link inside the chapter board */
+.novel-back-link {
+  display: inline-block;
+  font-family: var(--font-typewriter);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--old-paper);
+  background: #1F2023;
+  border: 1.5px solid rgba(244, 236, 216, 0.2);
+  padding: 0.45rem 0.95rem;
+  cursor: pointer;
+  margin-bottom: 1.6rem;
+  transition: all 0.2s ease;
+}
+
+.novel-back-link:hover {
+  background: var(--acid-yellow);
+  color: var(--ink);
+}
+
+.novel-chapters-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.2rem;
-  margin-top: 1.5rem;
 }
 
-.chapter-index-card {
+.novel-ch-card {
   background: #1F2023;
   border: 1.5px solid rgba(244, 236, 216, 0.2);
-  padding: 1.2rem 1.4rem;
+  padding: 1.3rem 1.4rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.chapter-index-card:hover, .chapter-index-card.active {
+.novel-ch-card:hover, .novel-ch-card.active {
   background: var(--signal-red);
   color: #FFFFFF;
   border-color: var(--signal-red);
   transform: translateY(-3px);
 }
 
-.chapter-index-card .ch-num {
+.novel-ch-num {
   font-family: monospace;
   font-size: 0.74rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   display: block;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.35rem;
+  color: var(--acid-yellow);
 }
 
-.chapter-index-card h4 {
+.novel-ch-card:hover .novel-ch-num,
+.novel-ch-card.active .novel-ch-num {
+  color: #FFFFFF;
+}
+
+.novel-ch-title {
   font-family: var(--font-marker);
   font-size: 1.2rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
+  color: var(--old-paper);
 }
 
-.chapter-index-card p {
+.novel-ch-card:hover .novel-ch-title,
+.novel-ch-card.active .novel-ch-title {
+  color: #FFFFFF;
+}
+
+.novel-ch-blurb {
   font-size: 0.88rem;
   color: #BBB;
-  line-height: 1.5;
+  line-height: 1.55;
+  margin-bottom: 0.7rem;
 }
 
-.chapter-index-card:hover p, .chapter-index-card.active p {
+.novel-ch-card:hover .novel-ch-blurb,
+.novel-ch-card.active .novel-ch-blurb {
   color: #FFE6E6;
 }
 
@@ -1027,76 +1187,215 @@ body.poetry-page {
   font-weight: 700;
 }
 
-/* =========================================================
-   BLOGS DIRECTORY & PHOTO-STORY INTEGRATION (blog.html)
-   ========================================================= */
-.blogs-directory-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 4rem;
+/* Reader states: hide spread until a story/chapter is chosen */
+[hidden] { display: none !important; }
+
+.reader-arrow-hint {
+  text-align: center;
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: #777;
+  margin-top: 0.6rem;
+  padding: 0 clamp(1.8rem, 5vw, 4.5rem) 0.6rem;
+  background: #EAE1CB;
 }
 
-.blog-directory-card {
+.reader-arrow-hint kbd {
+  font-family: var(--font-typewriter);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--old-paper);
+  border: 1.5px solid var(--ink);
+  padding: 0.1rem 0.45rem;
+  box-shadow: 2px 2px 0 #000;
+  margin: 0 0.15rem;
+}
+
+.paginated-book-spread:focus {
+  outline: 3px dashed var(--signal-red);
+  outline-offset: 4px;
+}
+
+.skip-hint {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--old-paper);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* ---------------------------------------------------------
+   BLOGS DIRECTORY (post-style listing) + PHOTO-STORY INTEGRATION
+   --------------------------------------------------------- */
+.blog-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.blog-dir-card {
   background: #161719;
   border: 2px solid rgba(244, 236, 216, 0.15);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.blog-directory-card:hover {
+.blog-dir-card:hover {
   transform: translateY(-6px);
   border-color: var(--acid-yellow);
   box-shadow: 6px 6px 0 var(--signal-red);
 }
 
-.blog-directory-card .thumb {
+.blog-dir-card.active {
+  border-color: var(--acid-yellow);
+  box-shadow: 6px 6px 0 var(--signal-red);
+}
+
+.blog-dir-thumb {
   aspect-ratio: 16/10;
   overflow: hidden;
   position: relative;
 }
 
-.blog-directory-card .thumb img {
+.blog-dir-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.blog-directory-card:hover .thumb img {
+.blog-dir-card:hover .blog-dir-thumb img {
   transform: scale(1.05);
 }
 
-.blog-directory-card .card-content {
-  padding: 1.8rem;
+.blog-dir-tag {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  font-family: var(--font-typewriter);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--acid-yellow);
+  color: var(--ink);
+  padding: 0.28rem 0.65rem;
+  box-shadow: 2px 2px 0 #000;
 }
 
-.blog-directory-card .card-content .date-tag {
+.blog-dir-meta {
+  padding: 1.6rem 1.7rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blog-dir-date {
   font-family: monospace;
   font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   color: var(--acid-yellow);
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.blog-directory-card .card-content h3 {
-  font-family: var(--font-hi-heavy);
-  font-size: 1.6rem;
-  color: var(--old-paper);
   margin-bottom: 0.6rem;
 }
 
-.blog-directory-card .card-content p {
-  font-size: 0.95rem;
+.blog-dir-title {
+  font-family: var(--font-hi-heavy);
+  font-size: 1.75rem;
+  color: var(--old-paper);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+
+.blog-dir-sub {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: #FFAEAE;
+  margin-bottom: 0.7rem;
+}
+
+.blog-dir-excerpt {
+  font-size: 0.96rem;
   color: #B5B0A4;
   line-height: 1.6;
   margin-bottom: 1.4rem;
+  flex: 1;
+}
+
+.blog-dir-link {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: var(--signal-red);
+}
+
+.blog-dir-card:hover .blog-dir-link {
+  color: var(--acid-yellow);
+}
+
+/* In-page photo inside the reading spread */
+.blog-inpage-photo {
+  margin: 0 auto 2.2rem auto;
+  max-width: 580px;
+  background: #FFFFFF;
+  padding: 0.8rem 0.8rem 2.4rem 0.8rem;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.2);
+  transform: rotate(-1deg);
+  text-align: center;
+  position: relative;
+}
+
+.blog-inpage-photo::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 36%;
+  width: 70px;
+  height: 20px;
+  background: rgba(220, 215, 205, 0.85);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  transform: rotate(-2deg);
+  z-index: 5;
+}
+
+.blog-inpage-photo img {
+  display: block;
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  background-color: #1A1A1A;
+  margin: 0 auto;
+  border: 1px solid #E8E2D6;
+}
+
+.blog-inpage-photo .photo-caption {
+  display: block;
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  color: #1A1A1A;
+  margin-top: 0.8rem;
+  line-height: 1.35;
+}
+
+/* In-Story Photo Reel strip */
+.story-photo-slide {
+  margin: 1.5rem 0;
+  background: #FFFFFF;
+  padding: 0.6rem 0.6rem 2rem 0.6rem;
+  box-shadow: var(--shadow-polaroid);
+  transform: rotate(-1.5deg);
+}
+
+.story-photo-slide img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
 }
 
 /* In-Story Photo Reel strip */
@@ -1170,9 +1469,17 @@ body.poetry-page {
   transform: rotate(-3deg);
 }
 
+.light-table-card .polaroid-media {
+  overflow: hidden;
+  background: #111;
+}
+
 .light-table-card .polaroid-media img {
   width: 100%;
   height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  object-position: center;
   display: block;
   border: 1px solid #DDD;
 }
@@ -1307,4 +1614,38 @@ body.poetry-page {
 
 .footer-nav a:hover {
   color: var(--acid-yellow);
+}
+
+/* =========================================================
+   RESPONSIVE: LIBRARY CARDS, CHAPTER GRID & TURN BAR
+   ========================================================= */
+@media (max-width: 640px) {
+  .novel-library-grid,
+  .blog-directory-grid {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+  .novel-chapters-grid {
+    grid-template-columns: 1fr;
+  }
+  .novel-lib-body,
+  .blog-dir-meta {
+    padding: 1.3rem 1.3rem 1.5rem;
+  }
+  .novel-lib-title,
+  .blog-dir-title {
+    font-size: 1.5rem;
+  }
+  .book-turn-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+  .turn-btn {
+    flex: 1 1 40%;
+    justify-content: center;
+  }
+  .blog-inpage-photo img {
+    max-height: 300px;
+  }
 }
