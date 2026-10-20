@@ -1074,17 +1074,17 @@ body.poetry-page {
   color: var(--ink);
   box-shadow: var(--shadow-book);
   border: 2px solid #C4BAA3;
-  min-height: 520px;
+  min-height: 640px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  max-width: 900px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
 .book-reading-content {
-  padding: clamp(2.2rem, 5vw, 4.5rem) clamp(1.8rem, 5vw, 4.5rem);
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 5vw, 5.5rem);
   flex: 1;
 }
 

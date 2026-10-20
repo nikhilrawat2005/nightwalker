@@ -170,7 +170,8 @@
         if (!post || !post.body) return;
 
         const slides = post.slides || [];
-        const PARAGRAPHS_PER_PAGE_TARGET = 140; // words
+        // Doubled word limit per page for immersive full-reading spread
+        const PARAGRAPHS_PER_PAGE_TARGET = 280; // words (doubled from 140)
 
         let currPageBlocks = [];
         let currWords = 0;
