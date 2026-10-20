@@ -3,25 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Novel Library · म्यूर पहाड़ · Nightwalker</title>
-  <meta name="description" content="म्यूर पहाड़ — An original novel by Nightwalker. Story of a mountain journey, an unexpected stranger, and finding your own path.">
+  <title>Novel Library · Nightwalker</title>
+  <meta name="description" content="Dedicated Novel Library — Choose your novel, turn pages, and read chapter by chapter without scrolling.">
   <meta name="theme-color" content="#080909">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Kalam:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Yatra+One&family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&family=Caveat:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page-fade-in">
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="header-brand">
       <a href="index.html" class="logo-text">Nightwalker</a>
-      <span class="logo-sub">उपन्यास संग्रह</span>
+      <span class="logo-sub">उपन्यास लाइब्रेरी</span>
     </div>
 
     <div class="header-controls">
@@ -42,40 +42,107 @@
     </div>
     <ul class="sidebar-links">
       <li><a href="index.html"><span>01. Home &amp; Manifesto</span><span class="label-hi">शुरुआत</span></a></li>
-      <li><a href="poetry.html"><span>02. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
-      <li><a href="novel.html" class="active"><span>03. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
-      <li><a href="photos.html"><span>04. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
-      <li><a href="blog.html"><span>05. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
+      <li><a href="novel.html" class="active"><span>02. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
+      <li><a href="poetry.html"><span>03. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
+      <li><a href="blog.html"><span>04. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
+      <li><a href="photos.html"><span>05. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
     </ul>
     <div class="sidebar-bottom">
-      <span class="coord">UTTARAKHAND MOUNTAINS</span>
-      <p>Original story of Nikhil, Anshul, and the quiet mountain trail.</p>
+      <span class="coord">NOVEL ARCHIVE</span>
+      <p>Choose your novel and read page by page with authentic page-turning controls.</p>
     </div>
   </aside>
 
-  <!-- Distraction-Free Book Reader Experience -->
   <main class="reader-page-wrapper">
-    <article class="novel-book-frame">
-      <header class="novel-book-header">
-        <span class="kicker">Original Novel · Nightwalker Archive</span>
-        <h1 class="devanagari">म्यूर पहाड़</h1>
-        <p class="subtitle">A Journey through Mountains, Strangers, and the Quiet Answers that Follow</p>
-      </header>
-
-      <!-- Chapter Navigation Pills -->
-      <div class="novel-chapter-selector" id="novelChapterSelector">
-        <button class="chapter-pill active" data-part="all">Full Story</button>
-        <button class="chapter-pill" data-part="0">Chapter 01 · रास्ते</button>
-        <button class="chapter-pill" data-part="1">Chapter 02 · अनजान</button>
-        <button class="chapter-pill" data-part="2">Chapter 03 · एक सवाल</button>
-        <button class="chapter-pill" data-part="3">Chapter 04 · म्यूर पहाड़</button>
+    
+    <!-- STAGE 1: BOOK SELECTION SHELF ("Kahan se shuru karna chahte ho?") -->
+    <section class="book-shelf-view" id="shelfView">
+      <div class="shelf-header">
+        <span class="hero-kicker" style="background:none;border-color:var(--line-dark);padding-left:0;">Select Your Reading</span>
+        <h1>Novel Library</h1>
+        <p>Choose a novel to open the book and begin reading page by page.</p>
       </div>
 
-      <!-- Novel Prose Content -->
-      <div class="novel-book-body" id="novelContent">
-        <!-- Injected dynamically from js/posts.js -->
+      <div class="books-grid">
+        <!-- Novel 1: म्यूर पहाड़ -->
+        <article class="book-card">
+          <div class="cover-art">
+            <span class="book-badge">Featured Story</span>
+            <img src="assets/photos/IMG_20260131_174910606.jpg" alt="म्यूर पहाड़ Cover">
+          </div>
+          <div class="card-body">
+            <div>
+              <h3 class="devanagari">म्यूर पहाड़</h3>
+              <p class="genre">Mountain Journey · Philosophy · Solitude</p>
+              <p class="synopsis devanagari">
+                यह सिर्फ एक यात्रा की कहानी नहीं है, बल्कि उन सवालों की भी है जो रास्तों में जन्म लेते हैं. उन लोगों की भी जो कुछ देर साथ चलते हैं, और उन पहाड़ों की भी जो हमेशा साथ रहते हैं.
+              </p>
+            </div>
+            <button class="btn-open-book" onclick="openBook('myar-pahad')">
+              Open Book (म्यूर पहाड़) →
+            </button>
+          </div>
+        </article>
+
+        <!-- Novel 2: The Skills I Don't Use Anymore -->
+        <article class="book-card">
+          <div class="cover-art">
+            <span class="book-badge">Original Memoir</span>
+            <img src="assets/photos/1000165039_jpg.webp" alt="The Skills I Don't Use Anymore Cover">
+          </div>
+          <div class="card-body">
+            <div>
+              <h3>The Skills I Don’t Use Anymore</h3>
+              <p class="genre">Memoir · Coming of Age · Unlearning</p>
+              <p class="synopsis">
+                Ek kitab jo seekhne ke baad likhi gayi. A journey of attention, silence, heartbreak, and unlearning the habits you once built to survive.
+              </p>
+            </div>
+            <button class="btn-open-book" onclick="openBook('skills')">
+              Open Book (Skills) →
+            </button>
+          </div>
+        </article>
       </div>
-    </article>
+    </section>
+
+    <!-- STAGE 2: AUTHENTIC PAGINATED BOOK READER (NO SCROLLING - PAGE TURNING) -->
+    <section class="book-reader-container" id="readerContainer">
+      <span class="reader-book-shelf-back" onclick="closeBook()">
+        ← Return to Novel Shelf
+      </span>
+
+      <article class="paginated-book-spread page-flip-anim" id="bookSpread">
+        <!-- Spiral / Binding top strip -->
+        <div class="notebook-spiral-spine" aria-hidden="true"></div>
+
+        <div class="paginated-page-content">
+          <div class="page-header-strip">
+            <span class="title-meta" id="readerHeaderTitle">म्यूर पहाड़</span>
+            <span class="page-tag" id="readerPageTag">Page 1</span>
+          </div>
+
+          <!-- Limited words per page for comfortable, focused reading -->
+          <div class="page-prose-area" id="readerPageBody">
+            <!-- Injected dynamically page by page -->
+          </div>
+        </div>
+
+        <!-- Page Turn Navigation Footer -->
+        <footer class="page-turn-controls">
+          <button class="btn-page-turn" id="prevPageBtn">
+            ← Previous Page
+          </button>
+          <span class="page-indicator-pill" id="pageIndicator">
+            Page 1 of 12
+          </span>
+          <button class="btn-page-turn" id="nextPageBtn">
+            Next Page →
+          </button>
+        </footer>
+      </article>
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -83,48 +150,122 @@
   </footer>
 
   <script src="js/posts.js"></script>
-  <script src="js/novels_data.js"></script>
+  <script src="js/chapters.js"></script>
   <script src="js/navigation.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('novelContent');
-      if (!container || !window.POSTS || !window.POSTS[0]) return;
+    let currentBookPages = [];
+    let currentPageIndex = 0;
+    let currentBookTitle = '';
 
-      const post = window.POSTS[0];
-      const pills = document.querySelectorAll('.chapter-pill');
+    function openBook(bookId) {
+      currentBookPages = [];
+      currentPageIndex = 0;
 
-      function renderPart(part = 'all') {
-        container.innerHTML = '';
-        let blocks = post.body;
-
-        if (part === '0') blocks = post.body.slice(0, 7);
-        else if (part === '1') blocks = post.body.slice(7, 16);
-        else if (part === '2') blocks = post.body.slice(16, 26);
-        else if (part === '3') blocks = post.body.slice(26);
-
-        blocks.forEach(b => {
-          if (b.t === 'q') {
-            const bq = document.createElement('blockquote');
-            bq.className = 'devanagari';
-            bq.textContent = b.x;
-            container.appendChild(bq);
-          } else {
-            const p = document.createElement('p');
-            p.textContent = b.x;
-            container.appendChild(p);
-          }
-        });
+      if (bookId === 'myar-pahad') {
+        currentBookTitle = 'म्यूर पहाड़';
+        const post = window.POSTS && window.POSTS[0];
+        if (post && post.body) {
+          // Chunk blocks into pages (2-3 blocks per page for focused reading without scrolling)
+          let currentChunk = [];
+          post.body.forEach(block => {
+            currentChunk.push(block);
+            if (currentChunk.length >= 2 || block.t === 'q') {
+              currentBookPages.push(currentChunk);
+              currentChunk = [];
+            }
+          });
+          if (currentChunk.length > 0) currentBookPages.push(currentChunk);
+        }
+      } else if (bookId === 'skills') {
+        currentBookTitle = 'The Skills I Don’t Use Anymore';
+        const novel = window.NOVEL;
+        if (novel && novel.chapters) {
+          novel.chapters.forEach(ch => {
+            let currentChunk = [{ t: 'h', x: `${ch.label}: ${ch.sub}` }];
+            ch.blocks.forEach(block => {
+              currentChunk.push(block);
+              if (currentChunk.length >= 3) {
+                currentBookPages.push(currentChunk);
+                currentChunk = [];
+              }
+            });
+            if (currentChunk.length > 0) currentBookPages.push(currentChunk);
+          });
+        }
       }
 
-      pills.forEach(pill => {
-        pill.addEventListener('click', () => {
-          pills.forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          renderPart(pill.dataset.part);
-        });
+      document.getElementById('shelfView').style.display = 'none';
+      document.getElementById('readerContainer').classList.add('active');
+      renderCurrentPage();
+    }
+
+    function closeBook() {
+      document.getElementById('readerContainer').classList.remove('active');
+      document.getElementById('shelfView').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderCurrentPage() {
+      const pageBody = document.getElementById('readerPageBody');
+      const headerTitle = document.getElementById('readerHeaderTitle');
+      const pageTag = document.getElementById('readerPageTag');
+      const indicator = document.getElementById('pageIndicator');
+      const prevBtn = document.getElementById('prevPageBtn');
+      const nextBtn = document.getElementById('nextPageBtn');
+      const spread = document.getElementById('bookSpread');
+
+      // Trigger page flip animation
+      spread.classList.remove('page-flip-anim');
+      void spread.offsetWidth; // trigger reflow
+      spread.classList.add('page-flip-anim');
+
+      headerTitle.textContent = currentBookTitle;
+      pageTag.textContent = `Sheet № ${currentPageIndex + 1}`;
+      indicator.textContent = `Page ${currentPageIndex + 1} of ${currentBookPages.length}`;
+
+      prevBtn.disabled = (currentPageIndex === 0);
+      nextBtn.disabled = (currentPageIndex >= currentBookPages.length - 1);
+
+      pageBody.innerHTML = '';
+      const blocks = currentBookPages[currentPageIndex] || [];
+      blocks.forEach(b => {
+        if (b.t === 'q') {
+          const bq = document.createElement('blockquote');
+          bq.className = 'devanagari';
+          bq.textContent = b.x;
+          pageBody.appendChild(bq);
+        } else if (b.t === 'h') {
+          const h = document.createElement('h3');
+          h.style.color = '#B23B2A';
+          h.style.marginBottom = '1.2rem';
+          h.style.fontFamily = 'var(--font-artistic)';
+          h.textContent = b.x;
+          pageBody.appendChild(h);
+        } else {
+          const p = document.createElement('p');
+          p.textContent = b.x;
+          pageBody.appendChild(p);
+        }
       });
 
-      renderPart('all');
+      window.scrollTo({
+        top: document.getElementById('readerContainer').offsetTop - 30,
+        behavior: 'smooth'
+      });
+    }
+
+    document.getElementById('prevPageBtn').addEventListener('click', () => {
+      if (currentPageIndex > 0) {
+        currentPageIndex--;
+        renderCurrentPage();
+      }
+    });
+
+    document.getElementById('nextPageBtn').addEventListener('click', () => {
+      if (currentPageIndex < currentBookPages.length - 1) {
+        currentPageIndex++;
+        renderCurrentPage();
+      }
     });
   </script>
 </body>

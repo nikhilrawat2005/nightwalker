@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Nightwalker — An Immersive Personal Art, Poetry & Literature Archive</title>
+  <title>Nightwalker — Creative Portfolio, Poetry & Mountain Archive</title>
   <meta name="description" content="A private creative universe where literature, memories, mountains, photography, and poetry coexist.">
   <meta name="theme-color" content="#080909">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
   
-  <!-- Typography Fonts -->
+  <!-- Creative Editorial Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Kalam:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Yatra+One&family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&family=Caveat:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page-fade-in">
   <!-- Atmospheric Film Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <!-- Top Navigation Header with Hidden Sidebar Trigger -->
+  <!-- Top Navigation Header -->
   <header class="site-header">
     <div class="header-brand">
       <a href="index.html" class="logo-text">Nightwalker</a>
@@ -29,7 +29,7 @@
     <div class="header-controls">
       <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Open Navigation Menu">
         <span class="icon-bars">☰</span>
-        <span>Explore Archive</span>
+        <span>Archive Menu</span>
       </button>
     </div>
   </header>
@@ -38,7 +38,7 @@
   <div class="offcanvas-backdrop" id="offcanvasBackdrop" aria-hidden="true"></div>
   <aside class="offcanvas-sidebar" id="offcanvasSidebar" aria-label="Archive Navigation Menu">
     <div class="sidebar-top">
-      <span class="brand-stamp">Nightwalker Archive</span>
+      <span class="brand-stamp">Nightwalker Universe</span>
       <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation">✕</button>
     </div>
 
@@ -50,38 +50,38 @@
         </a>
       </li>
       <li>
+        <a href="novel.html">
+          <span>02. Novel Library</span>
+          <span class="label-hi">उपन्यास</span>
+        </a>
+      </li>
+      <li>
         <a href="poetry.html">
-          <span>02. Poetry Room</span>
+          <span>03. Poetry Room</span>
           <span class="label-hi">कविताएँ</span>
         </a>
       </li>
       <li>
-        <a href="novel.html">
-          <span>03. Novel Library</span>
-          <span class="label-hi">म्यूर पहाड़</span>
+        <a href="blog.html">
+          <span>04. Mountain Journal</span>
+          <span class="label-hi">डायरी</span>
         </a>
       </li>
       <li>
         <a href="photos.html">
-          <span>04. Photography Archive</span>
+          <span>05. Photography Archive</span>
           <span class="label-hi">तस्वीरें</span>
-        </a>
-      </li>
-      <li>
-        <a href="blog.html">
-          <span>05. Mountain Journal</span>
-          <span class="label-hi">डायरी</span>
         </a>
       </li>
     </ul>
 
     <div class="sidebar-bottom">
       <span class="coord">29.6° N, 79.5° E · UTTARAKHAND</span>
-      <p>A quiet creative sanctuary for written words, memories, and mountain solitude.</p>
+      <p>A private sanctuary for authentic creative work, literature, and solitude.</p>
     </div>
   </aside>
 
-  <!-- Main Viewport: Dedicated Home Page (Hero + The Manifesto) -->
+  <!-- Main Viewport: Home Page (Hero + The Manifesto Only) -->
   <main class="home-viewport">
     
     <!-- SECTION 1: THE OPENING / HERO -->
@@ -93,7 +93,7 @@
 
       <div class="hero-content">
         <div class="hero-kicker">
-          <span>Issue 01 · Uttarakhand Mountains</span>
+          <span>Uttarakhand Mountains · Written Words</span>
         </div>
         <h1 class="hero-heading">
           NIGHTWALKER
@@ -104,9 +104,9 @@
         </p>
         <div class="hero-button-row">
           <a href="#manifesto" class="btn-primary">The Manifesto ↓</a>
+          <a href="novel.html" class="btn-secondary">Read Novels</a>
           <a href="poetry.html" class="btn-secondary">Poetry Room</a>
-          <a href="novel.html" class="btn-secondary">म्यूर पहाड़ Novel</a>
-          <a href="photos.html" class="btn-secondary">Photography</a>
+          <a href="blog.html" class="btn-secondary">Mountain Journal</a>
         </div>
       </div>
 
@@ -134,7 +134,7 @@
             <h2>The Manifesto</h2>
           </div>
           <div class="stamp">
-            ARCHIVE ENTRY № 01
+            ENTRY № 01
           </div>
         </div>
 
@@ -172,34 +172,34 @@
           </div>
         </div>
 
-        <!-- Direct Destinations to Distinct Dedicated Archive Pages -->
+        <!-- Direct Destinations to Dedicated Pages -->
         <div class="home-destinations">
           <div class="destination-card">
-            <span class="tag">01. Written Verses</span>
+            <span class="tag">01. Novels &amp; Memoirs</span>
+            <h3>Novel Library</h3>
+            <p>Choose between “म्यूर पहाड़” and “The Skills I Don’t Use Anymore”. Read page by page.</p>
+            <a href="novel.html" class="arrow-link">Choose Novel →</a>
+          </div>
+
+          <div class="destination-card">
+            <span class="tag">02. Written Verses</span>
             <h3>Poetry Room</h3>
-            <p>99 original verses written late into the night. Authentic notebook reading experience.</p>
+            <p>99 original verses written in the silence of midnight. Interactive notebook reading.</p>
             <a href="poetry.html" class="arrow-link">Open Notebook →</a>
           </div>
 
           <div class="destination-card">
-            <span class="tag">02. Literary Archive</span>
-            <h3>Novel Library</h3>
-            <p>म्यूर पहाड़ — The story of a mountain trail, a stranger named Anshul, and quiet answers.</p>
-            <a href="novel.html" class="arrow-link">Read Chapters →</a>
-          </div>
-
-          <div class="destination-card">
-            <span class="tag">03. Visual Memories</span>
-            <h3>Photography Archive</h3>
-            <p>A curated archive of authentic mountain and street photographs with true stories.</p>
-            <a href="photos.html" class="arrow-link">View Archive →</a>
-          </div>
-
-          <div class="destination-card">
-            <span class="tag">04. Personal Journal</span>
+            <span class="tag">03. Personal Journal</span>
             <h3>Mountain Journal</h3>
-            <p>Long-form travel essays, reflections, and StoryGrams from Himalayan trails.</p>
-            <a href="blog.html" class="arrow-link">Explore Journal →</a>
+            <p>Pahadon ki kahaniyan, StoryGrams, and genuine reflections from the high trails.</p>
+            <a href="blog.html" class="arrow-link">Read Journal →</a>
+          </div>
+
+          <div class="destination-card">
+            <span class="tag">04. Visual Archive</span>
+            <h3>Photography</h3>
+            <p>Curated archive of authentic mountain and street photographs with real captions.</p>
+            <a href="photos.html" class="arrow-link">View Archive →</a>
           </div>
         </div>
 
@@ -215,10 +215,10 @@
   <footer class="site-footer">
     <div class="footer-nav">
       <a href="index.html">Home</a>
-      <a href="poetry.html">Poetry</a>
       <a href="novel.html">Novels</a>
-      <a href="photos.html">Photography</a>
+      <a href="poetry.html">Poetry</a>
       <a href="blog.html">Journal</a>
+      <a href="photos.html">Photography</a>
     </div>
     <p class="footer-copy">
       © Nightwalker · All original photographs, poems, and writings are the creative property of Nightwalker.

@@ -10,80 +10,25 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Kalam:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Yatra+One&family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&family=Caveat:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .journal-wrapper {
-      max-width: 960px;
+    .journal-shelf-container {
+      max-width: 1040px;
       margin: 90px auto 4rem auto;
       padding: 0 clamp(1.5rem, 4vw, 3.5rem);
     }
-    .journal-top-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--line-dark);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      margin-bottom: 3rem;
-      box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.6);
-    }
-    .journal-top-card img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-    }
-    .journal-lead-content {
-      padding: 3rem;
-    }
-    .journal-lead-content h1 {
-      font-family: var(--font-hi);
-      font-size: clamp(2.2rem, 4.2vw, 3.2rem);
-      margin-bottom: 0.8rem;
-    }
-    .journal-lead-content .meta {
-      font-size: 0.76rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--mint);
-      font-family: monospace;
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-    .journal-article-body {
-      background: var(--bg-paper);
-      color: var(--ink);
-      border-radius: var(--radius-md);
-      padding: clamp(2.5rem, 6vw, 4.5rem);
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      line-height: 2;
-      border: 1px solid #D6D0C4;
-      box-shadow: var(--shadow-book);
-    }
-    .journal-article-body p {
-      margin-bottom: 1.8rem;
-      text-align: justify;
-    }
-    .journal-article-body blockquote {
-      font-family: var(--font-hi);
-      font-size: 1.85rem;
-      color: #9C3D2B;
-      text-align: center;
-      margin: 2.5rem 0;
-      padding: 1rem 0;
-      border-top: 1px solid var(--line-paper);
-      border-bottom: 1px solid var(--line-paper);
-    }
   </style>
 </head>
-<body>
+<body class="page-fade-in">
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="header-brand">
       <a href="index.html" class="logo-text">Nightwalker</a>
-      <span class="logo-sub">डायरी</span>
+      <span class="logo-sub">पहाड़ डायरी</span>
     </div>
 
     <div class="header-controls">
@@ -104,32 +49,83 @@
     </div>
     <ul class="sidebar-links">
       <li><a href="index.html"><span>01. Home &amp; Manifesto</span><span class="label-hi">शुरुआत</span></a></li>
-      <li><a href="poetry.html"><span>02. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
-      <li><a href="novel.html"><span>03. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
-      <li><a href="photos.html"><span>04. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
-      <li><a href="blog.html" class="active"><span>05. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
+      <li><a href="novel.html"><span>02. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
+      <li><a href="poetry.html"><span>03. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
+      <li><a href="blog.html" class="active"><span>04. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
+      <li><a href="photos.html"><span>05. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
     </ul>
     <div class="sidebar-bottom">
       <span class="coord">UTTARAKHAND EXPEDITION</span>
-      <p>StoryGrams and deep reflections from the trail.</p>
+      <p>Original travelogues and StoryGrams from the trail.</p>
     </div>
   </aside>
 
-  <main class="journal-wrapper">
-    <article class="journal-top-card">
-      <img src="assets/photos/IMG_20260130_174202243_HDR_AE.jpg" alt="Trail in Himalayas">
-      <div class="journal-lead-content">
-        <span class="meta">31 JAN 2026 · UTTARAKHAND · STORYGRAM</span>
-        <h1 class="devanagari">म्यूर पहाड़</h1>
-        <p style="color:var(--text-muted);font-size:1.1rem;line-height:1.7;">
-          These mountains are old. Much older than the roads that now wind through them. A journey into solitude, self-discovery, and walking the path that belongs to you.
-        </p>
-      </div>
-    </article>
+  <main class="reader-page-wrapper">
 
-    <div class="journal-article-body" id="journalBody">
-      <!-- Injected via js/posts.js -->
-    </div>
+    <!-- STAGE 1: JOURNAL ESSAYS SELECTOR ("Kiski kahani padhna chahte ho?") -->
+    <section class="journal-shelf-container" id="journalShelf">
+      <div class="shelf-header">
+        <span class="hero-kicker" style="background:none;border-color:var(--line-dark);padding-left:0;">Select Essay / StoryGram</span>
+        <h1>The Mountain Journal</h1>
+        <p>Choose an entry to begin reading page by page without scrolling.</p>
+      </div>
+
+      <div class="books-grid">
+        <article class="book-card">
+          <div class="cover-art">
+            <span class="book-badge">StoryGram · 31 Jan 2026</span>
+            <img src="assets/photos/IMG_20260130_174202243_HDR_AE.jpg" alt="Trail in Himalayas">
+          </div>
+          <div class="card-body">
+            <div>
+              <h3 class="devanagari">म्यूर पहाड़: Ek StoryGram</h3>
+              <p class="genre">Uttarakhand · Solitude · Philosophy</p>
+              <p class="synopsis">
+                These mountains are old. Much older than the roads that now wind through them. A journey of one traveller, a stranger named Anshul, and a weathered stone carved with two quiet words.
+              </p>
+            </div>
+            <button class="btn-open-book" onclick="openJournalStory('myar-pahad')">
+              Read Essay (Page by Page) →
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- STAGE 2: PAGINATED JOURNAL READER (TURN BY TURN - NO SCROLL) -->
+    <section class="book-reader-container" id="journalReaderContainer">
+      <span class="reader-book-shelf-back" onclick="closeJournalStory()">
+        ← Return to Journal Index
+      </span>
+
+      <article class="paginated-book-spread page-flip-anim" id="journalSpread">
+        <div class="notebook-spiral-spine" aria-hidden="true"></div>
+
+        <div class="paginated-page-content">
+          <div class="page-header-strip">
+            <span class="title-meta" id="journalHeaderTitle">म्यूर पहाड़</span>
+            <span class="page-tag" id="journalPageTag">Page 1</span>
+          </div>
+
+          <div class="page-prose-area" id="journalPageBody">
+            <!-- Injected dynamically page by page -->
+          </div>
+        </div>
+
+        <footer class="page-turn-controls">
+          <button class="btn-page-turn" id="prevJournalPageBtn">
+            ← Previous Page
+          </button>
+          <span class="page-indicator-pill" id="journalPageIndicator">
+            Page 1 of 10
+          </span>
+          <button class="btn-page-turn" id="nextJournalPageBtn">
+            Next Page →
+          </button>
+        </footer>
+      </article>
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -139,23 +135,90 @@
   <script src="js/posts.js"></script>
   <script src="js/navigation.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const body = document.getElementById('journalBody');
-      if (!body || !window.POSTS || !window.POSTS[0]) return;
+    let journalPages = [];
+    let currentJournalIndex = 0;
 
-      const post = window.POSTS[0];
-      post.body.forEach(b => {
+    function openJournalStory(slug) {
+      journalPages = [];
+      currentJournalIndex = 0;
+
+      const post = window.POSTS && window.POSTS[0];
+      if (post && post.body) {
+        // Chunk into comfortable reading pages of 2-3 paragraphs
+        let currentChunk = [];
+        post.body.forEach(block => {
+          currentChunk.push(block);
+          if (currentChunk.length >= 2 || block.t === 'q') {
+            journalPages.push(currentChunk);
+            currentChunk = [];
+          }
+        });
+        if (currentChunk.length > 0) journalPages.push(currentChunk);
+      }
+
+      document.getElementById('journalShelf').style.display = 'none';
+      document.getElementById('journalReaderContainer').classList.add('active');
+      renderJournalPage();
+    }
+
+    function closeJournalStory() {
+      document.getElementById('journalReaderContainer').classList.remove('active');
+      document.getElementById('journalShelf').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderJournalPage() {
+      const pageBody = document.getElementById('journalPageBody');
+      const pageTag = document.getElementById('journalPageTag');
+      const indicator = document.getElementById('journalPageIndicator');
+      const prevBtn = document.getElementById('prevJournalPageBtn');
+      const nextBtn = document.getElementById('nextJournalPageBtn');
+      const spread = document.getElementById('journalSpread');
+
+      // Page turn animation
+      spread.classList.remove('page-flip-anim');
+      void spread.offsetWidth;
+      spread.classList.add('page-flip-anim');
+
+      pageTag.textContent = `Entry Sheet № ${currentJournalIndex + 1}`;
+      indicator.textContent = `Page ${currentJournalIndex + 1} of ${journalPages.length}`;
+
+      prevBtn.disabled = (currentJournalIndex === 0);
+      nextBtn.disabled = (currentJournalIndex >= journalPages.length - 1);
+
+      pageBody.innerHTML = '';
+      const blocks = journalPages[currentJournalIndex] || [];
+      blocks.forEach(b => {
         if (b.t === 'q') {
           const bq = document.createElement('blockquote');
           bq.className = 'devanagari';
           bq.textContent = b.x;
-          body.appendChild(bq);
+          pageBody.appendChild(bq);
         } else {
           const p = document.createElement('p');
           p.textContent = b.x;
-          body.appendChild(p);
+          pageBody.appendChild(p);
         }
       });
+
+      window.scrollTo({
+        top: document.getElementById('journalReaderContainer').offsetTop - 30,
+        behavior: 'smooth'
+      });
+    }
+
+    document.getElementById('prevJournalPageBtn').addEventListener('click', () => {
+      if (currentJournalIndex > 0) {
+        currentJournalIndex--;
+        renderJournalPage();
+      }
+    });
+
+    document.getElementById('nextJournalPageBtn').addEventListener('click', () => {
+      if (currentJournalIndex < journalPages.length - 1) {
+        currentJournalIndex++;
+        renderJournalPage();
+      }
     });
   </script>
 </body>
