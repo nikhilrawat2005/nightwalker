@@ -4,129 +4,218 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Photography Archive · Nightwalker</title>
-  <meta name="description" content="Visual memories from high mountain ridgelines and midnight street corners.">
+  <meta name="description" content="Visual memories from high mountain ridgelines and midnight street corners. Pinterest / Puzzle moodboard style.">
   <meta name="theme-color" content="#080909">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Kalam:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Yatra+One&family=Rozha+One&family=Tiro+Devanagari+Hindi:ital@0;1&family=Caveat:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/style.css">
   <style>
     .archive-page-container {
-      max-width: 1360px;
-      margin: 90px auto 4rem auto;
-      padding: 0 clamp(1.5rem, 4vw, 3.5rem);
+      max-width: 1440px;
+      margin: 86px auto 4rem auto;
+      padding: 0 clamp(1rem, 3.5vw, 2.5rem);
     }
+    
     .archive-header-banner {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       border-bottom: 1px solid var(--line-dark);
-      padding-bottom: 2rem;
-      margin-bottom: 3.5rem;
+      padding-bottom: 1.8rem;
+      margin-bottom: 2.8rem;
       flex-wrap: wrap;
       gap: 1.5rem;
     }
+    
     .archive-header-banner h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
+    
     .archive-header-banner h1 span {
       display: block;
-      font-family: var(--font-serif);
+      font-family: var(--font-artistic);
       font-style: italic;
-      font-size: 0.45em;
+      font-size: 0.44em;
       color: var(--mint);
       text-transform: none;
       letter-spacing: 0.02em;
     }
-    .photo-masonry-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2.2rem;
-    }
-    .photo-polaroid-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--line-dark);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.35s ease;
-    }
-    .photo-polaroid-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--mint);
-      box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.7);
-    }
-    .photo-polaroid-card .media-box {
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      background: #111;
-    }
-    .photo-polaroid-card.is-bw .media-box img {
-      filter: grayscale(100%) contrast(1.1);
-    }
-    .photo-polaroid-card .media-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-    .photo-polaroid-card:hover .media-box img {
-      transform: scale(1.05);
-    }
-    .photo-polaroid-card .info-bar {
-      padding: 1.2rem 1.4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    .photo-polaroid-card .info-bar .title {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      color: var(--text-primary);
-    }
-    .photo-polaroid-card .info-bar .loc {
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--mint);
-      font-family: monospace;
-    }
-    /* Filter Bar */
+
     .filter-pills {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
     }
+    
     .filter-btn {
-      padding: 0.4rem 1rem;
+      padding: 0.4rem 1.1rem;
       background: var(--bg-surface);
       border: 1px solid var(--line-dark);
       border-radius: 99px;
       color: var(--text-muted);
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
       transition: all 0.25s;
     }
+    
     .filter-btn:hover, .filter-btn.active {
       background: var(--mint);
       border-color: var(--mint);
       color: var(--bg-midnight);
-      font-weight: 600;
+      font-weight: 700;
     }
+
+    /* =========================================================
+       PINTEREST / PUZZLE MISMATCH MASONRY GRID
+       Natural heights, tight interlocking spacing, Polaroid borders,
+       washi-tape accents, and handwritten authentic captions.
+       ========================================================= */
+    .puzzle-masonry-gallery {
+      column-count: 4;
+      column-gap: 1.4rem;
+    }
+
+    @media (max-width: 1200px) {
+      .puzzle-masonry-gallery {
+        column-count: 3;
+        column-gap: 1.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .puzzle-masonry-gallery {
+        column-count: 2;
+        column-gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .puzzle-masonry-gallery {
+        column-count: 1;
+      }
+    }
+
+    .puzzle-card {
+      break-inside: avoid;
+      margin-bottom: 1.4rem;
+      background: #FFFFFF; /* Warm paper / polaroid backing */
+      color: var(--ink);
+      padding: 0.75rem 0.75rem 1.2rem 0.75rem;
+      border-radius: 3px;
+      box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.45);
+      position: relative;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+      width: 100%;
+    }
+
+    /* Subtle natural rotations for puzzle scrapbook feeling */
+    .puzzle-card:nth-child(3n+1) {
+      transform: rotate(-1deg);
+    }
+    .puzzle-card:nth-child(3n+2) {
+      transform: rotate(1.2deg);
+    }
+    .puzzle-card:nth-child(5n) {
+      transform: rotate(-1.6deg);
+    }
+
+    .puzzle-card:hover {
+      transform: rotate(0deg) translateY(-6px) scale(1.02);
+      box-shadow: 0 18px 45px -8px rgba(167, 245, 217, 0.35), 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+      z-index: 10;
+    }
+
+    /* Small decorative washi tape on some cards */
+    .puzzle-card.has-tape::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 30%;
+      width: 60px;
+      height: 18px;
+      background: rgba(225, 220, 210, 0.85);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      transform: rotate(-2deg);
+      z-index: 5;
+    }
+
+    .puzzle-card .media-frame {
+      overflow: hidden;
+      border-radius: 2px;
+      background: #111;
+      position: relative;
+    }
+
+    .puzzle-card .media-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      /* Natural height without fixed cropping */
+      transition: transform 0.5s ease;
+    }
+
+    .puzzle-card:hover .media-frame img {
+      transform: scale(1.04);
+    }
+
+    .puzzle-card.is-bw .media-frame img {
+      filter: grayscale(100%) contrast(1.1);
+    }
+
+    /* Individual Card Caption Styling */
+    .puzzle-caption-block {
+      margin-top: 0.85rem;
+      padding: 0 0.3rem;
+    }
+
+    .puzzle-caption-block .photo-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.35rem;
+    }
+
+    .puzzle-caption-block .photo-title {
+      font-family: var(--font-artistic);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #1A1C1E;
+      line-height: 1.25;
+    }
+
+    .puzzle-caption-block .photo-place-tag {
+      font-family: monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8C8477;
+    }
+
+    .puzzle-caption-block .photo-caption-text {
+      font-family: var(--font-hand);
+      font-size: 1.15rem;
+      line-height: 1.35;
+      color: #4A4D52;
+      margin-top: 0.3rem;
+    }
+
     /* Lightbox */
     .lightbox-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(8, 9, 9, 0.95);
+      background: rgba(8, 9, 9, 0.96);
       backdrop-filter: blur(16px);
       z-index: 3000;
       padding: 2rem;
@@ -157,19 +246,19 @@
       margin-top: 1.2rem; text-align: center; max-width: 650px;
     }
     .lightbox-meta h4 {
-      font-family: var(--font-serif); font-size: 1.35rem; color: #FFF; margin-bottom: 0.4rem;
+      font-family: var(--font-artistic); font-size: 1.35rem; color: #FFF; margin-bottom: 0.4rem;
     }
-    .lightbox-meta p { font-size: 0.95rem; color: var(--text-muted); }
+    .lightbox-meta p { font-size: 1.05rem; color: var(--mint); font-family: var(--font-hand); }
   </style>
 </head>
-<body>
+<body class="page-fade-in">
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="header-brand">
       <a href="index.html" class="logo-text">Nightwalker</a>
-      <span class="logo-sub">तस्वीरें</span>
+      <span class="logo-sub">तस्वीरें संग्रह</span>
     </div>
 
     <div class="header-controls">
@@ -185,18 +274,18 @@
   <div class="offcanvas-backdrop" id="offcanvasBackdrop" aria-hidden="true"></div>
   <aside class="offcanvas-sidebar" id="offcanvasSidebar">
     <div class="sidebar-top">
-      <span class="brand-stamp">Nightwalker Archive</span>
+      <span class="brand-stamp">Nightwalker Universe</span>
       <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation">✕</button>
     </div>
     <ul class="sidebar-links">
       <li><a href="index.html"><span>01. Home &amp; Manifesto</span><span class="label-hi">शुरुआत</span></a></li>
-      <li><a href="poetry.html"><span>02. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
-      <li><a href="novel.html"><span>03. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
-      <li><a href="photos.html" class="active"><span>04. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
-      <li><a href="blog.html"><span>05. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
+      <li><a href="novel.html"><span>02. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
+      <li><a href="poetry.html"><span>03. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
+      <li><a href="blog.html"><span>04. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
+      <li><a href="photos.html" class="active"><span>05. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
     </ul>
     <div class="sidebar-bottom">
-      <span class="coord">27 CURATED PHOTOGRAPHS</span>
+      <span class="coord">27 CURATED MEMORIES</span>
       <p>Original high-altitude Himalayan &amp; street photography</p>
     </div>
   </aside>
@@ -205,10 +294,10 @@
   <main class="archive-page-container">
     <div class="archive-header-banner">
       <div>
-        <span class="hero-kicker" style="background:none;border-color:var(--line-dark);padding-left:0;">Visual Archive</span>
+        <span class="hero-kicker" style="background:none;border-color:var(--line-dark);padding-left:0;">Visual Diary &amp; Moodboard</span>
         <h1>
           Photography
-          <span>Places that stay after we leave</span>
+          <span>Moments that stay after we leave</span>
         </h1>
       </div>
       <div class="filter-pills">
@@ -221,9 +310,9 @@
       </div>
     </div>
 
-    <!-- Masonry Grid -->
-    <div class="photo-masonry-gallery" id="photoGalleryGrid">
-      <!-- Populated via js -->
+    <!-- Pinterest / Puzzle Style Masonry Gallery -->
+    <div class="puzzle-masonry-gallery" id="puzzlePhotoGallery">
+      <!-- Populated dynamically via js -->
     </div>
   </main>
 
@@ -240,14 +329,14 @@
   </div>
 
   <footer class="site-footer">
-    <p class="footer-copy">© Nightwalker Photography Archive · Original Photographs</p>
+    <p class="footer-copy">© Nightwalker Photography Archive · All original photographs preserved</p>
   </footer>
 
   <script src="js/photos.js"></script>
   <script src="js/navigation.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById('photoGalleryGrid');
+      const grid = document.getElementById('puzzlePhotoGallery');
       const filterBtns = document.querySelectorAll('.filter-btn');
       const modal = document.getElementById('lightboxOverlay');
       const exitBtn = document.getElementById('lightboxExitBtn');
@@ -265,16 +354,21 @@
           ? items
           : items.filter(it => it.cat && it.cat.toLowerCase() === cat.toLowerCase());
 
-        list.forEach(item => {
-          const card = document.createElement('div');
-          card.className = `photo-polaroid-card ${item.bw ? 'is-bw' : ''}`;
+        list.forEach((item, index) => {
+          const card = document.createElement('article');
+          const hasTape = (index % 4 === 1);
+          card.className = `puzzle-card ${item.bw ? 'is-bw' : ''} ${hasTape ? 'has-tape' : ''}`;
+
           card.innerHTML = `
-            <div class="media-box">
+            <div class="media-frame">
               <img src="${item.img}" alt="${item.alt || item.title}" loading="lazy">
             </div>
-            <div class="info-bar">
-              <span class="title">${item.title}</span>
-              <span class="loc">${item.place || 'Uttarakhand'}</span>
+            <div class="puzzle-caption-block">
+              <div class="photo-title-row">
+                <span class="photo-title">${item.title}</span>
+                <span class="photo-place-tag">${item.place || 'Uttarakhand'}</span>
+              </div>
+              <p class="photo-caption-text">${item.caption || item.alt || ''}</p>
             </div>
           `;
 
