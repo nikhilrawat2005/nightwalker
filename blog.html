@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Personal Blog · म्यूर पहाड़ · Nightwalker</title>
-  <meta name="description" content="म्यूर पहाड़ — Personal blog, reflections, and StoryGram by Nightwalker. Page by page reading.">
+  <title>Personal Blog · Stories &amp; Journals · Nightwalker</title>
+  <meta name="description" content="Personal blog, reflections, and StoryGram by Nightwalker. Overview directory and page-by-page reading with integrated photography.">
   <meta name="theme-color" content="#0E0F10">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 
@@ -26,7 +26,6 @@
     </div>
     <nav class="header-nav-links">
       <a href="index.html" class="nav-link-btn">Home</a>
-      <a href="art.html" class="nav-link-btn">The Wall</a>
       <a href="poetry.html" class="nav-link-btn">Poetry</a>
       <a href="novel.html" class="nav-link-btn">Novel</a>
       <a href="blog.html" class="nav-link-btn active">Blog</a>
@@ -38,26 +37,31 @@
     <div class="page-title-banner">
       <div>
         <span class="funky-word funky-yellow" style="font-size:0.75rem;letter-spacing:0.18em;margin-bottom:0.6rem;">
-          PERSONAL BLOG // ALLEY 05
+          PERSONAL BLOGS &amp; JOURNALS // DIRECTORY
         </span>
-        <h1>म्यूर पहाड़</h1>
-        <p class="sub">~ Ek StoryGram, Pahadon Se. A journey of one traveller, Anshul, and finding your own path (100–150 words per page).</p>
+        <h1>The Blog Place</h1>
+        <p class="sub">~ Raw memoirs, travel chronicles, and real moments. Click any story to enter turn-by-turn reading mode with integrated photographs.</p>
       </div>
       <span class="funky-word funky-red" style="font-size:0.85rem;padding:0.4rem 0.9rem;">
-        31 JAN 2026 // STORYGRAM
+        STORIES ARCHIVE
       </span>
     </div>
 
-    <!-- Paginated Turn-by-Turn Spread -->
+    <!-- Blogs Directory Grid (User request: "ek ek page bnao jisme sare blogs dikhe... and more blogs add karunga") -->
+    <div class="blog-directory-grid" id="blogDirectoryGrid">
+      <!-- Populated dynamically from window.POSTS -->
+    </div>
+
+    <!-- Paginated Turn-by-Turn Spread (100-150 words per page + photo slide reels) -->
     <article class="paginated-book-spread page-flip-anim" id="blogPageSpread">
       <div class="book-reading-content">
         <div class="book-page-header">
-          <span class="header-label" id="blogChapterLabel">म्यूर पहाड़</span>
+          <span class="header-label" id="blogChapterLabel">म्यर पहाड़</span>
           <span class="sheet-number" id="blogSheetNum">Page 1</span>
         </div>
 
         <div class="book-prose-body" id="blogTextContent">
-          <!-- Populated page by page -->
+          <!-- Populated page by page with prose + slide photos -->
         </div>
       </div>
 
@@ -78,7 +82,6 @@
   <footer class="site-footer">
     <div class="footer-nav">
       <a href="index.html">Home</a>
-      <a href="art.html">The Wall</a>
       <a href="poetry.html">Poetry</a>
       <a href="novel.html">Novel</a>
       <a href="blog.html">Blog</a>
@@ -94,37 +97,91 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const posts = window.POSTS;
-      if (!posts || !posts[0] || !posts[0].body) return;
+      if (!posts || !posts.length) return;
 
-      const post = posts[0];
+      const dirGrid = document.getElementById('blogDirectoryGrid');
+      let currentPostIndex = 0;
       let blogPages = [];
-      let pageIdx = 0;
+      let blogPageIdx = 0;
 
-      function buildPages() {
+      // Render the Blogs Directory Cards
+      posts.forEach((post, pIdx) => {
+        const card = document.createElement('article');
+        card.className = `blog-dir-card ${pIdx === 0 ? 'active' : ''}`;
+        card.innerHTML = `
+          <div class="blog-dir-thumb">
+            <img src="${post.cover}" alt="${post.title}" loading="lazy">
+            <span class="blog-dir-tag">${post.place || 'Journal'}</span>
+          </div>
+          <div class="blog-dir-meta">
+            <div class="blog-dir-date">${post.date} · ${post.mood || 'Reflections'}</div>
+            <h3 class="blog-dir-title">${post.title}</h3>
+            <p class="blog-dir-sub">${post.sub || ''}</p>
+            <p class="blog-dir-excerpt">${post.excerpt}</p>
+            <span class="blog-dir-link">Open Story &amp; Turn Pages →</span>
+          </div>
+        `;
+
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.blog-dir-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          currentPostIndex = pIdx;
+          blogPageIdx = 0;
+          buildBlogPages(currentPostIndex);
+          renderBlogPage();
+          document.getElementById('blogPageSpread').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        dirGrid.appendChild(card);
+      });
+
+      function buildBlogPages(postIdx) {
         blogPages = [];
-        let currPage = [];
-        let currWords = 0;
+        const post = posts[postIdx];
+        if (!post || !post.body) return;
 
-        post.body.forEach(b => {
+        const slides = post.slides || [];
+        let currPageBlocks = [];
+        let currSlide = null;
+        let currWords = 0;
+        let slideCursor = 0;
+
+        post.body.forEach((b, bIdx) => {
           const w = b.x.split(/\s+/).length;
-          // Target 100 - 150 words per page
-          if (currWords + w > 130 && currPage.length > 0) {
-            blogPages.push(currPage);
-            currPage = [b];
+
+          // When starting a new page and we have photos, attach a slide photo every ~2 pages
+          if (currPageBlocks.length === 0 && slideCursor < slides.length && (blogPages.length % 2 === 0)) {
+            currSlide = slides[slideCursor];
+            slideCursor++;
+          }
+
+          if (currWords + w > 130 && currPageBlocks.length > 0) {
+            blogPages.push({
+              title: post.title,
+              blocks: currPageBlocks,
+              slide: currSlide
+            });
+            currPageBlocks = [b];
             currWords = w;
+            currSlide = null;
           } else {
-            currPage.push(b);
+            currPageBlocks.push(b);
             currWords += w;
           }
         });
 
-        if (currPage.length > 0) {
-          blogPages.push(currPage);
+        if (currPageBlocks.length > 0) {
+          blogPages.push({
+            title: post.title,
+            blocks: currPageBlocks,
+            slide: currSlide
+          });
         }
       }
 
-      function renderPage() {
+      function renderBlogPage() {
         const spread = document.getElementById('blogPageSpread');
+        const chapterLabel = document.getElementById('blogChapterLabel');
         const sheetNum = document.getElementById('blogSheetNum');
         const textContent = document.getElementById('blogTextContent');
         const counter = document.getElementById('blogPageCounter');
@@ -135,18 +192,35 @@
         void spread.offsetWidth;
         spread.classList.add('page-flip-anim');
 
-        const pageData = blogPages[pageIdx];
+        const pageData = blogPages[blogPageIdx];
         if (!pageData) return;
 
-        sheetNum.textContent = `Page ${pageIdx + 1}`;
-        counter.textContent = `Page ${pageIdx + 1} of ${blogPages.length}`;
+        chapterLabel.textContent = pageData.title;
+        sheetNum.textContent = `Page ${blogPageIdx + 1}`;
+        counter.textContent = `Page ${blogPageIdx + 1} of ${blogPages.length}`;
 
-        prevBtn.disabled = (pageIdx === 0);
-        nextBtn.disabled = (pageIdx >= blogPages.length - 1);
+        prevBtn.disabled = (blogPageIdx === 0);
+        nextBtn.disabled = (blogPageIdx >= blogPages.length - 1);
 
         textContent.innerHTML = '';
-        pageData.forEach(b => {
-          if (b.t === 'q') {
+
+        // If page has an integrated photography slide, render it
+        if (pageData.slide) {
+          const photoDiv = document.createElement('div');
+          photoDiv.className = 'blog-inpage-photo';
+          photoDiv.innerHTML = `
+            <img src="${pageData.slide.img}" alt="Blog Visual" loading="lazy">
+            <span class="photo-caption">${pageData.slide.text || ''}</span>
+          `;
+          textContent.appendChild(photoDiv);
+        }
+
+        pageData.blocks.forEach(b => {
+          if (b.t === 'h') {
+            const h = document.createElement('h3');
+            h.textContent = b.x;
+            textContent.appendChild(h);
+          } else if (b.t === 'q') {
             const bq = document.createElement('blockquote');
             bq.textContent = b.x;
             textContent.appendChild(bq);
@@ -156,27 +230,25 @@
             textContent.appendChild(p);
           }
         });
-
-        window.scrollTo({
-          top: document.querySelector('.paginated-book-spread').offsetTop - 30,
-          behavior: 'smooth'
-        });
       }
 
-      buildPages();
-      renderPage();
+      // Initialize with first post
+      buildBlogPages(0);
+      renderBlogPage();
 
       document.getElementById('prevBlogPageBtn').addEventListener('click', () => {
-        if (pageIdx > 0) {
-          pageIdx--;
-          renderPage();
+        if (blogPageIdx > 0) {
+          blogPageIdx--;
+          renderBlogPage();
+          document.getElementById('blogPageSpread').scrollIntoView({ behavior: 'smooth' });
         }
       });
 
       document.getElementById('nextBlogPageBtn').addEventListener('click', () => {
-        if (pageIdx < blogPages.length - 1) {
-          pageIdx++;
-          renderPage();
+        if (blogPageIdx < blogPages.length - 1) {
+          blogPageIdx++;
+          renderBlogPage();
+          document.getElementById('blogPageSpread').scrollIntoView({ behavior: 'smooth' });
         }
       });
     });

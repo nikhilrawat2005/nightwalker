@@ -11,7 +11,7 @@
   --cobalt: #2B3BFF;
   --ink: #0A0A0A;
   
-  /* Bold, Sharp, Punchy Typography (No fuzzy bleed) */
+  /* Bold, Sharp, Punchy Typography */
   --font-street: 'Bungee', cursive, sans-serif;
   --font-marker: 'Permanent Marker', cursive, sans-serif;
   --font-display: 'Cinzel', serif;
@@ -21,8 +21,8 @@
   --font-hand: 'Caveat', 'Kalam', cursive;
   --font-serif: 'EB Garamond', 'Newsreader', serif;
   
-  --shadow-polaroid: 0 16px 36px -8px rgba(0, 0, 0, 0.6);
-  --shadow-paper: 0 12px 30px -10px rgba(17, 18, 19, 0.2);
+  --shadow-polaroid: 0 16px 36px -8px rgba(0, 0, 0, 0.65);
+  --shadow-paper: 0 12px 30px -10px rgba(17, 18, 19, 0.25);
   --shadow-book: 0 25px 65px -15px rgba(0, 0, 0, 0.7);
   --radius-sm: 3px;
   --radius-md: 6px;
@@ -242,7 +242,7 @@ body::before {
 }
 
 /* =========================================================
-   HOMEPAGE: RAW ALLEY GLIMPSES (CURATED ENTRYWAY)
+   HOMEPAGE: HERO + RANDOM MISMATCHED STREET SCRAPBOOK
    ========================================================= */
 .home-viewport {
   margin-top: 72px;
@@ -284,10 +284,10 @@ body::before {
   box-shadow: 6px 6px 0 #000;
 }
 
-/* Scrapbook Alley Glimpse Portals */
+/* Street Portals (4 Dedicated Sections) */
 .street-portals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
   margin-top: 3.5rem;
 }
@@ -339,14 +339,14 @@ body::before {
 
 .street-portal-card h3 {
   font-family: var(--font-marker);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   color: var(--old-paper);
   margin-bottom: 0.5rem;
   line-height: 1.2;
 }
 
 .street-portal-card p {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: #B5B0A4;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -376,7 +376,163 @@ body::before {
 }
 
 /* =========================================================
-   DEDICATED PAGES STYLES
+   HOMEPAGE RANDOM MISMATCHED STREET COLLAGE (SCROLL DOWN)
+   ========================================================= */
+.home-mismatch-collage-section {
+  padding: clamp(4rem, 7vw, 6.5rem) clamp(1.2rem, 5vw, 4rem);
+  background: #111214;
+  border-bottom: 3px solid var(--acid-yellow);
+  position: relative;
+}
+
+.collage-section-header {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.collage-section-header h2 {
+  font-family: var(--font-street);
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  color: var(--acid-yellow);
+  text-shadow: 3px 3px 0 var(--signal-red);
+}
+
+.collage-masonry-stream {
+  column-count: 3;
+  column-gap: 2rem;
+}
+
+@media (max-width: 960px) { .collage-masonry-stream { column-count: 2; column-gap: 1.4rem; } }
+@media (max-width: 580px) { .collage-masonry-stream { column-count: 1; } }
+
+/* Mixed Items inside Collage: Polaroids, Chits, Quotes */
+.stream-item {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.stream-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  z-index: 10;
+}
+
+/* 1. Polaroid Scrap in Stream */
+.stream-polaroid {
+  background: #FFFFFF;
+  color: #121212;
+  padding: 0.85rem 0.85rem 2.8rem 0.85rem;
+  box-shadow: var(--shadow-polaroid);
+  transform: rotate(-2deg);
+}
+
+.stream-polaroid:nth-child(even) { transform: rotate(2.5deg); }
+
+.stream-polaroid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.stream-polaroid .polaroid-note {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 1rem;
+  right: 1rem;
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Washi tape on polaroids */
+.stream-polaroid::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 30%;
+  width: 75px;
+  height: 20px;
+  background: rgba(220, 215, 205, 0.85);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transform: rotate(-3deg);
+  z-index: 5;
+}
+
+/* 2. Poem Chit Scrap in Stream */
+.stream-poem-chit {
+  background: var(--old-paper);
+  color: var(--ink);
+  padding: 2rem;
+  box-shadow: var(--shadow-paper);
+  transform: rotate(2deg);
+  border-left: 5px solid var(--signal-red);
+}
+
+.stream-poem-chit.chalkboard-style {
+  background: #181A18;
+  color: #FFFFFF;
+  border-left-color: var(--acid-yellow);
+  border: 1px dashed #666;
+  transform: rotate(-1.5deg);
+}
+
+.stream-poem-chit h4 {
+  font-family: var(--font-hi-heavy);
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.stream-poem-chit p {
+  font-family: var(--font-hi-clean);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.stream-poem-chit .hand-signed {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--signal-red);
+  text-align: right;
+  display: block;
+}
+
+/* 3. Quote / Story Fragment in Stream */
+.stream-story-fragment {
+  background: #18191C;
+  color: var(--old-paper);
+  border: 2px solid var(--acid-yellow);
+  padding: 1.8rem;
+  box-shadow: 6px 6px 0 var(--signal-red);
+  transform: rotate(1deg);
+}
+
+.stream-story-fragment p {
+  font-family: var(--font-artistic);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #FFFFFF;
+  margin-bottom: 0.8rem;
+}
+
+.stream-story-fragment .author-tag {
+  font-family: monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  color: var(--acid-yellow);
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   PAGE CONTAINER (FOR DEDICATED SUBPAGES)
    ========================================================= */
 .page-container {
   max-width: 1360px;
@@ -413,180 +569,139 @@ body::before {
 }
 
 /* =========================================================
-   THE WALL (art.html) - WILD POSTING SCRAPBOOK
+   POETRY SCRAPS: ALTERNATING BLACK & WHITE SCRAPS
    ========================================================= */
-.art-wall-masonry {
-  column-count: 3;
-  column-gap: 2rem;
+.poetry-scraps-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
 }
 
-@media (max-width: 900px) {
-  .art-wall-masonry { column-count: 2; column-gap: 1.4rem; }
-}
-@media (max-width: 550px) {
-  .art-wall-masonry { column-count: 1; }
-}
-
-.art-poster-card {
-  break-inside: avoid;
-  margin-bottom: 2rem;
-  background: var(--old-paper);
-  color: var(--ink);
-  padding: 0.85rem 0.85rem 2.8rem 0.85rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+.poetry-scrap-card {
+  padding: 2.2rem 2rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
   position: relative;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  display: inline-block;
-  width: 100%;
-  border: 1px solid #D6CEBC;
+  transition: all 0.3s ease;
 }
 
-.art-poster-card:nth-child(even) { transform: rotate(1.8deg); }
-.art-poster-card:nth-child(odd) { transform: rotate(-2deg); }
-.art-poster-card:nth-child(3n) { transform: rotate(2.5deg); }
-
-.art-poster-card:hover {
-  transform: rotate(0deg) translateY(-8px) scale(1.02);
-  box-shadow: 0 24px 55px rgba(215, 255, 31, 0.3), 0 20px 45px rgba(0,0,0,0.9);
+.poetry-scrap-card:hover {
+  transform: translateY(-8px) scale(1.02);
   z-index: 10;
 }
 
-.art-poster-card::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 30%;
-  width: 80px;
-  height: 22px;
-  background: rgba(220, 215, 205, 0.88);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  transform: rotate(-3deg);
-  z-index: 5;
+/* Alternating Black and White/Paper Scraps */
+.scrap-dark {
+  background: #141517;
+  color: #FFFFFF;
+  border: 2px dashed rgba(255, 255, 255, 0.25);
+  box-shadow: 6px 6px 0 var(--signal-red);
 }
 
-.art-poster-card .poster-img img {
-  width: 100%;
-  height: auto;
-  display: block;
+.scrap-white {
+  background: var(--old-paper);
+  color: var(--ink);
+  border: 1px solid #D6CEBC;
+  box-shadow: 6px 6px 0 #000;
 }
 
-.art-poster-card .poster-label-row {
-  position: absolute;
-  bottom: 0.8rem;
-  left: 1rem;
-  right: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+.poetry-scrap-card:nth-child(even) { transform: rotate(1.8deg); }
+.poetry-scrap-card:nth-child(odd) { transform: rotate(-2deg); }
+
+.poetry-scrap-card .scrap-title {
+  font-family: var(--font-hi-heavy);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: inherit;
 }
 
-.art-poster-card .poster-label-row .title {
-  font-family: var(--font-marker);
+.poetry-scrap-card .scrap-lines {
+  font-family: var(--font-hi-clean);
   font-size: 1.15rem;
-  color: #121212;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
 }
 
-.art-poster-card .poster-label-row .note {
+.poetry-scrap-card .scrap-handwriting {
   font-family: var(--font-hand);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--signal-red);
-}
-
-/* =========================================================
-   LIGHT TABLE (photos.html)
-   ========================================================= */
-.light-table-frame {
-  column-count: 4;
-  column-gap: 1.6rem;
-}
-
-@media (max-width: 1200px) { .light-table-frame { column-count: 3; } }
-@media (max-width: 768px) { .light-table-frame { column-count: 2; column-gap: 1.2rem; } }
-@media (max-width: 480px) { .light-table-frame { column-count: 1; } }
-
-.light-table-card {
-  break-inside: avoid;
-  margin-bottom: 1.8rem;
-  background: #FFFFFF;
-  color: #121212;
-  padding: 0.75rem 0.75rem 1.4rem 0.75rem;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  display: inline-block;
-  width: 100%;
-}
-
-.light-table-card:nth-child(2n) { transform: rotate(1.8deg); }
-.light-table-card:nth-child(3n) { transform: rotate(-2.2deg); }
-.light-table-card:nth-child(5n) { transform: rotate(1deg); }
-
-.light-table-card:hover {
-  transform: rotate(0deg) translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 45px rgba(215, 255, 31, 0.3), 0 20px 40px rgba(0,0,0,0.9);
-  z-index: 15;
-}
-
-.light-table-card::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 25%;
-  width: 70px;
-  height: 20px;
-  background: rgba(215, 255, 31, 0.85);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  transform: rotate(-3deg);
-}
-
-.light-table-card .polaroid-media img {
-  width: 100%;
-  height: auto;
+  text-align: right;
   display: block;
-  border: 1px solid #DDD;
-}
-
-.light-table-card.is-bw .polaroid-media img {
-  filter: grayscale(100%) contrast(1.15);
-}
-
-.light-table-caption {
-  margin-top: 0.85rem;
-  padding: 0 0.3rem;
-}
-
-.light-table-caption .title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.light-table-caption .title {
-  font-family: var(--font-marker);
-  font-size: 1.05rem;
-  color: #121212;
-}
-
-.light-table-caption .place {
-  font-family: monospace;
-  font-size: 0.7rem;
-  color: #666;
-  text-transform: uppercase;
-}
-
-.light-table-caption .marker-text {
-  font-family: var(--font-hand);
-  font-size: 1.25rem;
-  color: var(--signal-red);
-  line-height: 1.35;
-  margin-top: 0.4rem;
 }
 
 /* =========================================================
-   PAGINATED TURN-BY-TURN BOOK/READING ENGINE (100-150 WORDS)
+   NOVEL WITH CHAPTER INDEX + READING SPREAD
    ========================================================= */
+.novel-shelf-wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+/* Chapter Index Box */
+.novel-index-board {
+  background: #151618;
+  border: 2px solid var(--line-dark);
+  padding: 2.5rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  margin-bottom: 3.5rem;
+}
+
+.novel-index-board h2 {
+  font-family: var(--font-marker);
+  font-size: 1.8rem;
+  color: var(--acid-yellow);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-index-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.chapter-index-card {
+  background: #1F2023;
+  border: 1.5px solid rgba(244, 236, 216, 0.2);
+  padding: 1.2rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chapter-index-card:hover, .chapter-index-card.active {
+  background: var(--signal-red);
+  color: #FFFFFF;
+  border-color: var(--signal-red);
+  transform: translateY(-3px);
+}
+
+.chapter-index-card .ch-num {
+  font-family: monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.chapter-index-card h4 {
+  font-family: var(--font-marker);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.chapter-index-card p {
+  font-size: 0.88rem;
+  color: #BBB;
+  line-height: 1.5;
+}
+
+.chapter-index-card:hover p, .chapter-index-card.active p {
+  color: #FFE6E6;
+}
+
+/* Paginated Book Spread */
 .paginated-book-spread {
   background-color: var(--old-paper);
   color: var(--ink);
@@ -706,73 +821,189 @@ body::before {
 }
 
 /* =========================================================
-   POETRY SCRAPS & READING
+   BLOGS DIRECTORY & PHOTO-STORY INTEGRATION (blog.html)
    ========================================================= */
-.poetry-scraps-wall {
+.blogs-directory-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
+  margin-bottom: 4rem;
 }
 
-.poetry-scrap-card {
-  padding: 2.2rem 2rem;
+.blog-directory-card {
+  background: #161719;
+  border: 2px solid rgba(244, 236, 216, 0.15);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
-  position: relative;
-  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: all 0.3s ease;
 }
 
-.poetry-scrap-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  z-index: 10;
+.blog-directory-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--acid-yellow);
+  box-shadow: 6px 6px 0 var(--signal-red);
 }
 
-.scrap-chalkboard {
-  background: #181A18;
-  color: #FFFFFF;
-  border: 2px dashed #666;
+.blog-directory-card .thumb {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+}
+
+.blog-directory-card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blog-directory-card:hover .thumb img {
+  transform: scale(1.05);
+}
+
+.blog-directory-card .card-content {
+  padding: 1.8rem;
+}
+
+.blog-directory-card .card-content .date-tag {
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--acid-yellow);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.blog-directory-card .card-content h3 {
+  font-family: var(--font-hi-heavy);
+  font-size: 1.6rem;
+  color: var(--old-paper);
+  margin-bottom: 0.6rem;
+}
+
+.blog-directory-card .card-content p {
+  font-size: 0.95rem;
+  color: #B5B0A4;
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+}
+
+/* In-Story Photo Reel strip */
+.story-photo-slide {
+  margin: 1.5rem 0;
+  background: #FFFFFF;
+  padding: 0.6rem 0.6rem 2rem 0.6rem;
+  box-shadow: var(--shadow-polaroid);
   transform: rotate(-1.5deg);
 }
 
-.scrap-receipt {
-  background: #F4EEDC;
-  color: #121212;
-  border-top: 3px dotted #A8A08C;
-  border-bottom: 3px dotted #A8A08C;
-  font-family: var(--font-typewriter);
-  transform: rotate(2deg);
+.story-photo-slide img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
 }
 
-.scrap-notebook {
-  background: var(--old-paper);
-  color: var(--ink);
-  background-image: linear-gradient(rgba(0,0,0,0.12) 1px, transparent 1px);
-  background-size: 100% 2rem;
-  line-height: 2rem;
-  border: 1px solid #D6CEBC;
-  transform: rotate(-2deg);
-}
-
-.poetry-scrap-card .scrap-title {
-  font-family: var(--font-hi-heavy);
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: inherit;
-}
-
-.poetry-scrap-card .scrap-lines {
-  font-family: var(--font-hi-clean);
-  font-size: 1.15rem;
-  line-height: 1.85;
-  margin-bottom: 1.5rem;
-}
-
-.poetry-scrap-card .scrap-handwriting {
+.story-photo-slide .caption {
   font-family: var(--font-hand);
-  font-size: 1.3rem;
-  color: var(--signal-red);
-  text-align: right;
+  font-size: 1.25rem;
+  color: #222;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* =========================================================
+   LIGHT TABLE (photos.html)
+   ========================================================= */
+.light-table-frame {
+  column-count: 4;
+  column-gap: 1.6rem;
+}
+
+@media (max-width: 1200px) { .light-table-frame { column-count: 3; } }
+@media (max-width: 768px) { .light-table-frame { column-count: 2; column-gap: 1.2rem; } }
+@media (max-width: 480px) { .light-table-frame { column-count: 1; } }
+
+.light-table-card {
+  break-inside: avoid;
+  margin-bottom: 1.8rem;
+  background: #FFFFFF;
+  color: #121212;
+  padding: 0.75rem 0.75rem 1.4rem 0.75rem;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+  width: 100%;
+}
+
+.light-table-card:nth-child(2n) { transform: rotate(1.8deg); }
+.light-table-card:nth-child(3n) { transform: rotate(-2.2deg); }
+.light-table-card:nth-child(5n) { transform: rotate(1deg); }
+
+.light-table-card:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 45px rgba(215, 255, 31, 0.3), 0 20px 40px rgba(0,0,0,0.9);
+  z-index: 15;
+}
+
+.light-table-card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 25%;
+  width: 70px;
+  height: 20px;
+  background: rgba(215, 255, 31, 0.85);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transform: rotate(-3deg);
+}
+
+.light-table-card .polaroid-media img {
+  width: 100%;
+  height: auto;
   display: block;
+  border: 1px solid #DDD;
+}
+
+.light-table-card.is-bw .polaroid-media img {
+  filter: grayscale(100%) contrast(1.15);
+}
+
+.light-table-caption {
+  margin-top: 0.85rem;
+  padding: 0 0.3rem;
+}
+
+.light-table-caption .title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.light-table-caption .title {
+  font-family: var(--font-marker);
+  font-size: 1.05rem;
+  color: #121212;
+}
+
+.light-table-caption .place {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.light-table-caption .marker-text {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--signal-red);
+  line-height: 1.35;
+  margin-top: 0.4rem;
 }
 
 /* =========================================================

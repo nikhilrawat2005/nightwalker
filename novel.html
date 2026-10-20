@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>The Novel · The Skills I Don’t Use Anymore · Nightwalker</title>
-  <meta name="description" content="The Skills I Don’t Use Anymore — Dedicated Novel Page. Turn by turn reading (100–150 words per page).">
+  <meta name="description" content="The Skills I Don’t Use Anymore — Dedicated Novel Page with Chapter Index and Turn-by-Turn Reading Mode (100–150 words per page).">
   <meta name="theme-color" content="#0E0F10">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 
@@ -14,35 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Yatra+One&family=Rozha+One&family=Special+Elite&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/street.css">
-  <style>
-    .torn-bookmarks-bar {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-    .torn-bookmark-btn {
-      background: #18191B;
-      color: var(--old-paper);
-      border: 1.5px solid rgba(244, 236, 216, 0.2);
-      font-family: var(--font-typewriter);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.1rem;
-      cursor: pointer;
-      clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%);
-      transition: all 0.2s ease;
-    }
-    .torn-bookmark-btn:hover, .torn-bookmark-btn.active {
-      background: var(--signal-red);
-      color: #FFFFFF;
-      border-color: var(--signal-red);
-      transform: translateY(-4px);
-    }
-  </style>
 </head>
 <body class="page-fade-in">
   <div class="grain-overlay" aria-hidden="true"></div>
@@ -55,7 +26,6 @@
     </div>
     <nav class="header-nav-links">
       <a href="index.html" class="nav-link-btn">Home</a>
-      <a href="art.html" class="nav-link-btn">The Wall</a>
       <a href="poetry.html" class="nav-link-btn">Poetry</a>
       <a href="novel.html" class="nav-link-btn active">Novel</a>
       <a href="blog.html" class="nav-link-btn">Blog</a>
@@ -67,21 +37,26 @@
     <div class="page-title-banner">
       <div>
         <span class="funky-word funky-yellow" style="font-size:0.75rem;letter-spacing:0.18em;margin-bottom:0.6rem;">
-          DEDICATED NOVEL // ALLEY 04
+          THE ORIGINAL NOVEL // CHAPTER ARCHIVE
         </span>
         <h1>The Novel</h1>
-        <p class="sub">~ The Skills I Don’t Use Anymore. Pure turn-by-turn reading (100–150 words per page).</p>
+        <p class="sub">~ The Skills I Don’t Use Anymore. Ek aisi kahani jo bina plan ke shuru hui. Pure turn-by-turn reading (100–150 words per page).</p>
       </div>
       <span class="funky-word funky-red" style="font-size:0.85rem;padding:0.4rem 0.9rem;">
-        IN PROGRESS // CH 0 &amp; 1
+        IN PROGRESS
       </span>
     </div>
 
-    <!-- Chapter Selector as Torn Bookmarks -->
-    <div class="torn-bookmarks-bar" id="novelChapterTabs">
-      <button class="torn-bookmark-btn active" data-chapter="all">All Chapters</button>
-      <button class="torn-bookmark-btn" data-chapter="0">Chapter 0</button>
-      <button class="torn-bookmark-btn" data-chapter="1">Chapter 1</button>
+    <!-- Chapter Index Board (User request: "ek novel jiske ander index hoga and then us index me uske chapter honge") -->
+    <div class="novel-index-board" id="novelIndexBoard">
+      <div class="novel-index-header">
+        <h2 class="novel-index-title">CHAPTER INDEX // The Skills I Don’t Use Anymore</h2>
+        <span class="novel-index-badge">SELECT A CHAPTER TO READ</span>
+      </div>
+
+      <div class="novel-chapters-grid" id="novelChaptersGrid">
+        <!-- Rendered dynamically -->
+      </div>
     </div>
 
     <!-- Paginated Turn-by-Turn Book Spread (100-150 words per page) -->
@@ -115,7 +90,6 @@
   <footer class="site-footer">
     <div class="footer-nav">
       <a href="index.html">Home</a>
-      <a href="art.html">The Wall</a>
       <a href="poetry.html">Poetry</a>
       <a href="novel.html">Novel</a>
       <a href="blog.html">Blog</a>
@@ -133,8 +107,40 @@
       const novel = window.NOVEL;
       if (!novel || !novel.chapters) return;
 
+      const grid = document.getElementById('novelChaptersGrid');
       let allPages = [];
       let pageIdx = 0;
+      let activeChapter = 'all';
+
+      // Render the Chapter Index Cards
+      novel.chapters.forEach((ch, idx) => {
+        const card = document.createElement('div');
+        card.className = 'novel-ch-card';
+        card.innerHTML = `
+          <div class="novel-ch-num">${ch.label.toUpperCase()}</div>
+          <h3 class="novel-ch-title">${ch.sub || ch.title}</h3>
+          <p class="novel-ch-blurb">
+            ${idx === 0 
+              ? 'I did not wake up one day and decide to become that guy. Sach ye hai ki main bas akela ho gaya tha...' 
+              : 'Jab tum kisi ko pehli baar approach karte ho, tumhara intention clear hona chahiye...'}
+          </p>
+          <div style="font-family:var(--font-hand);font-size:1.15rem;color:var(--signal-red);">
+            Click to read this chapter →
+          </div>
+        `;
+
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.novel-ch-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          activeChapter = idx.toString();
+          pageIdx = 0;
+          buildPages(activeChapter);
+          renderPage();
+          document.getElementById('novelPageSpread').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        grid.appendChild(card);
+      });
 
       function buildPages(filter = 'all') {
         allPages = [];
@@ -154,7 +160,7 @@
             const w = b.x.split(/\s+/).length;
             // Target 100 - 150 words per page
             if (currWords + w > 130 && currPage.length > 0) {
-              allPages.push({ chapterLabel: ch.label, blocks: currPage });
+              allPages.push({ chapterLabel: `${novel.title} · ${ch.label}`, blocks: currPage });
               currPage = [b];
               currWords = w;
             } else {
@@ -164,7 +170,7 @@
           });
 
           if (currPage.length > 0) {
-            allPages.push({ chapterLabel: ch.label, blocks: currPage });
+            allPages.push({ chapterLabel: `${novel.title} · ${ch.label}`, blocks: currPage });
           }
         });
       }
@@ -208,31 +214,16 @@
             textContent.appendChild(p);
           }
         });
-
-        window.scrollTo({
-          top: document.querySelector('.paginated-book-spread').offsetTop - 30,
-          behavior: 'smooth'
-        });
       }
 
       buildPages('all');
       renderPage();
 
-      const tabs = document.querySelectorAll('.torn-bookmark-btn');
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          pageIdx = 0;
-          buildPages(tab.dataset.chapter);
-          renderPage();
-        });
-      });
-
       document.getElementById('prevNovelPageBtn').addEventListener('click', () => {
         if (pageIdx > 0) {
           pageIdx--;
           renderPage();
+          document.getElementById('novelPageSpread').scrollIntoView({ behavior: 'smooth' });
         }
       });
 
@@ -240,6 +231,7 @@
         if (pageIdx < allPages.length - 1) {
           pageIdx++;
           renderPage();
+          document.getElementById('novelPageSpread').scrollIntoView({ behavior: 'smooth' });
         }
       });
     });

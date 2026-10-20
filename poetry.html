@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Poetry Scraps · Nightwalker</title>
-  <meta name="description" content="99 original verses on torn receipts, chalkboards, and notebook pages.">
+  <meta name="description" content="99 original verses on torn receipts, chalkboards, and notebook pages. Alternating random dark and paper scraps.">
   <meta name="theme-color" content="#0E0F10">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 
@@ -26,7 +26,6 @@
     </div>
     <nav class="header-nav-links">
       <a href="index.html" class="nav-link-btn">Home</a>
-      <a href="art.html" class="nav-link-btn">The Wall</a>
       <a href="poetry.html" class="nav-link-btn active">Poetry</a>
       <a href="novel.html" class="nav-link-btn">Novel</a>
       <a href="blog.html" class="nav-link-btn">Blog</a>
@@ -38,19 +37,19 @@
     <div class="page-title-banner">
       <div>
         <span class="funky-word funky-yellow" style="font-size:0.75rem;letter-spacing:0.18em;margin-bottom:0.6rem;">
-          99 ORIGINAL VERSES // ALLEY 03
+          99 ORIGINAL VERSES // TORN PAPERS &amp; DARK SLATES
         </span>
         <h1>The Scraps</h1>
-        <p class="sub">~ Torn receipts, notebook pages, and chalkboards. Click any scrap for fullscreen reading mode.</p>
+        <p class="sub">~ Mismatched black slates &amp; raw paper chits. Click any scrap for the intimate reading mode.</p>
       </div>
       <span class="funky-word funky-red" style="font-size:0.85rem;padding:0.4rem 0.9rem;">
-        MIDNIGHT VERSES
+        MIDNIGHT ARCHIVE
       </span>
     </div>
 
-    <!-- Scraps Wall -->
+    <!-- Scraps Wall with Alternating Random Black & White Styles -->
     <div class="poetry-scraps-wall" id="allPoetryScrapsWall">
-      <!-- Populated dynamically with all poems -->
+      <!-- Populated dynamically with all 99 poems -->
     </div>
   </main>
 
@@ -64,7 +63,6 @@
   <footer class="site-footer">
     <div class="footer-nav">
       <a href="index.html">Home</a>
-      <a href="art.html">The Wall</a>
       <a href="poetry.html">Poetry</a>
       <a href="novel.html">Novel</a>
       <a href="blog.html">Blog</a>
@@ -82,11 +80,12 @@
       const wall = document.getElementById('allPoetryScrapsWall');
       if (!wall || !window.POEMS) return;
 
-      const styles = ['scrap-chalkboard', 'scrap-receipt', 'scrap-notebook'];
+      // User requested: "poetry me jase ek side black hai and then baki sab same is se acha random black random white type rakho more interesting hoga"
+      const scrapClasses = ['scrap-dark', 'scrap-white', 'scrap-dark', 'scrap-notebook', 'scrap-dark', 'scrap-receipt'];
 
       window.POEMS.forEach((poem, i) => {
         const card = document.createElement('article');
-        const sc = styles[i % styles.length];
+        const sc = scrapClasses[i % scrapClasses.length];
         card.className = `poetry-scrap-card ${sc}`;
 
         const lines = poem.stanzas && poem.stanzas[0]
@@ -94,7 +93,7 @@
           : '';
 
         card.innerHTML = `
-          <div style="font-family:monospace;font-size:0.72rem;letter-spacing:0.18em;margin-bottom:0.5rem;opacity:0.75;">
+          <div style="font-family:var(--font-typewriter);font-size:0.72rem;letter-spacing:0.18em;margin-bottom:0.5rem;opacity:0.75;">
             SCRAP № ${String(poem.n).padStart(2, '0')}
           </div>
           <h3 class="scrap-title">${poem.title}</h3>
