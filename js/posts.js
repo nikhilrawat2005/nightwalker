@@ -1,5 +1,115 @@
-/* Clean verified posts data for Nightwalker Journal */
+/* Clean verified posts data for Nightwalker Journal & Memoirs */
 window.POSTS = [
+  {
+    "slug": "night-on-the-streets",
+    "title": "The Experience of a Night on the Streets",
+    "sub": "Seeing the same world from a perspective we rarely notice during the day",
+    "date": "2026-02-14",
+    "place": "Midnight Streets",
+    "mood": "रास्ते",
+    "cover": "assets/photos/1000088115.jpg.jpeg",
+    "excerpt": "“Sometimes the scariest things become the most beautiful things.” Not about sleeping on the street, but about spending time on the road at night and watching the world move without explaining yourself.",
+    "slides": [
+      {
+        "img": "assets/photos/1000088115.jpg.jpeg",
+        "text": "The beauty of the night lies in the way people's smiles decorate the darkness."
+      },
+      {
+        "img": "assets/photos/1000076042.jpg.jpeg",
+        "text": "Everyone seems to be going somewhere, looking for something, or simply making it through another day."
+      },
+      {
+        "img": "assets/photos/1000086173.jpg.jpeg",
+        "text": "Being alone doesn't mean the absence of something. Sometimes, it is the presence of yourself."
+      },
+      {
+        "img": "assets/photos/1000103695.jpg.jpeg",
+        "text": "Tu baahein khol kar toh dekh, ye sab tujhe apna bana baithe hain..."
+      }
+    ],
+    "body": [
+      {
+        "t": "q",
+        "x": "“Sometimes the scariest things become the most beautiful things.”"
+      },
+      {
+        "t": "p",
+        "x": "First of all, this is not about the experience of spending a whole night sleeping on the street. This is about the experience of spending time on the road at night, about seeing the same world from a perspective we rarely notice during the day."
+      },
+      {
+        "t": "p",
+        "x": "As children, the night is probably one of the scariest things for us. The darkness, the silence, and the things we cannot see make us afraid. But as we grow up, we slowly begin to understand that not everything hidden in darkness is meant to scare us. Sometimes, all it takes is a different perspective to see the beauty in something we once feared."
+      },
+      {
+        "t": "p",
+        "x": "For me, the beauty of the night lies in the way people's smiles decorate the darkness. The streetlights, the little shops, the moving crowd, and the people lost in their own worlds make the night feel alive in its own way. Everyone seems to be going somewhere, looking for something, or simply trying to make it through another day."
+      },
+      {
+        "t": "p",
+        "x": "And somewhere in that crowd, you realise something strange. Being surrounded by strangers doesn't always make you feel like a stranger. Sometimes, you feel more comfortable among people who know nothing about you than among those who know everything. Nobody is asking who you are, what you have been through, or why you are sitting there quietly. For a moment, you can simply exist without having to explain yourself to anyone."
+      },
+      {
+        "t": "p",
+        "x": "Maybe that's one of the most beautiful things about being alone. You don't always need someone beside you to make a moment feel complete. You don't always need someone to be the reason behind your smile. Sometimes, you can just sit there, watch the world move around you, and feel happy without knowing exactly why."
+      },
+      {
+        "t": "p",
+        "x": "And perhaps, that's what the night teaches us: being alone doesn't necessarily mean the absence of something. Sometimes, it is the presence of yourself."
+      },
+      {
+        "t": "p",
+        "x": "For me, the street at night was the place where I began to realise that, throughout our lives, we are constantly searching for people we can call our own. We look for someone with whom we can share our thoughts, our silence, our happiness, and even the parts of ourselves we don't know how to explain."
+      },
+      {
+        "t": "p",
+        "x": "But somewhere along the way, we forget to ask ourselves a simple question:"
+      },
+      {
+        "t": "q",
+        "x": "“Hum khud ko bhi toh apna bana sakte hain.”"
+      },
+      {
+        "t": "p",
+        "x": "Why do we always need someone else to make us feel complete when spending time with ourselves can bring a kind of peace that we have been searching for in others? Why do we keep looking for a place where we belong when we can slowly learn to feel at home within ourselves?"
+      },
+      {
+        "t": "p",
+        "x": "I'm not saying that we don't need people. We do. Their presence matters, their love matters, and the connections we build with them make life beautiful. But maybe the problem begins when we start believing that our happiness can exist only in someone's presence."
+      },
+      {
+        "t": "p",
+        "x": "Maybe learning to be alone is not about pushing people away. Maybe it's about reaching a point where you can enjoy someone's company without being afraid of their absence."
+      },
+      {
+        "t": "p",
+        "x": "We all should be like the moon at night, alone in a crowd of stars, yet somehow making the whole night feel incomplete without it. The moon doesn't try to become a star just to belong among them. It simply shines in its own way, and somehow, that is enough."
+      },
+      {
+        "t": "p",
+        "x": "Why can't we learn to enjoy the night when it is decorated by lights, shadows, and the little things we usually overlook? Why can't we sometimes be happy just watching the world without feeling the need to be a part of everything happening around us?"
+      },
+      {
+        "t": "p",
+        "x": "I accept that everything looks beautiful in the presence of daylight. The sun makes things clearer, brighter, and easier to understand. But I can bet that nothing quite matches the vibe of darkness decorated with light. Maybe it's because, in the darkness, even the smallest light becomes noticeable. And perhaps, that's what makes it beautiful."
+      },
+      {
+        "t": "p",
+        "x": "Maybe life is a little like that, too. We spend so much time waiting for everything to become bright that we forget to notice the little lights that are already there."
+      },
+      {
+        "t": "p",
+        "x": "Sometimes, the most beautiful moments aren't the ones we plan or share with someone. They are the ones we experience quietly, when nobody knows where we are, what we are thinking, or how much a simple night has changed the way we see things."
+      },
+      {
+        "t": "p",
+        "x": "And maybe, at the end of it all, the most important person we need to find is not someone who promises to stay forever, but the person within ourselves whom we can finally learn to understand, accept, and call our own."
+      },
+      {
+        "t": "q",
+        "x": "“Ki ab na ghabra tu andhere se, hum raat saja baithe hain.\nTu baahein khol kar toh dekh, ye sab tujhe apna bana baithe hain...”"
+      }
+    ]
+  },
   {
     "slug": "myar-pahad",
     "title": "म्यर पहाड़",
@@ -50,123 +160,55 @@ window.POSTS = [
       },
       {
         "t": "p",
-        "x": "The sun was beginning its slow descent behind the distant peaks, casting long, golden shadows across the ridge. Nikhil stood near a steep incline, his breath heavy, hands resting on his knees. The air was thin, crisp, and cold. Around him, the Himalayas stood in immense silence, indifferent to time, indifferent to human ambition."
+        "x": "The morning was cold. A layer of thin mist hung over the pines, not in a hurry to lift. Nikhil adjusted the strap of his backpack and started walking."
       },
       {
         "t": "p",
-        "x": "“भई जी, कईँ जाउला तुम?”"
+        "x": "The earth was damp beneath his boots, giving way slightly with each step. Beside the path, wild ferns glistened with dew, untouched by the rush of tyres or horns. There was an honesty to the dirt here. It carried no promises of where it led. It simply invited you to take the next step."
       },
       {
         "t": "p",
-        "x": "Nikhil turned around. A young man stood a few steps behind him. Probably two or three years younger than Nikhil, carrying a worn backpack with a calm ease that only mountain people possess. His jacket looked old, his boots covered in trail dust, but his eyes carried a quiet clarity."
+        "x": "He walked for hours, not measuring time by a watch, but by the slow shift of sunlight through the deodar needles. The silence wasn’t empty; it was full of small, quiet sounds—the scuttle of a lizard over dry leaves, the distant call of a Himalayan bulbul, the steady rhythm of his own breath."
       },
       {
         "t": "p",
-        "x": "Nikhil: “What does that mean?”\nThe young man smiled.\nYoung Man: “It means... where are you going?”\nTired from the climb, Nikhil let out a quiet breath and sat on a flat rock beside the trail."
+        "x": "Around noon, the trees parted. A narrow ridge opened out before him, falling away into a valley so vast it made his chest tighten. Terraced fields clung to the distant slopes like green stairs carved into the earth. Thin lines of smoke rose from tiny slate-roofed homes scattered across the hillsides."
       },
       {
         "t": "p",
-        "x": "Nikhil: “I don’t know. Just up, I guess.”\nThe young man chuckled softly, walking over and leaning against a wooden fence post beside the trail."
+        "x": "Sitting on a wooden log worn smooth by years of weather, he unzipped his water bottle. An old man, bent under the weight of a bundle of dry oak branches, came up the trail from the opposite direction."
       },
       {
         "t": "p",
-        "x": "Young Man: “Then why take this route? Nobody uses this path to go up.”\nHe tapped the narrow trail beneath their feet with his boot.\nYoung Man: “The main road is on the other side of the ridge. Cars go there. Buses too. In two hours, you’d be at the top with a hot cup of tea.”"
+        "x": "The man didn’t seem surprised to see a stranger sitting in the middle of nowhere. He stopped, leaned his bundle against a rock, wiped his forehead with the back of his hand, and nodded."
+      },
+      {
+        "t": "q",
+        "x": "“भई जी, कईँ जाउला तुम?” (Where are you heading, brother?)"
       },
       {
         "t": "p",
-        "x": "Nikhil looked out at the valley stretching endlessly below them.\nNikhil: “I know. I saw that road from the valley.”\nYoung Man: “Then why walk this way?”"
+        "x": "Nikhil looked up, smiled faintly, and replied in Hindi: “Bas aise hi… aage tak.” (Just like that… further ahead.)"
       },
       {
         "t": "p",
-        "x": "Nikhil was quiet for a moment. He picked up a small stone from the trail and tossed it into the grass beside the path.\nNikhil: “Because that road wasn’t mine. It belonged to the buses, the tourists, the people who just want to reach somewhere quickly. If I take the same road everyone else takes... then whatever I find at the top won’t feel like mine either.”"
+        "x": "The old man looked at him for a quiet second, his eyes creased with the kind of knowledge only years of living with mountains can give. “Aage toh sab pahaad hi hain,” he said gently. “Rasta wahi le jaata hai jahan tum le jaana chaaho.” (Ahead, there are only mountains. The path only takes you where you want to take it.)"
       },
       {
         "t": "p",
-        "x": "The young man looked at him thoughtfully. There was no mockery in his expression, only a quiet understanding.\nYoung Man: “You think a path becomes yours just because you walk it alone?”"
+        "x": "Without waiting for an answer, the old man hoisted his bundle onto his back and continued down the trail, his rubber slippers making a soft scuffing sound against the stones until the ridge was quiet again."
       },
       {
         "t": "p",
-        "x": "Nikhil: “I think... a path becomes yours when you choose it knowing it’s harder. Everyone is rushing toward the same viewpoints. Taking the same photos. Standing in the same queues to see the same sunset. But out here... there’s nobody telling you what to look at.”"
+        "x": "Those words stayed with Nikhil as he walked further into the afternoon. “The path only takes you where you want to take it.” In the city, roads had destinations. Signs screamed directions at every corner. People ran so they wouldn’t be late to places they didn’t really want to be."
       },
       {
         "t": "p",
-        "x": "The young man nodded slowly. He looked toward the distant snow peaks turning pale gold under the evening sun.\nYoung Man: “Most people who come from the cities think the mountains are meant to be conquered. They want to reach the peak so they can stand on top of it. But the mountain doesn’t care who stands on it. It was here before them. It will be here after them.”"
+        "x": "Here, the mountain asked for nothing. It demanded no justification for your presence. It simply let you be."
       },
       {
         "t": "p",
-        "x": "Nikhil: “Then why do you walk these trails?”\nThe young man took a deep breath of the mountain air.\nYoung Man: “Because down there, in the towns and cities, people tell you who you are supposed to be. How you should live, what you should earn, where you should go. But up here... the mountains don’t tell you anything. They just let you be.”"
-      },
-      {
-        "t": "p",
-        "x": "He adjusted his backpack and gestured forward.\nYoung Man: “Come on. The sun won’t wait for your philosophy.”"
-      },
-      {
-        "t": "p",
-        "x": "Nikhil got up and dusted the dirt from his clothes. The climb resumed. One traveller. One stranger. And a mountain waiting between them."
-      },
-      {
-        "t": "p",
-        "x": "As they walked, the conversation flowed effortlessly, the way conversations only do between strangers who know they may never meet again."
-      },
-      {
-        "t": "p",
-        "x": "Nikhil learned that the young man often spent days walking across these ridges, carrying only what he needed, staying with villagers or in abandoned shepherd huts."
-      },
-      {
-        "t": "p",
-        "x": "Nikhil: “Don’t you ever feel lonely out here?”\nYoung Man: “Loneliness only happens when you want someone else to fill your silence. When you learn to listen to the silence... you realize you were never really alone.”"
-      },
-      {
-        "t": "p",
-        "x": "The trail curved around the mountain edge, revealing a dramatic ridge that seemed to float above the clouds. The evening breeze picked up, carrying the scent of pine and wild grass."
-      },
-      {
-        "t": "p",
-        "x": "Nikhil stopped to drink water from his bottle. He looked back at how far they had climbed.\nNikhil: “You know... back home, everyone seems to have everything figured out. Good jobs, stable routines, clear directions. And then there’s me. Still trying to understand what kind of life I actually want to live.”"
-      },
-      {
-        "t": "p",
-        "x": "The young man paused ahead of him on the path. He didn’t answer immediately. He looked at the vast landscape opening before them.\nYoung Man: “Do you see these ridges? Some of them are sharp. Some are gentle. Some lead to snow peaks. Some lead into dense forests. Not a single ridge asks the other which way is correct.”"
-      },
-      {
-        "t": "p",
-        "x": "He turned back toward Nikhil.\nYoung Man: “The problem isn’t that you haven’t figured everything out. The problem is that you’re comparing your path to roads that were built for someone else.”"
-      },
-      {
-        "t": "p",
-        "x": "Those words lingered in the cold air between them."
-      },
-      {
-        "t": "p",
-        "x": "Nikhil: “Did it take you long to understand that?”\nYoung Man: “I spent years trying to walk the roads people expected me to walk. Until one day, I realized I was walking toward a life I didn’t even want. So I left. And I started walking these hills.”"
-      },
-      {
-        "t": "p",
-        "x": "Nikhil: “And did you find one?”\nThe young man nodded.\nYoung Man: “Yes. A path. And maybe that path was everything I needed to find.”"
-      },
-      {
-        "t": "p",
-        "x": "Ahead of them, the trail split into two. One continued along the ridge toward a high pass. The other turned downward toward a quiet village nestled in the valley."
-      },
-      {
-        "t": "p",
-        "x": "The young man stopped at the junction.\nYoung Man: “This is where I turn down. If you stay on this upper ridge, you’ll reach the open meadow just before dark. From there, you can see the entire valley turn blue under the night sky.”"
-      },
-      {
-        "t": "p",
-        "x": "Nikhil looked at the two paths, then back at the companion who had walked beside him for the last hour.\nNikhil: “Wait. I just realised something.”\nYoung Man: “What?”\nNikhil: “I never asked your name.”"
-      },
-      {
-        "t": "p",
-        "x": "The young man smiled. A gentle, knowing smile that felt older than his years. The wind stirred his hair as the last rays of sunset reflected in his eyes.\n“My name is Anshul.”"
-      },
-      {
-        "t": "p",
-        "x": "A smile appeared on Nikhil’s face. Finally. After all this time. A name.\nNikhil: “I’m Nikhil.”\nAnshul gave a slight nod.\nAnshul: “Walk well, Nikhil. Don’t look for easy roads. The mountain will show you what you need to see.”"
-      },
-      {
-        "t": "p",
-        "x": "And before Nikhil could say anything more, Anshul turned and began descending the rocky path into the valley mist. Within moments, the silence of the mountain settled once again."
+        "x": "By late afternoon, the light softened into gold. Long shadows stretched across the ridgeline. The air grew thinner, crisper, carrying the scent of pine resin and cold stone."
       },
       {
         "t": "p",

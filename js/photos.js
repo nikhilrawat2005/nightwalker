@@ -3,6 +3,35 @@ window.GALLERY = {
   sample: false,
   items: [
     {
+      img: "assets/photos/1000088115.jpg.jpeg",
+      title: "Midnight Streetlamp & Moving Shadows",
+      date: "14 Feb 2026",
+      featured: true,
+      caption: "Nothing quite matches the vibe of darkness decorated with light. In darkness, even the smallest light becomes noticeable.",
+      alt: "Street lit softly by ambient night lights"
+    },
+    {
+      img: "assets/photos/1000076042.jpg.jpeg",
+      title: "Night Strangers & Solitude",
+      date: "14 Feb 2026",
+      caption: "Being alone doesn't necessarily mean the absence of something. Sometimes, it is the presence of yourself.",
+      alt: "Night street scene with ambient glow"
+    },
+    {
+      img: "assets/photos/1000086173.jpg.jpeg",
+      title: "The Quiet Hours",
+      date: "14 Feb 2026",
+      caption: "Nobody is asking who you are or what you have been through. For a moment, you can simply exist without explaining yourself.",
+      alt: "Quiet road at midnight under streetlights"
+    },
+    {
+      img: "assets/photos/1000103695.jpg.jpeg",
+      title: "Raat Saja Baithe Hain",
+      date: "14 Feb 2026",
+      caption: "Ki ab na ghabra tu andhere se, hum raat saja baithe hain... Tu baahein khol kar toh dekh, ye sab tujhe apna bana baithe hain.",
+      alt: "Atmospheric street photography capture at night"
+    },
+    {
       img: "assets/photos/IMG_20260131_174910606.jpg",
       title: "The Mountain at Dusk",
       place: "Uttarakhand",
