@@ -3,133 +3,112 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Poetry Room · Nightwalker</title>
-  <meta name="description" content="Original verses written in the solitude of midnight. Nightwalker Notebook.">
-  <meta name="theme-color" content="#080909">
+  <title>Poetry Scraps · Nightwalker</title>
+  <meta name="description" content="99 original verses on torn receipts, chalkboards, and notebook pages.">
+  <meta name="theme-color" content="#0E0F10">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
-  
+
+  <!-- Loud Street Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Kalam:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Yatra+One&family=Rozha+One&family=Special+Elite&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/street.css">
 </head>
-<body>
+<body class="page-fade-in">
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="header-brand">
-      <a href="index.html" class="logo-text">Nightwalker</a>
-      <span class="logo-sub">कविता डायरी</span>
+      <a href="index.html" class="logo-text">NIGHTWALKER</a>
+      <span class="logo-sub">कविता स्क्रैप्स</span>
     </div>
-
-    <div class="header-controls">
-      <a href="index.html" class="btn-secondary" style="padding:0.4rem 0.9rem;font-size:0.75rem;">← Home</a>
-      <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Open Navigation Menu">
-        <span class="icon-bars">☰</span>
-        <span>Archive Menu</span>
-      </button>
-    </div>
+    <nav class="header-nav-links">
+      <a href="index.html" class="nav-link-btn">Home</a>
+      <a href="art.html" class="nav-link-btn">The Wall</a>
+      <a href="poetry.html" class="nav-link-btn active">Poetry</a>
+      <a href="novel.html" class="nav-link-btn">Novel</a>
+      <a href="blog.html" class="nav-link-btn">Blog</a>
+      <a href="photos.html" class="nav-link-btn">Light Table</a>
+    </nav>
   </header>
 
-  <!-- Off-Canvas Sidebar -->
-  <div class="offcanvas-backdrop" id="offcanvasBackdrop" aria-hidden="true"></div>
-  <aside class="offcanvas-sidebar" id="offcanvasSidebar">
-    <div class="sidebar-top">
-      <span class="brand-stamp">Nightwalker Archive</span>
-      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation">✕</button>
-    </div>
-    <ul class="sidebar-links">
-      <li><a href="index.html"><span>01. Home &amp; Manifesto</span><span class="label-hi">शुरुआत</span></a></li>
-      <li><a href="poetry.html" class="active"><span>02. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
-      <li><a href="novel.html"><span>03. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
-      <li><a href="photos.html"><span>04. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
-      <li><a href="blog.html"><span>05. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
-    </ul>
-    <div class="sidebar-bottom">
-      <span class="coord">99 ORIGINAL VERSES</span>
-      <p>Bilingual Hindi &amp; English Poetry Collection</p>
-    </div>
-  </aside>
-
-  <!-- Notebook Experience -->
-  <main class="reader-page-wrapper">
-    <article class="notebook-spread">
-      <!-- Spiral spine effect -->
-      <div class="notebook-spine" aria-hidden="true"></div>
-
-      <div class="notebook-inner">
-        <!-- Notebook Top Bar -->
-        <div class="notebook-topbar">
-          <span class="sheet-label">Nightwalker Midnight Notebook · Sheet № <span id="currentPoemNum">06</span></span>
-          <span class="page-stamp" id="poemDateStamp">MIDNIGHT ARCHIVE</span>
-        </div>
-
-        <!-- Featured / Active Poem Display -->
-        <div id="activePoemView">
-          <h1 class="notebook-title devanagari" id="poemTitle">रात</h1>
-          <p class="notebook-subtitle" id="poemCategory">Mood: रात · Night Reflections</p>
-
-          <div class="notebook-verse-flow" id="poemStanzas">
-            <div class="notebook-stanza">
-              <p class="devanagari">ना परख तू उन लफ़्ज़ों को,<br>जो रात लिखने बैठे हैं...</p>
-              <p class="devanagari">समझ सका ना जो तू अंधेरे को,<br>वो बात लिखने बैठे हैं...</p>
-            </div>
-            <div class="notebook-stanza">
-              <p class="devanagari">सपनों की बनी दुनिया का,<br>वो जो रज़्ज़ लिखने बैठे हैं...</p>
-              <p class="devanagari">देखा था जो इन्होंने भी एक सपना,<br>अब वो एक ख़्वाब लिखने बैठे हैं...</p>
-            </div>
-            <div class="notebook-stanza">
-              <p class="devanagari">ना परख तू उन लफ़्ज़ों को,<br>जो रात लिखने बैठे हैं...</p>
-            </div>
-          </div>
-
-          <div class="notebook-annotation handwritten" id="poemAnnotation">
-            ~ स्याही और तन्हाई के बीच लिखा गया
-          </div>
-        </div>
-
-        <!-- Notebook Pager -->
-        <div class="notebook-pager">
-          <button class="pager-btn" id="prevPoemBtn">← Previous Verse</button>
-          <span style="font-family:monospace;font-size:0.8rem;color:var(--ink-muted);" id="poemCounter">6 / 99</span>
-          <button class="pager-btn" id="nextPoemBtn">Next Verse →</button>
-        </div>
-
-        <!-- Notebook Divider -->
-        <div style="border-top: 2px dashed #D6D0C4; margin: 3.5rem 0 2rem 0;"></div>
-
-        <!-- Notebook Table of Contents -->
-        <div>
-          <span class="sheet-label" style="display:block; margin-bottom: 1rem;">Notebook Index &amp; Mood Filters</span>
-          <div class="notebook-mood-chips" id="moodChips">
-            <button class="mood-chip active" data-mood="all">सभी (All 99)</button>
-            <button class="mood-chip" data-mood="रात">रात</button>
-            <button class="mood-chip" data-mood="इश्क़">इश्क़</button>
-            <button class="mood-chip" data-mood="हौसला">हौसला</button>
-            <button class="mood-chip" data-mood="खामोशी">खामोशी</button>
-            <button class="mood-chip" data-mood="दुआ">दुआ</button>
-            <button class="mood-chip" data-mood="बर्बादी">बर्बादी</button>
-          </div>
-
-          <div class="poetry-notebook-grid" id="poetryIndexGrid">
-            <!-- Populated via poetry-notebook.js -->
-          </div>
-        </div>
-
+  <main class="page-container">
+    <div class="page-title-banner">
+      <div>
+        <span class="funky-word funky-yellow" style="font-size:0.75rem;letter-spacing:0.18em;margin-bottom:0.6rem;">
+          99 ORIGINAL VERSES // ALLEY 03
+        </span>
+        <h1>The Scraps</h1>
+        <p class="sub">~ Torn receipts, notebook pages, and chalkboards. Click any scrap for fullscreen reading mode.</p>
       </div>
-    </article>
+      <span class="funky-word funky-red" style="font-size:0.85rem;padding:0.4rem 0.9rem;">
+        MIDNIGHT VERSES
+      </span>
+    </div>
+
+    <!-- Scraps Wall -->
+    <div class="poetry-scraps-wall" id="allPoetryScrapsWall">
+      <!-- Populated dynamically with all poems -->
+    </div>
   </main>
 
-  <!-- Site Footer -->
+  <!-- Fullscreen Modal -->
+  <div class="street-lightbox" id="streetLightbox" aria-hidden="true">
+    <button class="street-lightbox-close" id="streetLightboxClose" aria-label="Close">✕</button>
+    <div class="street-lightbox-frame"></div>
+    <div class="street-lightbox-meta"></div>
+  </div>
+
   <footer class="site-footer">
-    <p class="footer-copy">© Nightwalker Poetry Collection · Original Verses</p>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="art.html">The Wall</a>
+      <a href="poetry.html">Poetry</a>
+      <a href="novel.html">Novel</a>
+      <a href="blog.html">Blog</a>
+      <a href="photos.html">Light Table</a>
+    </div>
+    <p style="font-family:monospace;font-size:0.75rem;color:#777;">
+      [ SPRAYED &amp; CODED AT 3 AM ] · NO CORPORATE TEMPLATES · NIGHTWALKER ARCHIVE
+    </p>
   </footer>
 
-  <script src="data/moods.js"></script>
   <script src="js/poems.js"></script>
-  <script src="js/navigation.js"></script>
-  <script src="js/poetry-notebook.js"></script>
+  <script src="js/street.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const wall = document.getElementById('allPoetryScrapsWall');
+      if (!wall || !window.POEMS) return;
+
+      const styles = ['scrap-chalkboard', 'scrap-receipt', 'scrap-notebook'];
+
+      window.POEMS.forEach((poem, i) => {
+        const card = document.createElement('article');
+        const sc = styles[i % styles.length];
+        card.className = `poetry-scrap-card ${sc}`;
+
+        const lines = poem.stanzas && poem.stanzas[0]
+          ? poem.stanzas[0].slice(0, 3).join('<br>')
+          : '';
+
+        card.innerHTML = `
+          <div style="font-family:monospace;font-size:0.72rem;letter-spacing:0.18em;margin-bottom:0.5rem;opacity:0.75;">
+            SCRAP № ${String(poem.n).padStart(2, '0')}
+          </div>
+          <h3 class="scrap-title">${poem.title}</h3>
+          <p class="scrap-lines">${lines}...</p>
+          <span class="scrap-handwriting">~ reading mode →</span>
+        `;
+
+        card.addEventListener('click', () => {
+          openPoemFullscreen(poem);
+        });
+
+        wall.appendChild(card);
+      });
+    });
+  </script>
 </body>
 </html>

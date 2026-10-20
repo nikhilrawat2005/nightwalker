@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Nightwalker — The Living Street</title>
   <meta name="description" content="Not a personal website. A living street at night where art, poetry, photographs, and novels live.">
-  <meta name="theme-color" content="#121212">
+  <meta name="theme-color" content="#0E0F10">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 
-  <!-- Loud Street Fonts -->
+  <!-- Loud Sharp Street Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&family=Yatra+One&family=Special+Elite&family=Caveat:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Yatra+One&family=Rozha+One&family=Special+Elite&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/street.css">
 </head>
-<body>
+<body class="page-fade-in">
   <!-- Animated Film Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
@@ -26,240 +26,136 @@
     </div>
   </div>
 
-  <!-- Street Navigation Bar -->
-  <nav class="street-nav-bar" aria-label="Street Alleys">
-    <div class="street-nav-left">
-      <span class="street-logo">NIGHTWALKER</span>
-      <span class="street-logo-hindi">नाईटवाकर</span>
+  <!-- Street Header & Nav -->
+  <header class="site-header">
+    <div class="header-brand">
+      <a href="index.html" class="logo-text">NIGHTWALKER</a>
+      <span class="logo-sub">रात का रास्ता</span>
     </div>
-    <div class="street-doors-menu">
-      <a href="#artWall" class="street-door-link">01. The Wall (Art)</a>
-      <a href="#poetryRoom" class="street-door-link">02. The Scraps (Poetry)</a>
-      <a href="#lightTable" class="street-door-link">03. Light Table (Photos)</a>
-      <a href="#bookshop" class="street-door-link">04. Old Bookshop (Story)</a>
-      <a href="#contactDoor" class="street-door-link">05. The Note (Contact)</a>
-    </div>
-  </nav>
+    <nav class="header-nav-links">
+      <a href="index.html" class="nav-link-btn active">Home</a>
+      <a href="art.html" class="nav-link-btn">The Wall (Art)</a>
+      <a href="poetry.html" class="nav-link-btn">Poetry</a>
+      <a href="novel.html" class="nav-link-btn">Novel</a>
+      <a href="blog.html" class="nav-link-btn">Blog</a>
+      <a href="photos.html" class="nav-link-btn">Light Table</a>
+    </nav>
+  </header>
 
-  <!-- =========================================================
-       1. ENTRY: THE ALLEY WALL (NO HERO BANNER)
-       ========================================================= -->
-  <section class="street-entry-wall" id="entryWall">
-    <div>
-      <div class="entry-neon-sign">
-        <span>● ALLEY 01 // LIVE NOW</span>
+  <!-- Main Viewport: Home Glimpses -->
+  <main class="home-viewport">
+    
+    <!-- Hero Street Wall -->
+    <section class="street-entry-hero">
+      <div style="margin-bottom:1.5rem;">
+        <span class="funky-word funky-red" style="font-size:0.85rem;letter-spacing:0.18em;">
+          ● ALLEY 01 // LIVE ARCHIVE
+        </span>
       </div>
-    </div>
 
-    <div class="entry-graffiti-center">
       <h1 class="entry-spayed-title">
         NIGHTWALKER
-        <span class="entry-hindi-spray">रात का रास्ता</span>
       </h1>
 
       <p class="entry-raw-copy">
         This is not a portfolio. This is my soul thrown against a cold wall at 3 AM. Words written beneath streetlamps, photographs captured when nobody was watching, and stories of unlearning the habits we built to survive.
       </p>
 
-      <div class="entry-chalkboard-verse">
-        <p>
+      <div style="background:#161816;border:2px dashed #666;padding:1.2rem 1.6rem;max-width:540px;box-shadow:6px 6px 0 #000;">
+        <span style="font-family:monospace;font-size:0.72rem;color:var(--signal-red);letter-spacing:0.15em;display:block;margin-bottom:0.3rem;">CHALKBOARD SCRAP</span>
+        <p style="font-family:var(--font-hi-heavy);font-size:1.2rem;line-height:1.7;color:#FFF;">
           ना परख तू उन लफ़्ज़ों को, जो रात लिखने बैठे हैं...<br>
           समझ सका ना जो तू अंधेरे को, वो बात लिखने बैठे हैं...
         </p>
       </div>
-    </div>
 
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-      <span style="font-family:monospace;font-size:0.8rem;letter-spacing:0.2em;color:var(--acid-yellow);">
-        [ SPRAY-PAINT WIPED // NO TEMPLATE ]
-      </span>
-      <span style="font-family:var(--font-hand);font-size:1.4rem;color:var(--signal-red);">
-        ↓ Walk through the street
-      </span>
-    </div>
-  </section>
-
-  <!-- Red Caution Tape Divider -->
-  <div class="caution-tape-strip red-tape">
-    <div class="marquee-content">
-      ⚠ DANGER: AUTHENTIC THOUGHTS AHEAD ⚠ DO NOT CROSS THE CRACKED WALL ⚠ REAL MEMORIES ONLY ⚠
-    </div>
-  </div>
-
-  <!-- =========================================================
-       2. ART WALL (POSTERS PASTED OVER EACH OTHER)
-       ========================================================= -->
-  <section class="street-art-wall-section" id="artWall">
-    <div class="section-spray-header">
-      <div>
-        <h2>The Wall</h2>
-        <p style="font-family:var(--font-hand);font-size:1.4rem;color:var(--signal-red);margin-top:0.3rem;">
-          ~ Posters pasted over each other. Pure wild posting energy.
-        </p>
-      </div>
-      <span class="tag-badge">PASTED POSTERS</span>
-    </div>
-
-    <div class="wild-posting-wall">
-      <!-- Poster 1 -->
-      <article class="pasted-poster torn-corner">
-        <img class="poster-image" src="assets/photos/1000165012_jpg.webp" alt="SAMBANDH Mural">
-        <div class="poster-footer">
-          <span class="poster-title">SAMBANDH</span>
-          <span class="poster-note">Street Mural</span>
-        </div>
-      </article>
-
-      <!-- Poster 2 -->
-      <article class="pasted-poster">
-        <img class="poster-image" src="assets/photos/1000165039_jpg.webp" alt="Faqir Chand Book Store">
-        <div class="poster-footer">
-          <span class="poster-title">Faqir Chand</span>
-          <span class="poster-note">Delhi Books</span>
-        </div>
-      </article>
-
-      <!-- Poster 3 -->
-      <article class="pasted-poster torn-corner">
-        <img class="poster-image" src="assets/photos/1000165021_jpg.webp" alt="Metro ka mural">
-        <div class="poster-footer">
-          <span class="poster-title">Metro Faces</span>
-          <span class="poster-note">Pillar Art</span>
-        </div>
-      </article>
-
-      <!-- Poster 4 -->
-      <article class="pasted-poster">
-        <img class="poster-image" src="assets/photos/20251206_111444886_2.webp" alt="CP Colonnade">
-        <div class="poster-footer">
-          <span class="poster-title">CP Arches</span>
-          <span class="poster-note">Solitary Walk</span>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       3. POETRY (NOTEBOOK PAGES, CHALKBOARDS, TORN SCRAPS)
-       ========================================================= -->
-  <section class="street-poetry-section" id="poetryRoom">
-    <div class="section-spray-header">
-      <div>
-        <h2>The Scraps</h2>
-        <p style="font-family:var(--font-hand);font-size:1.4rem;color:var(--acid-yellow);margin-top:0.3rem;">
-          ~ Torn receipts, notebook chits &amp; chalkboard verses. Click to read full-screen.
-        </p>
-      </div>
-      <span class="tag-badge" style="background:var(--signal-red);">99 VERSES</span>
-    </div>
-
-    <div class="poetry-scraps-container" id="streetPoetryScraps">
-      <!-- Injected dynamically via street.js -->
-    </div>
-  </section>
-
-  <!-- =========================================================
-       4. LIGHT TABLE (TAPED POLAROIDS & FILM STRIPS)
-       ========================================================= -->
-  <section class="street-photos-section" id="lightTable">
-    <div class="section-spray-header">
-      <div>
-        <h2>Light Table</h2>
-        <p style="font-family:var(--font-hand);font-size:1.4rem;color:var(--signal-red);margin-top:0.3rem;">
-          ~ Mismatched shapes, taped polaroids, marker scribbles.
-        </p>
-      </div>
-      <span class="tag-badge">FILM &amp; REEL</span>
-    </div>
-
-    <div class="light-table-board">
-      <div class="light-table-masonry" id="lightTableMasonry">
-        <!-- Injected dynamically via street.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       5. OLD BOOKSHOP (READING MODE - 100-150 WORDS PER PAGE)
-       ========================================================= */ -->
-  <section class="street-bookshop-section" id="bookshop">
-    <div class="bookshop-flicker-sign">
-      <div class="flicker-sign-board">
-        THE OLD BOOKSHOP // READING ROOM
-      </div>
-    </div>
-
-    <div class="bookshop-story-box">
-      <!-- Torn bookmark filters -->
-      <div class="torn-bookmarks-bar">
-        <button class="torn-bookmark-btn active" data-source="skills">
-          The Novel: The Skills I Don't Use Anymore
-        </button>
-        <button class="torn-bookmark-btn" data-source="blog">
-          Personal Blog: म्यूर पहाड़
-        </button>
-      </div>
-
-      <!-- Turn by Turn Paginated Spread (Strict 100-150 words per page) -->
-      <article class="bookshop-page-spread page-flip-anim" id="bookshopSpread">
-        <div class="bookshop-content-area">
-          <div class="bookshop-page-meta">
-            <span id="bookshopChapterTag" style="font-weight:700;">Chapter 0</span>
-            <span id="bookshopPageTag">Page 1</span>
+      <!-- Street Portals (Glimpses into Dedicated Pages) -->
+      <div class="street-portals-grid">
+        
+        <!-- Portal 1: The Wall -->
+        <article class="street-portal-card">
+          <div>
+            <div class="portal-thumb">
+              <img src="assets/photos/1000165012_jpg.webp" alt="SAMBANDH Mural">
+            </div>
+            <span class="portal-kicker">01. Street Gallery</span>
+            <h3>The Wall (Art)</h3>
+            <p>Pasted posters overlapping with torn edges, stickers, and raw handwritten notes.</p>
           </div>
+          <a href="art.html" class="portal-link">Enter The Wall →</a>
+        </article>
 
-          <div class="bookshop-reading-prose" id="bookshopReadingProse">
-            <!-- Injected page by page (100-150 words) -->
+        <!-- Portal 2: Poetry -->
+        <article class="street-portal-card">
+          <div>
+            <div class="portal-thumb">
+              <img src="assets/photos/1000165039_jpg.webp" alt="Old Faqir Chand Bookshop">
+            </div>
+            <span class="portal-kicker">02. 99 Verses</span>
+            <h3>The Scraps (Poetry)</h3>
+            <p>Torn receipts, notebook pages, and chalkboards. Each poem on its own raw scrap.</p>
           </div>
-        </div>
+          <a href="poetry.html" class="portal-link">Open Scraps →</a>
+        </article>
 
-        <footer class="bookshop-page-footer">
-          <button class="btn-bookshop-turn" id="prevBookshopPage">
-            ← Previous Page
-          </button>
-          <span style="font-family:monospace;font-size:0.85rem;font-weight:700;" id="bookshopPageCounter">
-            Page 1 of 11
-          </span>
-          <button class="btn-bookshop-turn" id="nextBookshopPage">
-            Next Page →
-          </button>
-        </footer>
-      </article>
+        <!-- Portal 3: The Novel -->
+        <article class="street-portal-card">
+          <div>
+            <div class="portal-thumb">
+              <img src="assets/photos/IMG_20260130_174343405_HDR_AE (1).jpg" alt="Trail in Himalayas">
+            </div>
+            <span class="portal-kicker">03. Dedicated Story</span>
+            <h3>The Novel</h3>
+            <p><i>The Skills I Don't Use Anymore</i>. Unlearning and heartbreak. Turn-by-turn reading (100–150 words per page).</p>
+          </div>
+          <a href="novel.html" class="portal-link">Read Novel →</a>
+        </article>
+
+        <!-- Portal 4: The Blog -->
+        <article class="street-portal-card">
+          <div>
+            <div class="portal-thumb">
+              <img src="assets/photos/IMG_20260130_174202243_HDR_AE.jpg" alt="Mountain Trail">
+            </div>
+            <span class="portal-kicker">04. Personal Blog</span>
+            <h3>म्यूर पहाड़ (Blog)</h3>
+            <p>A journey with Anshul on an unmarked trail. Pure page-turn story without endless scrolling.</p>
+          </div>
+          <a href="blog.html" class="portal-link">Read Blog →</a>
+        </article>
+
+        <!-- Portal 5: Light Table -->
+        <article class="street-portal-card">
+          <div>
+            <div class="portal-thumb">
+              <img src="assets/photos/IMG_20260131_174910606.jpg" alt="Dusk Valley">
+            </div>
+            <span class="portal-kicker">05. Film Archive</span>
+            <h3>Light Table (Photos)</h3>
+            <p>Mismatched puzzle moodboard with taped polaroids, film strips, and marker captions.</p>
+          </div>
+          <a href="photos.html" class="portal-link">Inspect Table →</a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="art.html">The Wall</a>
+      <a href="poetry.html">Poetry</a>
+      <a href="novel.html">Novel</a>
+      <a href="blog.html">Blog</a>
+      <a href="photos.html">Light Table</a>
     </div>
-  </section>
+    <p style="font-family:monospace;font-size:0.75rem;color:#777;">
+      [ SPRAYED &amp; CODED AT 3 AM ] · NO CORPORATE TEMPLATES · NIGHTWALKER ARCHIVE
+    </p>
+  </footer>
 
-  <!-- =========================================================
-       6. CONTACT: A NOTE STUCK ON THE DOOR
-       ========================================================= -->
-  <section class="street-contact-section" id="contactDoor">
-    <div class="contact-door-note">
-      <h3>Leave A Note</h3>
-      <p>
-        If you walked through this street and felt something — or if you just want to talk about silence, words, and unlearning habits...
-      </p>
-
-      <a href="mailto:nightwalker@rawart.in" class="contact-spray-email">
-        SEND A NOTE →
-      </a>
-
-      <span class="contact-hand-footer">
-        ~ I reply when the streetlamps turn on.
-      </span>
-    </div>
-  </section>
-
-  <!-- Fullscreen Reading / Photo Lightbox -->
-  <div class="street-lightbox" id="streetLightbox" aria-hidden="true">
-    <button class="street-lightbox-close" id="streetLightboxClose" aria-label="Close">✕</button>
-    <div class="street-lightbox-frame"></div>
-    <div class="street-lightbox-meta"></div>
-  </div>
-
-  <!-- Scripts -->
-  <script src="js/poems.js"></script>
-  <script src="js/chapters.js"></script>
-  <script src="js/posts.js"></script>
-  <script src="js/photos.js"></script>
   <script src="js/street.js"></script>
 </body>
 </html>

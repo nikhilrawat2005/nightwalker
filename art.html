@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Wall (Art & Murals) · Nightwalker</title>
+  <meta name="description" content="The Wall: Posters pasted over each other. Wild posting art, murals, and visual stories.">
+  <meta name="theme-color" content="#0E0F10">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+
+  <!-- Loud Street Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Yatra+One&family=Rozha+One&family=Special+Elite&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/street.css">
+</head>
+<body class="page-fade-in">
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Street Header -->
+  <header class="site-header">
+    <div class="header-brand">
+      <a href="index.html" class="logo-text">NIGHTWALKER</a>
+      <span class="logo-sub">दीवार</span>
+    </div>
+    <nav class="header-nav-links">
+      <a href="index.html" class="nav-link-btn">Home</a>
+      <a href="art.html" class="nav-link-btn active">The Wall (Art)</a>
+      <a href="poetry.html" class="nav-link-btn">Poetry</a>
+      <a href="novel.html" class="nav-link-btn">Novel</a>
+      <a href="blog.html" class="nav-link-btn">Blog</a>
+      <a href="photos.html" class="nav-link-btn">Light Table</a>
+    </nav>
+  </header>
+
+  <main class="page-container">
+    <div class="page-title-banner">
+      <div>
+        <span class="funky-word funky-yellow" style="font-size:0.75rem;letter-spacing:0.18em;margin-bottom:0.6rem;">
+          WILD POSTING WALL // ALLEY 02
+        </span>
+        <h1>The Wall</h1>
+        <p class="sub">~ Posters pasted over each other. Torn corners, washi tape, and authentic marker notes.</p>
+      </div>
+      <span class="funky-word funky-red" style="font-size:0.85rem;padding:0.4rem 0.9rem;">
+        WET PAINT // DON'T TOUCH
+      </span>
+    </div>
+
+    <!-- Wild Posting Masonry -->
+    <div class="art-wall-masonry" id="artWallGrid">
+      
+      <!-- Poster 1 -->
+      <article class="art-poster-card" onclick="openArtModal('assets/photos/1000165012_jpg.webp', 'SAMBANDH', 'Street art mural in Delhi. Standing in front of human connections.')">
+        <div class="poster-img">
+          <img src="assets/photos/1000165012_jpg.webp" alt="SAMBANDH Mural" loading="lazy">
+        </div>
+        <div class="poster-label-row">
+          <span class="title">SAMBANDH</span>
+          <span class="note">Delhi Mural</span>
+        </div>
+      </article>
+
+      <!-- Poster 2 -->
+      <article class="art-poster-card" onclick="openArtModal('assets/photos/1000165039_jpg.webp', 'Faqir Chand & Sons', 'Old bookstore in Delhi with shelves full of stories, creepers, and memories.')">
+        <div class="poster-img">
+          <img src="assets/photos/1000165039_jpg.webp" alt="Faqir Chand Book Store" loading="lazy">
+        </div>
+        <div class="poster-label-row">
+          <span class="title">Faqir Chand</span>
+          <span class="note">Book Shop</span>
+        </div>
+      </article>
+
+      <!-- Poster 3 -->
+      <article class="art-poster-card" onclick="openArtModal('assets/photos/1000165021_jpg.webp', 'Metro Mural Faces', 'Two painted faces looking through time on a metro station pillar.')">
+        <div class="poster-img">
+          <img src="assets/photos/1000165021_jpg.webp" alt="Metro Mural" loading="lazy">
+        </div>
+        <div class="poster-label-row">
+          <span class="title">Metro Mural</span>
+          <span class="note">Pillar Art</span>
+        </div>
+      </article>
+
+      <!-- Poster 4 -->
+      <article class="art-poster-card" onclick="openArtModal('assets/photos/20251206_111444886_2.webp', 'CP Colonnade', 'A solitary walk through white arched pillars and eyes watching from the walls.')">
+        <div class="poster-img">
+          <img src="assets/photos/20251206_111444886_2.webp" alt="CP Colonnade" loading="lazy">
+        </div>
+        <div class="poster-label-row">
+          <span class="title">CP Colonnade</span>
+          <span class="note">City Walks</span>
+        </div>
+      </article>
+
+      <!-- Poster 5 -->
+      <article class="art-poster-card" onclick="openArtModal('assets/photos/20251230_121916120_6.webp', 'The Footbridge', 'Long covered footbridge stretching toward a bright opening with a lone figure ahead.')">
+        <div class="poster-img">
+          <img src="assets/photos/20251230_121916120_6.webp" alt="The Footbridge" loading="lazy">
+        </div>
+        <div class="poster-label-row">
+          <span class="title">Pul / Bridge</span>
+          <span class="note">Endless Trail</span>
+        </div>
+      </article>
+
+      <!-- Poster 6 -->
+      <article class="art-poster-card" onclick="openArtModal('assets/photos/20260330_154104959.webp', 'Brutalist Sky', 'Towering building in stark black and white with a single bird cutting through.')">
+        <div class="poster-img">
+          <img src="assets/photos/20260330_154104959.webp" alt="Brutalist Building" loading="lazy">
+        </div>
+        <div class="poster-label-row">
+          <span class="title">Imaarat</span>
+          <span class="note">Monochrome</span>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div class="street-lightbox" id="streetLightbox" aria-hidden="true">
+    <button class="street-lightbox-close" id="streetLightboxClose" aria-label="Close">✕</button>
+    <div class="street-lightbox-frame"></div>
+    <div class="street-lightbox-meta"></div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="art.html">The Wall</a>
+      <a href="poetry.html">Poetry</a>
+      <a href="novel.html">Novel</a>
+      <a href="blog.html">Blog</a>
+      <a href="photos.html">Light Table</a>
+    </div>
+    <p style="font-family:monospace;font-size:0.75rem;color:#777;">
+      [ SPRAYED &amp; CODED AT 3 AM ] · NO CORPORATE TEMPLATES · NIGHTWALKER ARCHIVE
+    </p>
+  </footer>
+
+  <script src="js/street.js"></script>
+  <script>
+    function openArtModal(img, title, note) {
+      const modal = document.getElementById('streetLightbox');
+      const frame = modal.querySelector('.street-lightbox-frame');
+      const meta = modal.querySelector('.street-lightbox-meta');
+      frame.innerHTML = `<img src="${img}" alt="${title}">`;
+      meta.innerHTML = `<h4>${title}</h4><p>${note}</p>`;
+      modal.classList.add('open');
+    }
+  </script>
+</body>
+</html>

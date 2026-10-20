@@ -3,20 +3,29 @@
      PALETTE: "Midnight Wall" (Flat, Loud, No Gradients)
      Concrete, Old Paper, Acid Yellow, Signal Red, Cobalt Blue
      ========================================================= */
-  --concrete: #121212;
-  --concrete-light: #1c1c1c;
+  --concrete: #0E0F10;
+  --concrete-light: #18191B;
   --old-paper: #F4ECD8;
   --acid-yellow: #D7FF1F;
   --signal-red: #FF2D2D;
   --cobalt: #2B3BFF;
   --ink: #0A0A0A;
   
-  /* Typography */
-  --font-spray: 'Rubik Spray Paint', cursive, impact;
-  --font-hindi-loud: 'Yatra One', cursive, display;
-  --font-typewriter: 'Special Elite', 'Space Mono', monospace;
+  /* Bold, Sharp, Punchy Typography (No fuzzy bleed) */
+  --font-street: 'Bungee', cursive, sans-serif;
+  --font-marker: 'Permanent Marker', cursive, sans-serif;
+  --font-display: 'Cinzel', serif;
+  --font-hi-heavy: 'Yatra One', cursive;
+  --font-hi-clean: 'Rozha One', 'Tiro Devanagari Hindi', serif;
+  --font-typewriter: 'Space Mono', 'Special Elite', monospace;
   --font-hand: 'Caveat', 'Kalam', cursive;
   --font-serif: 'EB Garamond', 'Newsreader', serif;
+  
+  --shadow-polaroid: 0 16px 36px -8px rgba(0, 0, 0, 0.6);
+  --shadow-paper: 0 12px 30px -10px rgba(17, 18, 19, 0.2);
+  --shadow-book: 0 25px 65px -15px rgba(0, 0, 0, 0.7);
+  --radius-sm: 3px;
+  --radius-md: 6px;
 }
 
 *, *::before, *::after {
@@ -26,13 +35,12 @@
 }
 
 html {
+  scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--concrete);
   color: var(--old-paper);
   font-family: var(--font-typewriter);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  cursor: crosshair;
 }
 
 body {
@@ -41,34 +49,34 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-/* Background Texture: Concrete Wall + Halftone dots in pure CSS */
+/* Concrete background grid texture */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image: 
-    radial-gradient(var(--concrete-light) 1px, transparent 1px),
+    radial-gradient(var(--concrete-light) 1.5px, transparent 1.5px),
     radial-gradient(rgba(244, 236, 216, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px, 48px 48px;
-  background-position: 0 0, 12px 12px;
+  background-size: 28px 28px, 56px 56px;
+  background-position: 0 0, 14px 14px;
   pointer-events: none;
   z-index: 1;
 }
 
-/* Animated Film Grain / Noise Overlay (SVG feTurbulence) */
+/* Film Grain Overlay */
 .grain-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Custom Paint Splatter Container */
+/* Splat Canvas */
 .splat-canvas {
   position: fixed;
   inset: 0;
@@ -76,23 +84,114 @@ body::before {
   z-index: 9998;
 }
 
+/* Page Transitions */
+.page-fade-in {
+  animation: pageIn 0.5s ease-out forwards;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-flip-anim {
+  animation: pageFlip 0.4s ease-out forwards;
+}
+
+@keyframes pageFlip {
+  0% { opacity: 0.4; transform: rotateY(-6deg) translateX(-10px); }
+  100% { opacity: 1; transform: rotateY(0) translateX(0); }
+}
+
 /* =========================================================
-   MARQUEE CAUTION TAPE / POLICE TAPE STRIPS
+   STREET HEADER & NAV (CLEAN & SHARP)
    ========================================================= */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: rgba(14, 15, 16, 0.96);
+  border-bottom: 2px solid var(--signal-red);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.2rem, 4vw, 3rem);
+  z-index: 1000;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.85);
+}
+
+.header-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+}
+
+.header-brand .logo-text {
+  font-family: var(--font-street);
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  color: var(--acid-yellow);
+  text-shadow: 2px 2px 0 var(--signal-red);
+}
+
+.header-brand .logo-sub {
+  font-size: 0.82rem;
+  font-family: var(--font-hi-heavy);
+  color: var(--old-paper);
+}
+
+.header-nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1.8vw, 1.2rem);
+  flex-wrap: wrap;
+}
+
+.nav-link-btn {
+  font-family: var(--font-typewriter);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--old-paper);
+  background: #18191B;
+  border: 1.5px solid rgba(244, 236, 216, 0.2);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.nav-link-btn:hover {
+  background: var(--acid-yellow);
+  color: var(--ink);
+  border-color: var(--acid-yellow);
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 0 var(--signal-red);
+}
+
+.nav-link-btn.active {
+  background: var(--signal-red);
+  color: #FFFFFF;
+  border-color: var(--signal-red);
+}
+
+/* Caution Tape Marquee Strip */
 .caution-tape-strip {
-  width: 105vw;
-  margin-left: -2.5vw;
+  width: 104vw;
+  margin-left: -2vw;
   background: var(--acid-yellow);
   color: var(--ink);
   font-family: var(--font-typewriter);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 0.5rem 0;
+  padding: 0.45rem 0;
   overflow: hidden;
   white-space: nowrap;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
   border-top: 2px solid var(--ink);
   border-bottom: 2px solid var(--ink);
   z-index: 20;
@@ -106,7 +205,7 @@ body::before {
 
 .marquee-content {
   display: inline-block;
-  animation: marqueeRoll 24s linear infinite;
+  animation: marqueeRoll 25s linear infinite;
 }
 
 @keyframes marqueeRoll {
@@ -114,132 +213,57 @@ body::before {
   100% { transform: translateX(-50%); }
 }
 
-/* =========================================================
-   STREET NAVIGATION: SPRAYED ARROWS & GRAFFITI DOORS
-   ========================================================= */
-.street-nav-bar {
-  position: sticky;
-  top: 0;
-  background: rgba(18, 18, 18, 0.96);
-  border-bottom: 3px solid var(--signal-red);
-  padding: 0.8rem clamp(1rem, 4vw, 3rem);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 800;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
-}
-
-.street-nav-left {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
-}
-
-.street-logo {
-  font-family: var(--font-spray);
-  font-size: 1.6rem;
-  color: var(--acid-yellow);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 0 var(--signal-red);
-}
-
-.street-logo-hindi {
-  font-family: var(--font-hindi-loud);
-  font-size: 1.1rem;
-  color: var(--old-paper);
-}
-
-.street-doors-menu {
-  display: flex;
-  gap: clamp(0.6rem, 2vw, 1.4rem);
-  flex-wrap: wrap;
-}
-
-.street-door-link {
-  font-family: var(--font-typewriter);
-  font-size: 0.85rem;
+/* Funky word stamps */
+.funky-word {
+  font-family: var(--font-hi-heavy);
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--old-paper);
-  background: #1A1A1A;
-  border: 1.5px solid rgba(244, 236, 216, 0.25);
-  padding: 0.35rem 0.8rem;
-  transition: all 0.2s ease;
-  position: relative;
+  display: inline-block;
+  padding: 0.05em 0.4em;
+  border-radius: 2px;
+  letter-spacing: normal;
 }
 
-.street-door-link:hover {
+.funky-yellow {
   background: var(--acid-yellow);
   color: var(--ink);
-  border-color: var(--acid-yellow);
-  transform: rotate(-2deg) scale(1.05);
+  transform: rotate(-2deg);
 }
 
-.street-door-link.door-active {
+.funky-red {
   background: var(--signal-red);
   color: #FFFFFF;
-  border-color: var(--signal-red);
+  transform: rotate(2deg);
+}
+
+.funky-paper {
+  background: var(--old-paper);
+  color: var(--ink);
+  transform: rotate(-1.5deg);
 }
 
 /* =========================================================
-   SECTION 1: THE ENTRY (NO HERO BANNER - RAW SPRAYED ALLEY)
+   HOMEPAGE: RAW ALLEY GLIMPSES (CURATED ENTRYWAY)
    ========================================================= */
-.street-entry-wall {
+.home-viewport {
+  margin-top: 72px;
+  min-height: calc(100vh - 72px);
+}
+
+.street-entry-hero {
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.2rem, 5vw, 4rem);
   position: relative;
-  min-height: 92vh;
-  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 4rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border-bottom: 3px solid var(--signal-red);
   overflow: hidden;
-  border-bottom: 4px solid var(--old-paper);
-}
-
-.entry-neon-sign {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  border: 2px solid var(--signal-red);
-  padding: 0.4rem 1rem;
-  background: rgba(255, 45, 45, 0.08);
-  color: var(--signal-red);
-  font-family: var(--font-typewriter);
-  font-size: 0.82rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 700;
-  width: fit-content;
-  box-shadow: 0 0 15px rgba(255, 45, 45, 0.4);
-  animation: neonFlicker 3.5s infinite alternate;
-}
-
-@keyframes neonFlicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(255, 45, 45, 0.4);
-  }
-  20%, 24%, 55% {
-    opacity: 0.35;
-    box-shadow: none;
-  }
-}
-
-.entry-graffiti-center {
-  margin: 3rem 0;
-  max-width: 1100px;
 }
 
 .entry-spayed-title {
-  font-family: var(--font-spray);
-  font-size: clamp(3.8rem, 11vw, 9.5rem);
-  line-height: 0.9;
+  font-family: var(--font-street);
+  font-size: clamp(3.4rem, 9vw, 7.8rem);
+  line-height: 0.95;
   color: var(--old-paper);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  margin-bottom: 1.5rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.2rem;
   text-shadow: 
     4px 4px 0 var(--signal-red),
     8px 8px 0 var(--ink),
@@ -247,71 +271,122 @@ body::before {
   transform: rotate(-1.5deg);
 }
 
-.entry-hindi-spray {
-  font-family: var(--font-hindi-loud);
-  font-size: clamp(2rem, 5vw, 4.2rem);
-  color: var(--acid-yellow);
-  display: block;
-  margin-top: 0.5rem;
-  text-shadow: 3px 3px 0 var(--ink);
-  transform: rotate(2deg);
-}
-
 .entry-raw-copy {
   font-family: var(--font-typewriter);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  line-height: 1.6;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.7;
   color: var(--old-paper);
-  max-width: 740px;
-  background: rgba(18, 18, 18, 0.88);
+  max-width: 760px;
+  background: #151618;
   border-left: 5px solid var(--acid-yellow);
   padding: 1.2rem 1.6rem;
-  margin-top: 2rem;
-  box-shadow: 8px 8px 0 #000;
+  margin: 1.8rem 0 2.5rem 0;
+  box-shadow: 6px 6px 0 #000;
 }
 
-.entry-chalkboard-verse {
-  background: #161816;
-  border: 3px solid #444;
-  padding: 1.4rem 1.8rem;
-  max-width: 550px;
-  color: #FFFFFF;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-  transform: rotate(1.5deg);
-  margin-top: 2rem;
+/* Scrapbook Alley Glimpse Portals */
+.street-portals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+.street-portal-card {
+  background: #161719;
+  border: 2px solid rgba(244, 236, 216, 0.15);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
 }
 
-.entry-chalkboard-verse::before {
-  content: "CHALKBOARD SCRAP";
-  position: absolute;
-  top: -12px;
-  left: 1.2rem;
-  background: var(--signal-red);
-  color: #FFF;
-  font-size: 0.68rem;
-  padding: 0.2rem 0.6rem;
-  font-family: monospace;
-  letter-spacing: 0.16em;
+.street-portal-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
+  border-color: var(--acid-yellow);
+  box-shadow: 8px 8px 0 var(--signal-red), 0 20px 45px rgba(0, 0, 0, 0.9);
 }
 
-.entry-chalkboard-verse p {
-  font-family: var(--font-hindi-loud);
-  font-size: 1.25rem;
-  line-height: 1.7;
+.street-portal-card .portal-thumb {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+  border: 1px solid #333;
+}
+
+.street-portal-card .portal-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.street-portal-card:hover .portal-thumb img {
+  transform: scale(1.06);
+}
+
+.street-portal-card .portal-kicker {
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--acid-yellow);
+  margin-bottom: 0.4rem;
+}
+
+.street-portal-card h3 {
+  font-family: var(--font-marker);
+  font-size: 1.6rem;
+  color: var(--old-paper);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.street-portal-card p {
+  font-size: 0.95rem;
+  color: #B5B0A4;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.street-portal-card .portal-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--acid-yellow);
+  color: var(--ink);
+  font-family: var(--font-typewriter);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.2rem;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 #000;
+  transition: all 0.2s ease;
+}
+
+.street-portal-card:hover .portal-link {
+  background: var(--signal-red);
+  color: #FFFFFF;
 }
 
 /* =========================================================
-   SECTION 2: THE WALL (POSTERS PASTED OVER EACH OTHER)
+   DEDICATED PAGES STYLES
    ========================================================= */
-.street-art-wall-section {
-  padding: clamp(4rem, 7vw, 6.5rem) clamp(1rem, 4vw, 3rem);
-  background: #141414;
-  border-bottom: 4px solid var(--signal-red);
-  position: relative;
+.page-container {
+  max-width: 1360px;
+  margin: 86px auto 4rem auto;
+  padding: 0 clamp(1.2rem, 4vw, 3rem);
 }
 
-.section-spray-header {
+.page-title-banner {
+  border-bottom: 3px solid var(--signal-red);
+  padding-bottom: 1.8rem;
   margin-bottom: 3.5rem;
   display: flex;
   justify-content: space-between;
@@ -320,79 +395,67 @@ body::before {
   gap: 1.5rem;
 }
 
-.section-spray-header h2 {
-  font-family: var(--font-spray);
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
+.page-title-banner h1 {
+  font-family: var(--font-street);
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
   text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--acid-yellow);
   text-shadow: 3px 3px 0 var(--signal-red);
   line-height: 1;
 }
 
-.section-spray-header .tag-badge {
-  font-family: var(--font-typewriter);
-  font-size: 0.85rem;
+.page-title-banner p.sub {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
   color: var(--old-paper);
-  background: var(--cobalt);
-  padding: 0.35rem 0.9rem;
-  box-shadow: 4px 4px 0 #000;
-  text-transform: uppercase;
-  font-weight: 700;
+  margin-top: 0.4rem;
 }
 
-/* Overlapping Wild Posting Wall */
-.wild-posting-wall {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 2.5rem;
-  position: relative;
+/* =========================================================
+   THE WALL (art.html) - WILD POSTING SCRAPBOOK
+   ========================================================= */
+.art-wall-masonry {
+  column-count: 3;
+  column-gap: 2rem;
 }
 
-.pasted-poster {
+@media (max-width: 900px) {
+  .art-wall-masonry { column-count: 2; column-gap: 1.4rem; }
+}
+@media (max-width: 550px) {
+  .art-wall-masonry { column-count: 1; }
+}
+
+.art-poster-card {
+  break-inside: avoid;
+  margin-bottom: 2rem;
   background: var(--old-paper);
   color: var(--ink);
-  padding: 1rem 1rem 3rem 1rem;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  padding: 0.85rem 0.85rem 2.8rem 0.85rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
   position: relative;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border: 1px solid #C4BAA3;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid #D6CEBC;
 }
 
-.pasted-poster:nth-child(even) {
-  transform: rotate(2.5deg);
+.art-poster-card:nth-child(even) { transform: rotate(1.8deg); }
+.art-poster-card:nth-child(odd) { transform: rotate(-2deg); }
+.art-poster-card:nth-child(3n) { transform: rotate(2.5deg); }
+
+.art-poster-card:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 55px rgba(215, 255, 31, 0.3), 0 20px 45px rgba(0,0,0,0.9);
+  z-index: 10;
 }
 
-.pasted-poster:nth-child(odd) {
-  transform: rotate(-2deg);
-}
-
-.pasted-poster:nth-child(3n) {
-  transform: rotate(-3.5deg);
-}
-
-.pasted-poster:hover {
-  transform: rotate(0deg) translateY(-8px) scale(1.03);
-  box-shadow: 0 24px 50px rgba(215, 255, 31, 0.25), 0 20px 45px rgba(0,0,0,0.9);
-  z-index: 20;
-}
-
-/* Torn corner clip path */
-.pasted-poster.torn-corner {
-  clip-path: polygon(
-    0% 0%, 
-    100% 0%, 
-    100% calc(100% - 24px), 
-    calc(100% - 24px) 100%, 
-    0% 100%
-  );
-}
-
-/* Tape on top */
-.pasted-poster::before {
+.art-poster-card::before {
   content: "";
   position: absolute;
-  top: -12px;
+  top: -10px;
   left: 30%;
   width: 80px;
   height: 22px;
@@ -402,15 +465,13 @@ body::before {
   z-index: 5;
 }
 
-.pasted-poster .poster-image {
+.art-poster-card .poster-img img {
   width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-  filter: contrast(1.15);
-  border: 1px solid #D6CEBC;
+  height: auto;
+  display: block;
 }
 
-.pasted-poster .poster-footer {
+.art-poster-card .poster-label-row {
   position: absolute;
   bottom: 0.8rem;
   left: 1rem;
@@ -420,142 +481,29 @@ body::before {
   align-items: baseline;
 }
 
-.pasted-poster .poster-title {
-  font-family: var(--font-spray);
+.art-poster-card .poster-label-row .title {
+  font-family: var(--font-marker);
   font-size: 1.15rem;
-  color: var(--ink);
-  letter-spacing: 0.05em;
+  color: #121212;
 }
 
-.pasted-poster .poster-note {
+.art-poster-card .poster-label-row .note {
   font-family: var(--font-hand);
   font-size: 1.25rem;
   color: var(--signal-red);
 }
 
 /* =========================================================
-   SECTION 3: POETRY ON RAW SCRAPS & CHALKBOARDS
+   LIGHT TABLE (photos.html)
    ========================================================= */
-.street-poetry-section {
-  padding: clamp(4rem, 7vw, 6.5rem) clamp(1rem, 4vw, 3rem);
-  background: #0E0E0E;
-  border-bottom: 4px solid var(--acid-yellow);
-}
-
-.poetry-scraps-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
-}
-
-.poetry-scrap-card {
-  padding: 2.2rem 2rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.poetry-scrap-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  z-index: 10;
-}
-
-/* Paper scrap styles */
-.scrap-chalkboard {
-  background: #181A18;
-  color: #FFFFFF;
-  border: 2px dashed #666;
-  transform: rotate(-1.5deg);
-}
-
-.scrap-receipt {
-  background: #F4EEDC;
-  color: #121212;
-  border-top: 3px dotted #A8A08C;
-  border-bottom: 3px dotted #A8A08C;
-  font-family: var(--font-typewriter);
-  transform: rotate(2deg);
-}
-
-.scrap-notebook {
-  background: var(--old-paper);
-  color: var(--ink);
-  background-image: linear-gradient(rgba(0,0,0,0.12) 1px, transparent 1px);
-  background-size: 100% 2rem;
-  line-height: 2rem;
-  border: 1px solid #D6CEBC;
-  transform: rotate(-2deg);
-}
-
-.poetry-scrap-card .scrap-title {
-  font-family: var(--font-hindi-loud);
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: inherit;
-}
-
-.poetry-scrap-card .scrap-lines {
-  font-family: var(--font-hindi-loud);
-  font-size: 1.15rem;
-  line-height: 1.85;
-  margin-bottom: 1.5rem;
-}
-
-.poetry-scrap-card .scrap-handwriting {
-  font-family: var(--font-hand);
-  font-size: 1.3rem;
-  color: var(--signal-red);
-  text-align: right;
-  display: block;
-}
-
-/* =========================================================
-   SECTION 4: THE LIGHT TABLE (TAPED POLAROIDS & FILM STRIPS)
-   ========================================================= */
-.street-photos-section {
-  padding: clamp(4rem, 7vw, 6.5rem) clamp(1rem, 4vw, 3rem);
-  background: #0A0A0A;
-  border-bottom: 4px solid var(--cobalt);
-}
-
-.light-table-board {
-  background: #121314;
-  border: 3px solid #282828;
-  padding: 2.5rem clamp(1rem, 3vw, 2.5rem);
-  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.95), 0 20px 60px rgba(0, 0, 0, 0.9);
-  position: relative;
-}
-
-.light-table-board::before {
-  content: "LIGHT TABLE // FILM ARCHIVE";
-  position: absolute;
-  top: -14px;
-  right: 2rem;
-  background: var(--cobalt);
-  color: #FFF;
-  font-family: monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  padding: 0.25rem 0.8rem;
-  font-weight: 700;
-}
-
-/* Mismatched Pinterest Puzzle Masonry */
-.light-table-masonry {
+.light-table-frame {
   column-count: 4;
   column-gap: 1.6rem;
 }
 
-@media (max-width: 1200px) {
-  .light-table-masonry { column-count: 3; }
-}
-@media (max-width: 768px) {
-  .light-table-masonry { column-count: 2; column-gap: 1.2rem; }
-}
-@media (max-width: 480px) {
-  .light-table-masonry { column-count: 1; }
-}
+@media (max-width: 1200px) { .light-table-frame { column-count: 3; } }
+@media (max-width: 768px) { .light-table-frame { column-count: 2; column-gap: 1.2rem; } }
+@media (max-width: 480px) { .light-table-frame { column-count: 1; } }
 
 .light-table-card {
   break-inside: avoid;
@@ -577,11 +525,10 @@ body::before {
 
 .light-table-card:hover {
   transform: rotate(0deg) translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 45px rgba(43, 59, 255, 0.3), 0 20px 40px rgba(0,0,0,0.9);
+  box-shadow: 0 20px 45px rgba(215, 255, 31, 0.3), 0 20px 40px rgba(0,0,0,0.9);
   z-index: 15;
 }
 
-/* Red / Yellow tape strip on card */
 .light-table-card::after {
   content: "";
   position: absolute;
@@ -617,7 +564,7 @@ body::before {
 }
 
 .light-table-caption .title {
-  font-family: var(--font-spray);
+  font-family: var(--font-marker);
   font-size: 1.05rem;
   color: #121212;
 }
@@ -638,40 +585,9 @@ body::before {
 }
 
 /* =========================================================
-   SECTION 5: THE BOOKSHOP (FLICKERING SIGN & PAGINATED NOVEL)
+   PAGINATED TURN-BY-TURN BOOK/READING ENGINE (100-150 WORDS)
    ========================================================= */
-.street-bookshop-section {
-  padding: clamp(4rem, 7vw, 6.5rem) clamp(1rem, 4vw, 3rem);
-  background: #101010;
-  border-bottom: 4px solid var(--old-paper);
-}
-
-.bookshop-flicker-sign {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 3.5rem;
-}
-
-.flicker-sign-board {
-  border: 3px solid var(--acid-yellow);
-  padding: 0.6rem 1.6rem;
-  background: rgba(215, 255, 31, 0.06);
-  font-family: var(--font-spray);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  color: var(--acid-yellow);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-shadow: 0 0 20px rgba(215, 255, 31, 0.6);
-  animation: neonFlicker 4s infinite alternate;
-}
-
-.bookshop-story-box {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.bookshop-page-spread {
+.paginated-book-spread {
   background-color: var(--old-paper);
   color: var(--ink);
   box-shadow: var(--shadow-book);
@@ -681,197 +597,181 @@ body::before {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* Torn Bookmark Chapter Tabs */
-.torn-bookmarks-bar {
-  display: flex;
-  gap: 0.6rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.torn-bookmark-btn {
-  background: #E4D8BC;
-  color: var(--ink);
-  border: 1px solid #A89C82;
-  font-family: var(--font-typewriter);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.45rem 1rem;
-  cursor: pointer;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%);
-  transition: all 0.2s ease;
-}
-
-.torn-bookmark-btn:hover, .torn-bookmark-btn.active {
-  background: var(--signal-red);
-  color: #FFFFFF;
-  border-color: var(--signal-red);
-  transform: translateY(-4px);
-}
-
-.bookshop-content-area {
-  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 6vw, 4.5rem);
+.book-reading-content {
+  padding: clamp(2.2rem, 5vw, 4.5rem) clamp(1.8rem, 5vw, 4.5rem);
   flex: 1;
 }
 
-.bookshop-page-meta {
+.book-page-header {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   border-bottom: 2px solid var(--ink);
-  padding-bottom: 0.6rem;
-  margin-bottom: 2rem;
+  padding-bottom: 0.8rem;
+  margin-bottom: 2.2rem;
   font-family: monospace;
-  font-size: 0.85rem;
 }
 
-.bookshop-reading-prose {
+.book-page-header .header-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.book-page-header .sheet-number {
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.book-prose-body {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.28rem;
   line-height: 2.1;
-  color: #121212;
+  color: #1A1C1E;
 }
 
-.bookshop-reading-prose p {
+.book-prose-body h3 {
+  font-family: var(--font-marker);
+  font-size: 1.35rem;
+  color: var(--signal-red);
+  margin-bottom: 1.4rem;
+}
+
+.book-prose-body p {
   margin-bottom: 1.6rem;
   text-align: justify;
 }
 
-/* Drop Cap */
-.bookshop-reading-prose p:first-of-type::first-letter {
-  font-family: var(--font-spray);
-  font-size: 4rem;
-  float: left;
-  line-height: 0.8;
-  margin-right: 0.6rem;
-  color: var(--signal-red);
-}
-
-.bookshop-reading-prose blockquote {
-  font-family: var(--font-hindi-loud);
+.book-prose-body blockquote {
+  font-family: var(--font-hi-heavy);
   font-size: 1.85rem;
   color: var(--signal-red);
   text-align: center;
-  margin: 2.2rem 0;
-  padding: 0.8rem 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-.bookshop-page-footer {
+.book-turn-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
-  padding: 1rem clamp(2rem, 6vw, 4.5rem);
+  padding: 1rem clamp(1.8rem, 5vw, 4.5rem);
   background: #EAE1CB;
 }
 
-.btn-bookshop-turn {
+.turn-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-typewriter);
   font-size: 0.85rem;
-  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-weight: 700;
   color: var(--ink);
   background: var(--old-paper);
   border: 1.5px solid var(--ink);
-  padding: 0.45rem 1.1rem;
+  padding: 0.5rem 1.2rem;
   box-shadow: 3px 3px 0 #000;
-  cursor: pointer;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-.btn-bookshop-turn:hover:not(:disabled) {
+.turn-btn:hover:not(:disabled) {
   background: var(--acid-yellow);
   transform: translate(-1px, -1px);
   box-shadow: 4px 4px 0 #000;
 }
 
-.btn-bookshop-turn:disabled {
+.turn-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
   box-shadow: none;
 }
 
+.page-counter-badge {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 700;
+}
+
 /* =========================================================
-   SECTION 6: CONTACT (NOTE STUCK ON THE DOOR)
+   POETRY SCRAPS & READING
    ========================================================= */
-.street-contact-section {
-  padding: clamp(5rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem);
-  background: var(--concrete);
-  text-align: center;
-  position: relative;
+.poetry-scraps-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
 }
 
-.contact-door-note {
-  max-width: 580px;
-  margin: 0 auto;
-  background: var(--old-paper);
-  color: var(--ink);
-  padding: 3rem 2.5rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+.poetry-scrap-card {
+  padding: 2.2rem 2rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.poetry-scrap-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  z-index: 10;
+}
+
+.scrap-chalkboard {
+  background: #181A18;
+  color: #FFFFFF;
+  border: 2px dashed #666;
   transform: rotate(-1.5deg);
-  border: 1px solid #C4BAA3;
-  position: relative;
 }
 
-.contact-door-note::before {
-  content: "";
-  position: absolute;
-  top: -14px;
-  left: 35%;
-  width: 100px;
-  height: 28px;
-  background: rgba(255, 45, 45, 0.85);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+.scrap-receipt {
+  background: #F4EEDC;
+  color: #121212;
+  border-top: 3px dotted #A8A08C;
+  border-bottom: 3px dotted #A8A08C;
+  font-family: var(--font-typewriter);
   transform: rotate(2deg);
 }
 
-.contact-door-note h3 {
-  font-family: var(--font-spray);
-  font-size: 2.4rem;
-  color: var(--signal-red);
-  margin-bottom: 0.8rem;
-  text-transform: uppercase;
-}
-
-.contact-door-note p {
-  font-family: var(--font-typewriter);
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #222;
-  margin-bottom: 2rem;
-}
-
-.contact-spray-email {
-  font-family: var(--font-typewriter);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  background: var(--ink);
-  padding: 0.8rem 1.6rem;
-  display: inline-block;
-  box-shadow: 5px 5px 0 var(--acid-yellow);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: all 0.25s ease;
-}
-
-.contact-spray-email:hover {
-  background: var(--acid-yellow);
+.scrap-notebook {
+  background: var(--old-paper);
   color: var(--ink);
-  box-shadow: 5px 5px 0 var(--signal-red);
-  transform: rotate(2deg) scale(1.05);
+  background-image: linear-gradient(rgba(0,0,0,0.12) 1px, transparent 1px);
+  background-size: 100% 2rem;
+  line-height: 2rem;
+  border: 1px solid #D6CEBC;
+  transform: rotate(-2deg);
 }
 
-.contact-hand-footer {
+.poetry-scrap-card .scrap-title {
+  font-family: var(--font-hi-heavy);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.poetry-scrap-card .scrap-lines {
+  font-family: var(--font-hi-clean);
+  font-size: 1.15rem;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.poetry-scrap-card .scrap-handwriting {
   font-family: var(--font-hand);
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   color: var(--signal-red);
-  margin-top: 1.8rem;
+  text-align: right;
   display: block;
 }
 
@@ -897,8 +797,8 @@ body::before {
   position: absolute;
   top: 2rem;
   right: 2.5rem;
-  font-family: var(--font-spray);
-  font-size: 2.4rem;
+  font-family: var(--font-marker);
+  font-size: 2.2rem;
   color: var(--signal-red);
   cursor: pointer;
   background: none;
@@ -930,8 +830,8 @@ body::before {
 }
 
 .street-lightbox-meta h4 {
-  font-family: var(--font-spray);
-  font-size: 1.5rem;
+  font-family: var(--font-marker);
+  font-size: 1.45rem;
   color: var(--acid-yellow);
   margin-bottom: 0.3rem;
 }
@@ -940,4 +840,33 @@ body::before {
   font-family: var(--font-hand);
   font-size: 1.25rem;
   color: var(--old-paper);
+}
+
+/* Site Footer */
+.site-footer {
+  background-color: var(--concrete);
+  color: #888;
+  border-top: 2px solid var(--signal-red);
+  padding: 3.5rem clamp(1rem, 4vw, 3rem) 2.5rem;
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.8rem;
+}
+
+.footer-nav a {
+  font-family: var(--font-typewriter);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--old-paper);
+}
+
+.footer-nav a:hover {
+  color: var(--acid-yellow);
 }
