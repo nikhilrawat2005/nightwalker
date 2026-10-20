@@ -15,7 +15,7 @@
 
   <link rel="stylesheet" href="css/street.css">
 </head>
-<body class="page-fade-in">
+<body class="page-fade-in poetry-page">
   <div class="grain-overlay" aria-hidden="true"></div>
 
   <!-- Header -->
@@ -80,20 +80,25 @@
       const wall = document.getElementById('allPoetryScrapsWall');
       if (!wall || !window.POEMS) return;
 
-      // User requested: "poetry me jase ek side black hai and then baki sab same is se acha random black random white type rakho more interesting hoga"
-      const scrapClasses = ['scrap-dark', 'scrap-white', 'scrap-dark', 'scrap-notebook', 'scrap-dark', 'scrap-receipt'];
+      // Deterministic pseudorandom sequence so black & white are truly mixed and varied
+      // (not just strict 1-by-1, but natural organic scatter: black, white, white, black, white, black, black...)
+      const pattern = ['scrap-dark', 'scrap-white', 'scrap-white', 'scrap-dark', 'scrap-white', 'scrap-dark', 'scrap-dark', 'scrap-white'];
+      const angles = [-2.2, 1.8, -1.2, 2.4, -2.8, 1.5, -1.8, 2.1];
 
       window.POEMS.forEach((poem, i) => {
         const card = document.createElement('article');
-        const sc = scrapClasses[i % scrapClasses.length];
+        const sc = pattern[i % pattern.length];
+        const rot = angles[i % angles.length];
+
         card.className = `poetry-scrap-card ${sc}`;
+        card.style.transform = `rotate(${rot}deg)`;
 
         const lines = poem.stanzas && poem.stanzas[0]
           ? poem.stanzas[0].slice(0, 3).join('<br>')
           : '';
 
         card.innerHTML = `
-          <div style="font-family:var(--font-typewriter);font-size:0.72rem;letter-spacing:0.18em;margin-bottom:0.5rem;opacity:0.75;">
+          <div class="scrap-meta-num">
             SCRAP № ${String(poem.n).padStart(2, '0')}
           </div>
           <h3 class="scrap-title">${poem.title}</h3>

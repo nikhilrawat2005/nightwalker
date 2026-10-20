@@ -672,63 +672,141 @@ body::before {
 }
 
 /* =========================================================
-   POETRY SCRAPS: ALTERNATING BLACK & WHITE SCRAPS
+   POETRY SCRAPS: MISMATCHED BLACK & WHITE CARDS WITH DISTINCT WALL BACKGROUND
    ========================================================= */
+/* Specific background for Poetry Wall: deep textured raw concrete/slate, distinct from black and white cards */
+body.poetry-page {
+  background-color: #191B1F;
+  background-image: 
+    radial-gradient(#262930 1.5px, transparent 1.5px),
+    linear-gradient(180deg, #16171A 0%, #1E2026 50%, #15161A 100%);
+  background-size: 24px 24px, 100% 100%;
+}
+
 .poetry-scraps-wall {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
+  gap: 2.8rem 2.2rem;
+  padding: 1rem 0 3rem 0;
 }
 
 .poetry-scrap-card {
-  padding: 2.2rem 2rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+  padding: 2.4rem 2rem 2rem 2rem;
   position: relative;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
 }
 
 .poetry-scrap-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  z-index: 10;
+  transform: translateY(-8px) scale(1.025) !important;
+  z-index: 15;
 }
 
-/* Alternating Black and White/Paper Scraps */
+/* 1. BLACK SCRAP: Pitch black midnight chalkboard slate */
 .scrap-dark {
-  background: #141517;
+  background: #08090A !important;
+  color: #F5EFE6 !important;
+  border: 2px solid #22252A;
+  border-top: 4px solid var(--signal-red);
+  box-shadow: 8px 8px 0 #000, 0 18px 36px rgba(0, 0, 0, 0.7);
+}
+
+.scrap-dark .scrap-meta-num {
+  color: var(--acid-yellow);
+}
+
+.scrap-dark .scrap-title {
   color: #FFFFFF;
-  border: 2px dashed rgba(255, 255, 255, 0.25);
-  box-shadow: 6px 6px 0 var(--signal-red);
 }
 
+.scrap-dark .scrap-lines {
+  color: #D6D0C5;
+}
+
+.scrap-dark .scrap-handwriting {
+  color: var(--acid-yellow);
+}
+
+/* 2. WHITE SCRAP: Authentic textured old paper / notebook chit */
 .scrap-white {
-  background: var(--old-paper);
-  color: var(--ink);
-  border: 1px solid #D6CEBC;
-  box-shadow: 6px 6px 0 #000;
+  background: #F7F1E1 !important;
+  color: #111213 !important;
+  border: 1.5px solid #D8CDB6;
+  border-top: 4px solid #111213;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.5), 0 16px 32px rgba(0, 0, 0, 0.4);
 }
 
-.poetry-scrap-card:nth-child(even) { transform: rotate(1.8deg); }
-.poetry-scrap-card:nth-child(odd) { transform: rotate(-2deg); }
+.scrap-white .scrap-meta-num {
+  color: #7A7264;
+}
+
+.scrap-white .scrap-title {
+  color: #0A0A0A;
+}
+
+.scrap-white .scrap-lines {
+  color: #2D2C28;
+}
+
+.scrap-white .scrap-handwriting {
+  color: var(--signal-red);
+}
+
+/* Washi Tape styling on cards */
+.scrap-white::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 28%;
+  width: 70px;
+  height: 18px;
+  background: rgba(43, 59, 255, 0.82);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  transform: rotate(-3deg);
+  z-index: 2;
+}
+
+.scrap-dark::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 32%;
+  width: 70px;
+  height: 18px;
+  background: rgba(215, 255, 31, 0.88);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transform: rotate(2deg);
+  z-index: 2;
+}
+
+.poetry-scrap-card .scrap-meta-num {
+  font-family: var(--font-typewriter);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
 
 .poetry-scrap-card .scrap-title {
   font-family: var(--font-hi-heavy);
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: inherit;
+  font-size: 1.85rem;
+  line-height: 1.2;
+  margin-bottom: 1.1rem;
 }
 
 .poetry-scrap-card .scrap-lines {
   font-family: var(--font-hi-clean);
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   line-height: 1.85;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
 }
 
 .poetry-scrap-card .scrap-handwriting {
   font-family: var(--font-hand);
-  font-size: 1.3rem;
-  color: var(--signal-red);
+  font-size: 1.35rem;
+  font-weight: 700;
   text-align: right;
   display: block;
 }
