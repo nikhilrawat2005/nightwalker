@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initStreetBookshop();
   initStreetPoetry();
   initStreetLightbox();
+
+  // Register clean service worker for instant page prefetching
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
 });
 
 /* =========================================================
