@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>The Mountain Journal · Nightwalker</title>
-  <meta name="description" content="Personal travelogue and reflections from Himalayan journeys. Nightwalker Journal.">
+  <title>Personal Blog · Nightwalker</title>
+  <meta name="description" content="Personal blog, essays, and stories by Nightwalker. Read page by page without scrolling.">
   <meta name="theme-color" content="#080909">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
   
@@ -14,10 +14,155 @@
   
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .journal-shelf-container {
-      max-width: 1040px;
-      margin: 90px auto 4rem auto;
-      padding: 0 clamp(1.5rem, 4vw, 3.5rem);
+    .single-blog-container {
+      max-width: 900px;
+      margin: 86px auto 4rem auto;
+      padding: 0 clamp(1rem, 3.5vw, 2.5rem);
+    }
+
+    .blog-meta-hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .blog-meta-hero .blog-badge {
+      display: inline-block;
+      font-size: 0.76rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mint);
+      border: 1px solid rgba(167, 245, 217, 0.35);
+      padding: 0.35rem 0.9rem;
+      border-radius: 99px;
+      margin-bottom: 0.8rem;
+    }
+
+    .blog-meta-hero h1 {
+      font-family: var(--font-hi-heavy);
+      font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+      letter-spacing: 0.05em;
+      color: #FFFFFF;
+      margin-bottom: 0.6rem;
+    }
+
+    .blog-meta-hero p.tagline {
+      font-family: var(--font-artistic);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #D6D2C9;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* Page Spread */
+    .blog-page-spread {
+      background-color: var(--bg-paper);
+      color: var(--ink);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-book);
+      border: 1px solid #D6D0C4;
+      min-height: 540px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .blog-reading-content {
+      padding: clamp(2.2rem, 5vw, 4.5rem) clamp(1.8rem, 5vw, 4.5rem);
+      flex: 1;
+    }
+
+    .blog-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.8rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .blog-page-header .header-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .blog-page-header .sheet-number {
+      font-family: monospace;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    .blog-prose-body {
+      font-family: var(--font-artistic);
+      font-size: 1.25rem;
+      line-height: 2.1;
+      color: #1A1C1E;
+    }
+
+    .blog-prose-body p {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+    }
+
+    .blog-prose-body blockquote {
+      font-family: var(--font-hi-heavy);
+      font-size: 1.95rem;
+      color: #9C3D2B;
+      text-align: center;
+      margin: 2.2rem 0;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line-paper);
+      border-bottom: 1px solid var(--line-paper);
+      line-height: 1.5;
+    }
+
+    /* Controls Bar */
+    .blog-turn-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--line-paper);
+      padding: 1.2rem clamp(1.8rem, 5vw, 4.5rem);
+      background: var(--paper-card);
+    }
+
+    .turn-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink);
+      background: none;
+      border: 1px solid var(--line-paper);
+      padding: 0.5rem 1.2rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .turn-btn:hover:not(:disabled) {
+      background: var(--ink);
+      color: #FFFFFF;
+    }
+
+    .turn-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .page-counter-badge {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.1em;
     }
   </style>
 </head>
@@ -28,7 +173,7 @@
   <header class="site-header">
     <div class="header-brand">
       <a href="index.html" class="logo-text">Nightwalker</a>
-      <span class="logo-sub">पहाड़ डायरी</span>
+      <span class="funky-word funky-mint">ब्लॉग डायरी</span>
     </div>
 
     <div class="header-controls">
@@ -44,181 +189,160 @@
   <div class="offcanvas-backdrop" id="offcanvasBackdrop" aria-hidden="true"></div>
   <aside class="offcanvas-sidebar" id="offcanvasSidebar">
     <div class="sidebar-top">
-      <span class="brand-stamp">Nightwalker Archive</span>
+      <span class="brand-stamp">Nightwalker Universe</span>
       <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation">✕</button>
     </div>
     <ul class="sidebar-links">
       <li><a href="index.html"><span>01. Home &amp; Manifesto</span><span class="label-hi">शुरुआत</span></a></li>
-      <li><a href="novel.html"><span>02. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
-      <li><a href="poetry.html"><span>03. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
-      <li><a href="blog.html" class="active"><span>04. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
-      <li><a href="photos.html"><span>05. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
+      <li><a href="novel.html"><span>02. The Novel</span><span class="label-hi">उपन्यास</span></a></li>
+      <li><a href="blog.html" class="active"><span>03. Personal Blog</span><span class="label-hi">ब्लॉग</span></a></li>
+      <li><a href="poetry.html"><span>04. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
+      <li><a href="photos.html"><span>05. Photography</span><span class="label-hi">तस्वीरें</span></a></li>
     </ul>
     <div class="sidebar-bottom">
-      <span class="coord">UTTARAKHAND EXPEDITION</span>
-      <p>Original travelogues and StoryGrams from the trail.</p>
+      <span class="coord">PERSONAL BLOG</span>
+      <p>Essays, reflections, and authentic StoryGrams. Read page by page without scrolling (100–150 words per page).</p>
     </div>
   </aside>
 
-  <main class="reader-page-wrapper">
+  <!-- Main Blog Reader -->
+  <main class="single-blog-container">
+    <div class="blog-meta-hero">
+      <span class="blog-badge">StoryGram &amp; Essay · 31 Jan 2026</span>
+      <h1>म्यूर पहाड़</h1>
+      <p class="tagline">A journey of one traveller, a stranger named Anshul, and finding your own path.</p>
+    </div>
 
-    <!-- STAGE 1: JOURNAL ESSAYS SELECTOR ("Kiski kahani padhna chahte ho?") -->
-    <section class="journal-shelf-container" id="journalShelf">
-      <div class="shelf-header">
-        <span class="hero-kicker" style="background:none;border-color:var(--line-dark);padding-left:0;">Select Essay / StoryGram</span>
-        <h1>The Mountain Journal</h1>
-        <p>Choose an entry to begin reading page by page without scrolling.</p>
-      </div>
+    <!-- Paginated Turn-by-Turn Book Spread (100-150 words per page) -->
+    <article class="blog-page-spread page-flip-anim" id="blogPageSpread">
+      <div class="notebook-spiral-spine" aria-hidden="true"></div>
 
-      <div class="books-grid">
-        <article class="book-card">
-          <div class="cover-art">
-            <span class="book-badge">StoryGram · 31 Jan 2026</span>
-            <img src="assets/photos/IMG_20260130_174202243_HDR_AE.jpg" alt="Trail in Himalayas">
-          </div>
-          <div class="card-body">
-            <div>
-              <h3 class="devanagari">म्यूर पहाड़: Ek StoryGram</h3>
-              <p class="genre">Uttarakhand · Solitude · Philosophy</p>
-              <p class="synopsis">
-                These mountains are old. Much older than the roads that now wind through them. A journey of one traveller, a stranger named Anshul, and a weathered stone carved with two quiet words.
-              </p>
-            </div>
-            <button class="btn-open-book" onclick="openJournalStory('myar-pahad')">
-              Read Essay (Page by Page) →
-            </button>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- STAGE 2: PAGINATED JOURNAL READER (TURN BY TURN - NO SCROLL) -->
-    <section class="book-reader-container" id="journalReaderContainer">
-      <span class="reader-book-shelf-back" onclick="closeJournalStory()">
-        ← Return to Journal Index
-      </span>
-
-      <article class="paginated-book-spread page-flip-anim" id="journalSpread">
-        <div class="notebook-spiral-spine" aria-hidden="true"></div>
-
-        <div class="paginated-page-content">
-          <div class="page-header-strip">
-            <span class="title-meta" id="journalHeaderTitle">म्यूर पहाड़</span>
-            <span class="page-tag" id="journalPageTag">Page 1</span>
-          </div>
-
-          <div class="page-prose-area" id="journalPageBody">
-            <!-- Injected dynamically page by page -->
-          </div>
+      <div class="blog-reading-content">
+        <div class="blog-page-header">
+          <span class="header-label" id="blogEntryLabel">म्यूर पहाड़</span>
+          <span class="sheet-number" id="blogSheetNum">Sheet 1</span>
         </div>
 
-        <footer class="page-turn-controls">
-          <button class="btn-page-turn" id="prevJournalPageBtn">
-            ← Previous Page
-          </button>
-          <span class="page-indicator-pill" id="journalPageIndicator">
-            Page 1 of 10
-          </span>
-          <button class="btn-page-turn" id="nextJournalPageBtn">
-            Next Page →
-          </button>
-        </footer>
-      </article>
-    </section>
+        <!-- 100-150 words per page -->
+        <div class="blog-prose-body" id="blogTextContent">
+          <!-- Dynamically populated page by page -->
+        </div>
+      </div>
 
+      <!-- Turn Controls -->
+      <footer class="blog-turn-bar">
+        <button class="turn-btn" id="prevBlogPageBtn">
+          ← Previous Page
+        </button>
+        <span class="page-counter-badge" id="blogPageCounter">
+          Page 1 of 14
+        </span>
+        <button class="turn-btn" id="nextBlogPageBtn">
+          Next Page →
+        </button>
+      </footer>
+    </article>
   </main>
 
   <footer class="site-footer">
-    <p class="footer-copy">© Nightwalker Mountain Journal · All travelogues preserved</p>
+    <p class="footer-copy">© Nightwalker Personal Blog · All travelogues &amp; essays preserved</p>
   </footer>
 
   <script src="js/posts.js"></script>
   <script src="js/navigation.js"></script>
   <script>
-    let journalPages = [];
-    let currentJournalIndex = 0;
+    document.addEventListener('DOMContentLoaded', () => {
+      const posts = window.POSTS;
+      if (!posts || !posts[0] || !posts[0].body) return;
 
-    function openJournalStory(slug) {
-      journalPages = [];
-      currentJournalIndex = 0;
+      const post = posts[0];
+      let blogPages = [];
+      let pageIdx = 0;
 
-      const post = window.POSTS && window.POSTS[0];
-      if (post && post.body) {
-        // Chunk into comfortable reading pages of 2-3 paragraphs
-        let currentChunk = [];
-        post.body.forEach(block => {
-          currentChunk.push(block);
-          if (currentChunk.length >= 2 || block.t === 'q') {
-            journalPages.push(currentChunk);
-            currentChunk = [];
+      // Build pages with strict 100-150 word limit per page
+      function buildPages() {
+        blogPages = [];
+        let currPage = [];
+        let currWords = 0;
+
+        post.body.forEach(b => {
+          const w = b.x.split(/\s+/).length;
+          // Target 100 - 150 words per page (or blockquote highlight)
+          if (currWords + w > 130 && currPage.length > 0) {
+            blogPages.push(currPage);
+            currPage = [b];
+            currWords = w;
+          } else {
+            currPage.push(b);
+            currWords += w;
           }
         });
-        if (currentChunk.length > 0) journalPages.push(currentChunk);
+
+        if (currPage.length > 0) {
+          blogPages.push(currPage);
+        }
       }
 
-      document.getElementById('journalShelf').style.display = 'none';
-      document.getElementById('journalReaderContainer').classList.add('active');
-      renderJournalPage();
-    }
+      function renderPage() {
+        const pageSpread = document.getElementById('blogPageSpread');
+        const sheetNum = document.getElementById('blogSheetNum');
+        const textContent = document.getElementById('blogTextContent');
+        const counter = document.getElementById('blogPageCounter');
+        const prevBtn = document.getElementById('prevBlogPageBtn');
+        const nextBtn = document.getElementById('nextBlogPageBtn');
 
-    function closeJournalStory() {
-      document.getElementById('journalReaderContainer').classList.remove('active');
-      document.getElementById('journalShelf').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+        // Animation
+        pageSpread.classList.remove('page-flip-anim');
+        void pageSpread.offsetWidth;
+        pageSpread.classList.add('page-flip-anim');
 
-    function renderJournalPage() {
-      const pageBody = document.getElementById('journalPageBody');
-      const pageTag = document.getElementById('journalPageTag');
-      const indicator = document.getElementById('journalPageIndicator');
-      const prevBtn = document.getElementById('prevJournalPageBtn');
-      const nextBtn = document.getElementById('nextJournalPageBtn');
-      const spread = document.getElementById('journalSpread');
+        const pageData = blogPages[pageIdx];
+        if (!pageData) return;
 
-      // Page turn animation
-      spread.classList.remove('page-flip-anim');
-      void spread.offsetWidth;
-      spread.classList.add('page-flip-anim');
+        sheetNum.textContent = `Page ${pageIdx + 1}`;
+        counter.textContent = `Page ${pageIdx + 1} of ${blogPages.length}`;
 
-      pageTag.textContent = `Entry Sheet № ${currentJournalIndex + 1}`;
-      indicator.textContent = `Page ${currentJournalIndex + 1} of ${journalPages.length}`;
+        prevBtn.disabled = (pageIdx === 0);
+        nextBtn.disabled = (pageIdx >= blogPages.length - 1);
 
-      prevBtn.disabled = (currentJournalIndex === 0);
-      nextBtn.disabled = (currentJournalIndex >= journalPages.length - 1);
+        textContent.innerHTML = '';
+        pageData.forEach(b => {
+          if (b.t === 'q') {
+            const bq = document.createElement('blockquote');
+            bq.className = 'devanagari';
+            bq.textContent = b.x;
+            textContent.appendChild(bq);
+          } else {
+            const p = document.createElement('p');
+            p.textContent = b.x;
+            textContent.appendChild(p);
+          }
+        });
 
-      pageBody.innerHTML = '';
-      const blocks = journalPages[currentJournalIndex] || [];
-      blocks.forEach(b => {
-        if (b.t === 'q') {
-          const bq = document.createElement('blockquote');
-          bq.className = 'devanagari';
-          bq.textContent = b.x;
-          pageBody.appendChild(bq);
-        } else {
-          const p = document.createElement('p');
-          p.textContent = b.x;
-          pageBody.appendChild(p);
+        window.scrollTo({
+          top: document.querySelector('.blog-page-spread').offsetTop - 30,
+          behavior: 'smooth'
+        });
+      }
+
+      // Initialize
+      buildPages();
+      renderPage();
+
+      // Paging controls
+      document.getElementById('prevBlogPageBtn').addEventListener('click', () => {
+        if (pageIdx > 0) {
+          pageIdx--;
+          renderPage();
         }
       });
 
-      window.scrollTo({
-        top: document.getElementById('journalReaderContainer').offsetTop - 30,
-        behavior: 'smooth'
+      document.getElementById('nextBlogPageBtn').addEventListener('click', () => {
+        if (pageIdx < blogPages.length - 1) {
+          pageIdx++;
+          renderPage();
+        }
       });
-    }
-
-    document.getElementById('prevJournalPageBtn').addEventListener('click', () => {
-      if (currentJournalIndex > 0) {
-        currentJournalIndex--;
-        renderJournalPage();
-      }
-    });
-
-    document.getElementById('nextJournalPageBtn').addEventListener('click', () => {
-      if (currentJournalIndex < journalPages.length - 1) {
-        currentJournalIndex++;
-        renderJournalPage();
-      }
     });
   </script>
 </body>
