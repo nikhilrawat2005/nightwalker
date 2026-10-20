@@ -205,8 +205,11 @@ function initStreetBookshop() {
 }
 
 /* =========================================================
-   4. POETRY SCRAPS & READING MODE
+   4. POETRY READING MODE & SCRAPS
    ========================================================= */
+let currentPoemList = [];
+let currentPoemIndex = 0;
+
 function initStreetPoetry() {
   const container = document.getElementById('streetPoetryScraps');
   if (!container || !window.POEMS) return;
@@ -215,8 +218,9 @@ function initStreetPoetry() {
   // Pick curated raw poems
   const chosenIds = [6, 1, 3, 4, 8, 16, 21, 52, 74];
   const chosen = poems.filter(p => chosenIds.includes(p.n));
+  currentPoemList = chosen;
 
-  const scrapStyles = ['scrap-chalkboard', 'scrap-receipt', 'scrap-notebook'];
+  const scrapStyles = ['scrap-dark', 'scrap-white'];
 
   chosen.forEach((poem, idx) => {
     const card = document.createElement('article');
@@ -235,37 +239,53 @@ function initStreetPoetry() {
     `;
 
     card.addEventListener('click', () => {
-      openPoemFullscreen(poem);
+      openPoemFullscreen(poem, chosen, idx);
     });
 
     container.appendChild(card);
   });
 }
 
-function openPoemFullscreen(poem) {
+function openPoemFullscreen(poem, poemArray, index) {
+  if (poemArray) currentPoemList = poemArray;
+  if (typeof index === 'number') currentPoemIndex = index;
+  else if (currentPoemList.length) {
+    currentPoemIndex = currentPoemList.findIndex(p => p.n === poem.n);
+    if (currentPoemIndex === -1) currentPoemIndex = 0;
+  }
+
+  activeLightboxMode = 'poem';
+
   const modal = document.getElementById('streetLightbox');
   const imgHolder = modal.querySelector('.street-lightbox-frame');
   const metaHolder = modal.querySelector('.street-lightbox-meta');
 
   imgHolder.innerHTML = '';
   const paper = document.createElement('div');
-  paper.className = 'poetry-scrap-card scrap-notebook';
+  paper.className = 'poetry-scrap-card scrap-white';
   paper.style.maxWidth = '680px';
   paper.style.padding = '3rem 2.5rem';
   paper.style.boxShadow = '0 25px 70px rgba(0,0,0,0.95)';
+  paper.style.transform = 'none';
 
   let stanzasHtml = '';
   if (poem.stanzas) {
     poem.stanzas.forEach(st => {
-      stanzasHtml += `<div style="margin-bottom:1.8rem;"><p style="font-family:var(--font-hindi-loud);font-size:1.35rem;line-height:2rem;">${st.join('<br>')}</p></div>`;
+      stanzasHtml += `<div style="margin-bottom:1.8rem;"><p style="font-family:var(--font-hi-heavy);font-size:1.35rem;line-height:2rem;color:var(--ink);">${st.join('<br>')}</p></div>`;
     });
   }
 
   paper.innerHTML = `
-    <span style="font-family:monospace;font-size:0.75rem;letter-spacing:0.2em;color:#999;display:block;margin-bottom:0.5rem;">POEM № ${poem.n} · MIDNIGHT WALL</span>
-    <h2 style="font-family:var(--font-hindi-loud);font-size:2.6rem;margin-bottom:1.5rem;color:var(--ink);">${poem.title}</h2>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;border-bottom:1px solid #DDD;padding-bottom:0.6rem;">
+      <span style="font-family:monospace;font-size:0.75rem;letter-spacing:0.2em;color:#777;font-weight:700;">POEM № ${poem.n}</span>
+      <span style="font-family:var(--font-typewriter);font-size:0.75rem;color:var(--signal-red);">[ ${currentPoemIndex + 1} / ${currentPoemList.length} ]</span>
+    </div>
+    <h2 style="font-family:var(--font-hi-heavy);font-size:2.5rem;margin-bottom:1.6rem;color:var(--ink);">${poem.title}</h2>
     ${stanzasHtml}
-    <span style="font-family:var(--font-hand);font-size:1.4rem;color:var(--signal-red);display:block;text-align:right;">~ Nightwalker Notebook</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2rem;border-top:1px dashed #CCC;padding-top:1rem;">
+      <span style="font-family:var(--font-typewriter);font-size:0.75rem;color:#666;">Use ← → keys to read next poem</span>
+      <span style="font-family:var(--font-hand);font-size:1.4rem;color:var(--signal-red);">~ Nightwalker</span>
+    </div>
   `;
 
   imgHolder.appendChild(paper);
@@ -274,26 +294,98 @@ function openPoemFullscreen(poem) {
 }
 
 /* =========================================================
-   5. STREET LIGHTBOX
+   5. STREET LIGHTBOX (WITH KEYBOARD ARROWS & PREV/NEXT)
    ========================================================= */
+let activeLightboxMode = null; // 'poem' or 'photo'
+let currentGalleryList = [];
+let currentGalleryIndex = 0;
+
 function initStreetLightbox() {
   const modal = document.getElementById('streetLightbox');
+  if (!modal) return;
+
   const closeBtn = document.getElementById('streetLightboxClose');
 
-  if (closeBtn && modal) {
-    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('open');
+  // Inject Prev / Next Navigation Arrows into Lightbox
+  if (!modal.querySelector('.lightbox-prev-btn')) {
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'lightbox-nav-btn lightbox-prev-btn';
+    prevBtn.setAttribute('aria-label', 'Previous');
+    prevBtn.innerHTML = '←';
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigateLightbox(-1);
     });
+    modal.appendChild(prevBtn);
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'lightbox-nav-btn lightbox-next-btn';
+    nextBtn.setAttribute('aria-label', 'Next');
+    nextBtn.innerHTML = '→';
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigateLightbox(1);
+    });
+    modal.appendChild(nextBtn);
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => closeStreetLightbox());
+  }
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeStreetLightbox();
+  });
+
+  // Global Keyboard Navigation (←, →, Escape)
+  window.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('open')) return;
+
+    if (e.key === 'Escape') {
+      closeStreetLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      navigateLightbox(-1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      navigateLightbox(1);
+    }
+  });
+}
+
+function closeStreetLightbox() {
+  const modal = document.getElementById('streetLightbox');
+  if (modal) modal.classList.remove('open');
+  activeLightboxMode = null;
+}
+
+function navigateLightbox(dir) {
+  if (activeLightboxMode === 'photo' && currentGalleryList.length) {
+    currentGalleryIndex = (currentGalleryIndex + dir + currentGalleryList.length) % currentGalleryList.length;
+    openStreetLightbox(currentGalleryList[currentGalleryIndex], currentGalleryList, currentGalleryIndex);
+  } else if (activeLightboxMode === 'poem' && currentPoemList.length) {
+    currentPoemIndex = (currentPoemIndex + dir + currentPoemList.length) % currentPoemList.length;
+    openPoemFullscreen(currentPoemList[currentPoemIndex], currentPoemList, currentPoemIndex);
   }
 }
 
-function openStreetLightbox(item) {
+function openStreetLightbox(item, galleryArray, index) {
+  if (galleryArray) currentGalleryList = galleryArray;
+  else if (window.GALLERY && window.GALLERY.items) currentGalleryList = window.GALLERY.items;
+
+  if (typeof index === 'number') currentGalleryIndex = index;
+  else if (currentGalleryList.length) {
+    currentGalleryIndex = currentGalleryList.findIndex(g => g.img === item.img);
+    if (currentGalleryIndex === -1) currentGalleryIndex = 0;
+  }
+
+  activeLightboxMode = 'photo';
+
   const modal = document.getElementById('streetLightbox');
   const imgHolder = modal.querySelector('.street-lightbox-frame');
   const metaHolder = modal.querySelector('.street-lightbox-meta');
 
   imgHolder.innerHTML = `
+    <div class="lightbox-counter-badge">SHOT [ ${currentGalleryIndex + 1} / ${currentGalleryList.length} ] · USE ← → ARROWS</div>
     <img src="${item.img}" alt="${item.alt || item.title}">
   `;
 

@@ -61,6 +61,15 @@
   </div>
 
   <footer class="site-footer">
+    <div class="footer-social-links">
+      <a href="https://www.instagram.com/restricted_room/?next=%2F" target="_blank" rel="noopener noreferrer" class="social-street-badge badge-insta-personal">
+        <span>✎ INSTAGRAM // @restricted_room</span>
+      </a>
+      <a href="https://www.instagram.com/nikhil_through_lens/?next=%2F" target="_blank" rel="noopener noreferrer" class="social-street-badge badge-insta-photo">
+        <span>📷 PHOTOGRAPHY // @nikhil_through_lens</span>
+      </a>
+    </div>
+
     <div class="footer-nav">
       <a href="index.html">Home</a>
       <a href="poetry.html">Poetry</a>
@@ -80,7 +89,7 @@
       const grid = document.getElementById('fullLightTableGrid');
       if (!grid || !window.GALLERY || !window.GALLERY.items) return;
 
-      window.GALLERY.items.forEach(item => {
+      window.GALLERY.items.forEach((item, index) => {
         const card = document.createElement('article');
         card.className = `light-table-card ${item.bw ? 'is-bw' : ''}`;
         card.innerHTML = `
@@ -96,7 +105,7 @@
         `;
 
         card.addEventListener('click', () => {
-          openStreetLightbox(item);
+          openStreetLightbox(item, window.GALLERY.items, index);
         });
 
         grid.appendChild(card);

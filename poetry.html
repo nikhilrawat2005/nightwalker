@@ -61,6 +61,15 @@
   </div>
 
   <footer class="site-footer">
+    <div class="footer-social-links">
+      <a href="https://www.instagram.com/restricted_room/?next=%2F" target="_blank" rel="noopener noreferrer" class="social-street-badge badge-insta-personal">
+        <span>✎ INSTAGRAM // @restricted_room</span>
+      </a>
+      <a href="https://www.instagram.com/nikhil_through_lens/?next=%2F" target="_blank" rel="noopener noreferrer" class="social-street-badge badge-insta-photo">
+        <span>📷 PHOTOGRAPHY // @nikhil_through_lens</span>
+      </a>
+    </div>
+
     <div class="footer-nav">
       <a href="index.html">Home</a>
       <a href="poetry.html">Poetry</a>
@@ -107,7 +116,7 @@
         `;
 
         card.addEventListener('click', () => {
-          openPoemFullscreen(poem);
+          openPoemFullscreen(poem, window.POEMS, i);
         });
 
         wall.appendChild(card);

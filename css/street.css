@@ -1521,7 +1521,7 @@ body.poetry-page {
 }
 
 /* =========================================================
-   LIGHTBOX MODAL
+   LIGHTBOX MODAL & KEYBOARD ARROW CONTROLS
    ========================================================= */
 .street-lightbox {
   display: none;
@@ -1530,7 +1530,7 @@ body.poetry-page {
   background: rgba(10, 10, 10, 0.97);
   backdrop-filter: blur(14px);
   z-index: 30000;
-  padding: 2rem;
+  padding: 1.5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -1540,17 +1540,81 @@ body.poetry-page {
 
 .street-lightbox-close {
   position: absolute;
-  top: 2rem;
-  right: 2.5rem;
+  top: 1.8rem;
+  right: 2.2rem;
   font-family: var(--font-marker);
   font-size: 2.2rem;
   color: var(--signal-red);
   cursor: pointer;
   background: none;
   border: none;
+  z-index: 30010;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.street-lightbox-close:hover { color: var(--acid-yellow); }
+.street-lightbox-close:hover { 
+  color: var(--acid-yellow);
+  transform: scale(1.15) rotate(90deg);
+}
+
+/* Lightbox Nav Arrows (Prev / Next) */
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(22, 24, 28, 0.85);
+  color: var(--old-paper);
+  border: 2px solid rgba(244, 236, 216, 0.3);
+  font-family: var(--font-street);
+  font-size: 1.8rem;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 30005;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.lightbox-nav-btn:hover {
+  background: var(--acid-yellow);
+  color: var(--ink);
+  border-color: var(--acid-yellow);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.lightbox-prev-btn {
+  left: 2rem;
+}
+
+.lightbox-next-btn {
+  right: 2rem;
+}
+
+@media (max-width: 768px) {
+  .lightbox-nav-btn {
+    bottom: 2rem;
+    top: auto;
+    transform: none;
+    width: 46px;
+    height: 46px;
+    font-size: 1.4rem;
+  }
+  .lightbox-prev-btn { left: 20%; transform: none; }
+  .lightbox-next-btn { right: 20%; transform: none; }
+  .lightbox-nav-btn:hover { transform: scale(1.08); }
+}
+
+.lightbox-counter-badge {
+  font-family: var(--font-typewriter);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  color: var(--acid-yellow);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
 
 .street-lightbox-frame {
   max-width: 90vw;
@@ -1558,11 +1622,12 @@ body.poetry-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
 }
 
 .street-lightbox-frame img {
   max-width: 100%;
-  max-height: 72vh;
+  max-height: 70vh;
   object-fit: contain;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
   border: 2px solid var(--old-paper);
@@ -1585,6 +1650,51 @@ body.poetry-page {
   font-family: var(--font-hand);
   font-size: 1.25rem;
   color: var(--old-paper);
+}
+
+/* Footer & Social Street Badges */
+.footer-social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.social-street-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-typewriter);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-street-badge.badge-insta-personal {
+  background: var(--signal-red);
+  color: #FFFFFF;
+  border: 1.5px solid #FF5E5E;
+  transform: rotate(-1.5deg);
+}
+
+.social-street-badge.badge-insta-photo {
+  background: var(--acid-yellow);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  transform: rotate(1.5deg);
+}
+
+.social-street-badge:hover {
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: 6px 6px 0 #000;
 }
 
 /* Site Footer */
