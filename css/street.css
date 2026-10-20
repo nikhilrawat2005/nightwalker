@@ -707,21 +707,28 @@ body.poetry-page {
     radial-gradient(#262930 1.5px, transparent 1.5px),
     linear-gradient(180deg, #16171A 0%, #1E2026 50%, #15161A 100%);
   background-size: 24px 24px, 100% 100%;
+  overflow-x: hidden !important;
+  max-width: 100vw;
 }
 
 .poetry-scraps-wall {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.8rem 2.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2.5rem 2rem;
   padding: 1rem 0 3rem 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .poetry-scrap-card {
-  padding: 2.4rem 2rem 2rem 2rem;
+  padding: 2.2rem 1.8rem 1.8rem 1.8rem;
   position: relative;
   cursor: pointer;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 2px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .poetry-scrap-card:hover {
@@ -1534,6 +1541,8 @@ body.poetry-page {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden !important;
+  max-width: 100vw;
 }
 
 .street-lightbox.open { display: flex; }
