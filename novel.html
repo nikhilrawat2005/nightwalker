@@ -1,105 +1,131 @@
 <!doctype html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0D0E1B">
-<title>The Skills I Don’t Use Anymore · Nightwalker</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Nightwalker">
-<meta name="color-scheme" content="dark light">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Yatra+One&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&family=Kalam:wght@300;400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/novel.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Novel Library · म्यूर पहाड़ · Nightwalker</title>
+  <meta name="description" content="म्यूर पहाड़ — An original novel by Nightwalker. Story of a mountain journey, an unexpected stranger, and finding your own path.">
+  <meta name="theme-color" content="#080909">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Kalam:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="nw">
-<div class="grain" aria-hidden="true"></div>
-<div class="topbar" aria-hidden="true"><i id="topfill"></i></div>
-<header class="top">
-  <div class="top-left">
-    <a class="back-btn" href="index.html" aria-label="Go back to Home">← Home</a>
-    <a class="mark" href="index.html" aria-label="Nightwalker home">Nightwalker <span>किताबें</span></a>
-  </div>
-  <nav aria-label="Main">
-    <a href="poetry.html">Poetry</a><a href="novel.html" aria-current="page">Novels</a><a href="blog.html">Blog</a><a href="photos.html">Photography</a><a href="sketches.html">Sketches</a>
-  </nav>
-  <span class="tools">
-    <button class="mode" id="mode" aria-label="Switch between night and paper">Night ⇄ Paper</button>
-  </span>
-</header>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
 
-<main>
-<!-- NOVELS LIBRARY PORTAL -->
-<section id="library" aria-label="Novels Library">
-  <div class="toc-head">
-    <p class="eyebrow">The Bookshelf · Longform Narratives</p>
-    <h1 class="en-title">Novels &amp; Memoirs</h1>
-    <p class="blurb">Stories of unlearning, midnight monologues, and unposted mountain letters. Select a work to enter its chapters.</p>
-  </div>
-  <div class="library-grid" id="library-grid"></div>
-</section>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-brand">
+      <a href="index.html" class="logo-text">Nightwalker</a>
+      <span class="logo-sub">उपन्यास संग्रह</span>
+    </div>
 
-<!-- CHAPTERS LIST FOR SELECTED NOVEL -->
-<section id="toc" aria-label="Chapters" hidden>
-  <div class="lamp" aria-hidden="true"></div>
-  <div class="toc-head">
-    <button class="back-btn" id="backToLib" style="margin-bottom:1.5rem">← All Books</button>
-    <p class="eyebrow" id="novel-badge">Memoir · Coming of Age</p>
-    <h1 class="en-title" id="novel-title">The Skills I Don’t Use Anymore</h1>
-    <p class="blurb" id="blurb"></p>
-    <div class="toc-actions"><button class="btn" id="cont">Start Reading Chapter 0 →</button></div>
-  </div>
-  <ol class="chapters" id="chapters"></ol>
-</section>
+    <div class="header-controls">
+      <a href="index.html" class="btn-secondary" style="padding:0.4rem 0.9rem;font-size:0.75rem;">← Home</a>
+      <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Open Navigation Menu">
+        <span class="icon-bars">☰</span>
+        <span>Archive Menu</span>
+      </button>
+    </div>
+  </header>
 
-<!-- CHAPTER READER -->
-<section id="reader" aria-label="Chapter" hidden>
-  <div class="lamp" aria-hidden="true"></div>
-  <nav class="prail" id="prail" aria-label="Chapter sections"><b><i id="pfill"></i></b><ul id="pdots"></ul></nav>
-  <article class="page" id="page" tabindex="-1">
-    <header class="chead">
-      <button class="back-btn" id="backToToc" style="margin-bottom:1.2rem">← Chapter List</button>
-      <p class="stamp" id="cno"></p>
-      <h2 id="ctitle"></h2>
-      <p class="csub" id="csub"></p>
-    </header>
-    <div class="prose" id="prose"></div>
-    <p class="wip" id="wip" hidden>✎ This chapter is currently being written…<br><small>writing in progress</small></p>
-    <p class="sig end">— Nightwalker (Nikhil Rawat)</p>
-    <nav class="cnav" aria-label="Chapter navigation">
-      <button class="ln" id="prevC"></button><button class="ln" id="tocC">Index</button><button class="ln" id="nextC"></button>
-    </nav>
-  </article>
-</section>
-</main>
-<footer>
-  <div class="footer-socials">
-    <a class="footer-link" href="https://www.instagram.com/restricted_room/?next=%2F" target="_blank" rel="noopener noreferrer">
-      <span>Instagram: @restricted_room</span>
-    </a>
-    <span style="opacity:.4">·</span>
-    <a class="footer-link" href="https://www.instagram.com/nikhil_through_lens/?next=%2F" target="_blank" rel="noopener noreferrer">
-      <span>Photography: @nikhil_through_lens</span>
-    </a>
-    <span style="opacity:.4">·</span>
-    <a class="footer-link" href="https://github.com/nikhilrawat2005/nightwalker" target="_blank" rel="noopener noreferrer">
-      <span>GitHub Repository</span>
-    </a>
-  </div>
-  <span>© Nightwalker · The Novel Archive</span>
-</footer>
-<script src="js/novels_data.js"></script>
-<script src="js/chapters.js"></script>
-<script src="js/novel.js"></script>
-<noscript><p style="position:fixed;inset:auto 0 0 0;padding:1rem;text-align:center;background:#171A2E;color:#ECE8F2;font:1rem sans-serif">यह घर JavaScript के बिना नहीं खुलता। कृपया उसे चालू करें।</p></noscript>
-<script src="js/app.js" defer></script>
+  <!-- Off-Canvas Sidebar -->
+  <div class="offcanvas-backdrop" id="offcanvasBackdrop" aria-hidden="true"></div>
+  <aside class="offcanvas-sidebar" id="offcanvasSidebar">
+    <div class="sidebar-top">
+      <span class="brand-stamp">Nightwalker Archive</span>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation">✕</button>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="index.html"><span>01. Home &amp; Manifesto</span><span class="label-hi">शुरुआत</span></a></li>
+      <li><a href="poetry.html"><span>02. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
+      <li><a href="novel.html" class="active"><span>03. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
+      <li><a href="photos.html"><span>04. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
+      <li><a href="blog.html"><span>05. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
+    </ul>
+    <div class="sidebar-bottom">
+      <span class="coord">UTTARAKHAND MOUNTAINS</span>
+      <p>Original story of Nikhil, Anshul, and the quiet mountain trail.</p>
+    </div>
+  </aside>
+
+  <!-- Distraction-Free Book Reader Experience -->
+  <main class="reader-page-wrapper">
+    <article class="novel-book-frame">
+      <header class="novel-book-header">
+        <span class="kicker">Original Novel · Nightwalker Archive</span>
+        <h1 class="devanagari">म्यूर पहाड़</h1>
+        <p class="subtitle">A Journey through Mountains, Strangers, and the Quiet Answers that Follow</p>
+      </header>
+
+      <!-- Chapter Navigation Pills -->
+      <div class="novel-chapter-selector" id="novelChapterSelector">
+        <button class="chapter-pill active" data-part="all">Full Story</button>
+        <button class="chapter-pill" data-part="0">Chapter 01 · रास्ते</button>
+        <button class="chapter-pill" data-part="1">Chapter 02 · अनजान</button>
+        <button class="chapter-pill" data-part="2">Chapter 03 · एक सवाल</button>
+        <button class="chapter-pill" data-part="3">Chapter 04 · म्यूर पहाड़</button>
+      </div>
+
+      <!-- Novel Prose Content -->
+      <div class="novel-book-body" id="novelContent">
+        <!-- Injected dynamically from js/posts.js -->
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-copy">© Nightwalker Novel Archive · All original writings preserved</p>
+  </footer>
+
+  <script src="js/posts.js"></script>
+  <script src="js/novels_data.js"></script>
+  <script src="js/navigation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('novelContent');
+      if (!container || !window.POSTS || !window.POSTS[0]) return;
+
+      const post = window.POSTS[0];
+      const pills = document.querySelectorAll('.chapter-pill');
+
+      function renderPart(part = 'all') {
+        container.innerHTML = '';
+        let blocks = post.body;
+
+        if (part === '0') blocks = post.body.slice(0, 7);
+        else if (part === '1') blocks = post.body.slice(7, 16);
+        else if (part === '2') blocks = post.body.slice(16, 26);
+        else if (part === '3') blocks = post.body.slice(26);
+
+        blocks.forEach(b => {
+          if (b.t === 'q') {
+            const bq = document.createElement('blockquote');
+            bq.className = 'devanagari';
+            bq.textContent = b.x;
+            container.appendChild(bq);
+          } else {
+            const p = document.createElement('p');
+            p.textContent = b.x;
+            container.appendChild(p);
+          }
+        });
+      }
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          renderPart(pill.dataset.part);
+        });
+      });
+
+      renderPart('all');
+    });
+  </script>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Nightwalker — Creative Portfolio, Poetry & Mountain Archive</title>
-  <meta name="description" content="Personal creative universe, literature, memories, mountains, poetry, and photography archive by Nightwalker.">
+  <title>Nightwalker — An Immersive Personal Art, Poetry & Literature Archive</title>
+  <meta name="description" content="A private creative universe where literature, memories, mountains, photography, and poetry coexist.">
   <meta name="theme-color" content="#080909">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
   
-  <!-- Typography Preconnect -->
+  <!-- Typography Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Kalam:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -19,495 +19,212 @@
   <!-- Atmospheric Film Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <!-- Mobile Topbar Navigation -->
-  <header class="mobile-topbar">
-    <a href="#layer01" class="mobile-brand">NIGHTWALKER</a>
-    <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle navigation">☰</button>
+  <!-- Top Navigation Header with Hidden Sidebar Trigger -->
+  <header class="site-header">
+    <div class="header-brand">
+      <a href="index.html" class="logo-text">Nightwalker</a>
+      <span class="logo-sub">म्यूर पहाड़</span>
+    </div>
+
+    <div class="header-controls">
+      <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Open Navigation Menu">
+        <span class="icon-bars">☰</span>
+        <span>Explore Archive</span>
+      </button>
+    </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <nav class="mobile-drawer" id="mobileDrawer">
-    <a href="#layer01">01. Opening</a>
-    <a href="#layer02">02. Manifesto</a>
-    <a href="#layer03">03. Photography</a>
-    <a href="#layer04">04. Poetry Room</a>
-    <a href="#layer05">05. Novel Library</a>
-    <a href="#layer06">06. Journal</a>
-    <a href="#layer07">07. Selected Works</a>
-    <a href="#layer08">08. About</a>
-    <a href="#layer09">09. Closing</a>
-  </nav>
-
-  <div class="site-wrapper">
-    <!-- Desktop Persistent Sidebar Navigation -->
-    <aside class="desktop-nav" aria-label="Main Navigation">
-      <div class="sidebar-header">
-        <span class="brand-stamp">Creative Universe</span>
-        <h1 class="brand-title">Nightwalker</h1>
-      </div>
-
-      <ul class="sidebar-menu">
-        <li><a href="#layer01" class="active"><span class="nav-num">01</span> Opening</a></li>
-        <li><a href="#layer02"><span class="nav-num">02</span> Manifesto</a></li>
-        <li><a href="#layer03"><span class="nav-num">03</span> Photography</a></li>
-        <li><a href="#layer04"><span class="nav-num">04</span> Poetry Room</a></li>
-        <li><a href="#layer05"><span class="nav-num">05</span> Novel Library</a></li>
-        <li><a href="#layer06"><span class="nav-num">06</span> Journal</a></li>
-        <li><a href="#layer07"><span class="nav-num">07</span> Selected Works</a></li>
-        <li><a href="#layer08"><span class="nav-num">08</span> About</a></li>
-        <li><a href="#layer09"><span class="nav-num">09</span> Closing</a></li>
-      </ul>
-
-      <div class="sidebar-footer">
-        <span class="coord">29.6° N, 79.5° E</span>
-        <p>Himalayan Solitude &amp; Written Words</p>
-      </div>
-    </aside>
-
-    <!-- Main Viewport containing the 9 layers -->
-    <main class="main-viewport">
-
-      <!-- =========================================================
-           LAYER 01 — THE OPENING / HERO
-           ========================================================= -->
-      <section id="layer01" class="layer-hero">
-        <div class="hero-backdrop">
-          <img src="assets/photos/IMG_20260131_174910606.jpg" alt="Dusk over Uttarakhand mountain ridgeline" fetchpriority="high">
-        </div>
-        <div class="hero-gradient-overlay"></div>
-
-        <div class="hero-topline">
-          <div class="hero-badge">
-            <span class="pulse-dot"></span>
-            <span>Personal Creative Archive</span>
-          </div>
-          <div class="hero-archival-note">
-            ISSUE 01 · UTTARAKHAND
-          </div>
-        </div>
-
-        <div class="hero-center">
-          <span class="eyebrow">Same Mountains · Different Skies</span>
-          <h2 class="hero-title">
-            NIGHTWALKER
-            <span>Literature, Solitude &amp; High Peaks</span>
-          </h2>
-          <p class="hero-summary">
-            Poems, photographs, novel chapters, and fragments of a life that keeps searching for meaning in the ordinary.
-          </p>
-          <div class="hero-actions">
-            <a href="#layer02" class="btn-mint">Enter The World →</a>
-            <a href="#layer04" class="btn-ghost-dark">Poetry Room</a>
-            <a href="#layer05" class="btn-ghost-dark">म्यूर पहाड़ Novel</a>
-          </div>
-        </div>
-
-        <div class="hero-bottombar">
-          <p class="hero-verse-snippet devanagari">
-            ना परख तू उन लफ़्ज़ों को, जो रात लिखने बैठे हैं...<br>
-            समझ सका ना जो तू अंधेरे को, वो बात लिखने बैठे हैं...
-          </p>
-          <div class="hero-scroll-cue">
-            <span>Scroll Down</span>
-            <span class="arrow-down">↓</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Torn paper transition -->
-      <div class="torn-edge torn-edge-top-to-paper" aria-hidden="true"></div>
-
-      <!-- =========================================================
-           LAYER 02 — THE MANIFESTO
-           ========================================================= -->
-      <section id="layer02" class="layer-manifesto">
-        <div class="manifesto-container">
-          <div class="manifesto-header">
-            <div>
-              <span class="section-label">Layer 02 / Creative Philosophy</span>
-              <h2>The Manifesto</h2>
-            </div>
-            <div class="stamp">
-              ARCHIVE REF: 02-MANIF
-            </div>
-          </div>
-
-          <div class="manifesto-grid">
-            <div class="manifesto-text-panel">
-              <p class="manifesto-lead">
-                Nightwalker is my way of collecting the pieces of a life that feels too much, too quiet, and too alive all at once.
-              </p>
-              <p class="manifesto-body">
-                A personal archive where literature meets mountains, where photographs hold conversations, and where stories find a home. It is not a conventional portfolio. It is a memory room, a quiet rebellion, and a reminder that there is still beauty in the ordinary.
-              </p>
-              <div class="manifesto-quote-box">
-                <p>
-                  "Why do you walk these trails? Because down there, people tell you who you are supposed to be. But up here... the mountains don't tell you anything. They just let you be."
-                </p>
-                <span class="author">— Anshul, on the trail to म्यूर पहाड़</span>
-              </div>
-              <p class="manifesto-body">
-                Somewhere between high mountain passes and midnight silence, between questions that have no easy answers, I keep creating: to remember, to feel, and to return.
-              </p>
-            </div>
-
-            <div class="manifesto-visual">
-              <div class="polaroid-frame">
-                <div class="sticky-stamp">Uttarakhand</div>
-                <img src="assets/photos/IMG_20260130_174343405_HDR_AE (1).jpg" alt="Trail in Uttarakhand mountains" loading="lazy">
-                <div class="polaroid-caption">
-                  <span class="hand-title">Finding one's own path</span>
-                  <span class="date-tag">30 Jan 2026</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Torn paper transition -->
-      <div class="torn-edge torn-edge-bottom-to-dark" aria-hidden="true"></div>
-
-      <!-- =========================================================
-           LAYER 03 — THE PHOTOGRAPHY ARCHIVE
-           ========================================================= -->
-      <section id="layer03" class="layer-photography">
-        <div class="photo-container">
-          <div class="archive-topbar">
-            <div>
-              <span class="section-label mint">Layer 03 / Visual Diary</span>
-              <h2>
-                Photography Archive
-                <span>Places that stay after we leave</span>
-              </h2>
-            </div>
-            <div class="photo-filters">
-              <button class="photo-filter-btn active" data-category="all">All Works</button>
-              <button class="photo-filter-btn" data-category="mountains">Mountains</button>
-              <button class="photo-filter-btn" data-category="roads">Roads &amp; Trails</button>
-              <button class="photo-filter-btn" data-category="streets">Streets</button>
-              <button class="photo-filter-btn" data-category="nature">Nature</button>
-              <button class="photo-filter-btn" data-category="moments">Moments</button>
-            </div>
-          </div>
-
-          <!-- Featured Photograph Hero Banner -->
-          <div class="featured-photo-hero">
-            <div class="img-wrap">
-              <img src="assets/photos/IMG_20260131_174910606.jpg" alt="The Mountain at Dusk" loading="lazy">
-            </div>
-            <div class="featured-photo-details">
-              <span class="photo-meta-tag">Featured Photograph · Uttarakhand</span>
-              <h3>The Mountain at Dusk</h3>
-              <p class="caption">
-                The valley stretched endlessly beneath the clouds. The prayer flags danced with the wind. The mountains had been walking beside him all along.
-              </p>
-              <div class="photo-spec">
-                <span>DATE: 31 JAN 2026</span>
-                <span>LOCATION: HIMALAYAS</span>
-                <span>ORIGINAL WORK</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Asymmetric Masonry Image Grid -->
-          <div class="photo-masonry" id="photoGrid">
-            <!-- Dynamically populated by js/main.js -->
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================================
-           LAYER 04 — THE POETRY ROOM
-           ========================================================= -->
-      <section id="layer04" class="layer-poetry">
-        <div class="poetry-container">
-          <div class="poetry-header">
-            <span class="section-label mint">Layer 04 / Written Verses</span>
-            <h2>Poetry Room</h2>
-            <p>Words like home. Feelings, fragments, and unspoken thoughts written in the silence of the night.</p>
-          </div>
-
-          <!-- Featured Masterpiece Poem Display -->
-          <article class="featured-poem-display">
-            <div class="poem-title-banner">
-              <span class="poem-meta-number">POEM № 06</span>
-              <h3 class="poem-main-title devanagari">रात</h3>
-            </div>
-            <div class="poem-stanza-flow">
-              <div class="poem-stanza">
-                <p class="devanagari">ना परख तू उन लफ़्ज़ों को,<br>जो रात लिखने बैठे हैं...</p>
-                <p class="devanagari">समझ सका ना जो तू अंधेरे को,<br>वो बात लिखने बैठे हैं...</p>
-              </div>
-              <div class="poem-stanza">
-                <p class="devanagari">सपनों की बनी दुनिया का,<br>वो जो रज़्ज़ लिखने बैठे हैं...</p>
-                <p class="devanagari">देखा था जो इन्होंने भी एक सपना,<br>अब वो एक ख़्वाब लिखने बैठे हैं...</p>
-              </div>
-              <div class="poem-stanza">
-                <p class="devanagari">ना परख तू उन लफ़्ज़ों को,<br>जो रात लिखने बैठे हैं...</p>
-              </div>
-            </div>
-            <div class="poem-annotation handwritten">
-              — Nightwalker Notebook, Midnight
-            </div>
-          </article>
-
-          <!-- Poetry Explorer -->
-          <div class="poetry-explorer-controls">
-            <span class="section-label">Browse by Mood &amp; Theme</span>
-            <div class="poem-mood-filters">
-              <button class="mood-btn active" data-mood="all">सभी कविताएँ</button>
-              <button class="mood-btn" data-mood="रात">रात</button>
-              <button class="mood-btn" data-mood="इश्क़">इश्क़</button>
-              <button class="mood-btn" data-mood="हौसला">हौसला</button>
-              <button class="mood-btn" data-mood="खामोशी">खामोशी</button>
-              <button class="mood-btn" data-mood="दुआ">दुआ</button>
-            </div>
-          </div>
-
-          <div class="poetry-grid" id="poetryGrid">
-            <!-- Dynamically populated by js/main.js -->
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================================
-           LAYER 05 — THE NOVEL LIBRARY
-           ========================================================= -->
-      <section id="layer05" class="layer-novel">
-        <div class="novel-container">
-          <div class="novel-header">
-            <span class="section-label mint">Layer 05 / Long Journeys</span>
-            <h2>
-              Novel Library
-              <span class="devanagari">म्यूर पहाड़</span>
-            </h2>
-          </div>
-
-          <div class="novel-showcase">
-            <div class="book-cover-presentation">
-              <div class="book-cover-badge">Original Novel</div>
-              <img src="assets/photos/IMG_20260131_174910606.jpg" alt="म्यूर पहाड़ Novel Cover" loading="lazy">
-            </div>
-
-            <div class="novel-details-panel">
-              <span class="novel-genre">Mountain Journey · Philosophy · Solitude</span>
-              <h3 class="novel-title-large devanagari">म्यूर पहाड़</h3>
-              <p class="novel-synopsis devanagari">
-                यह सिर्फ एक यात्रा की कहानी नहीं है, बल्कि उन सवालों की भी है जो रास्तों में जन्म लेते हैं. उन लोगों की भी जो कुछ देर साथ चलते हैं, और उन पहाड़ों की भी जो हमेशा साथ रहते हैं.
-              </p>
-              
-              <div class="novel-quote-fragment">
-                <p>
-                  "Freedom was never about reaching the highest peak. Or finding the perfect destination. It was about having the courage to walk where your heart wanted to go."
-                </p>
-              </div>
-
-              <div>
-                <span class="chapter-strip-header">Chapters &amp; Story Milestones</span>
-                <div class="chapter-cards-grid" id="novelChapterGrid">
-                  <!-- Dynamically populated from window.NOVELS -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================================
-           LAYER 06 — THE JOURNAL
-           ========================================================= -->
-      <section id="layer06" class="layer-journal">
-        <div class="journal-container">
-          <div class="journal-header">
-            <div>
-              <span class="section-label mint">Layer 06 / Literary Magazine &amp; Travelogue</span>
-              <h2>
-                The Mountain Journal
-                <span>Thoughts that travel beyond the moment</span>
-              </h2>
-            </div>
-            <div class="hero-archival-note">
-              31 JAN 2026 · UTTARAKHAND
-            </div>
-          </div>
-
-          <!-- Featured Journal Article Card -->
-          <article class="journal-featured-block">
-            <div class="media">
-              <img src="assets/photos/IMG_20260130_174202243_HDR_AE.jpg" alt="The Mountain Trail" loading="lazy">
-            </div>
-            <div class="journal-featured-body">
-              <div class="journal-meta-row">
-                <span>Featured Travelogue</span>
-                <span>•</span>
-                <span>Uttarakhand</span>
-              </div>
-              <h3 class="devanagari">म्यूर पहाड़: Ek StoryGram, Pahadon Se</h3>
-              <p class="excerpt">
-                These mountains are old. Much older than the roads that now wind through them. A trail untouched by crowds, a young companion named Anshul, and a weathered stone carved with two quiet words.
-              </p>
-              <div>
-                <button class="btn-mint" id="readJournalBtn">Read Full Story →</button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- =========================================================
-           LAYER 07 — THE SELECTED WORKS
-           ========================================================= -->
-      <section id="layer07" class="layer-selected-works">
-        <div class="selected-container">
-          <div class="selected-header">
-            <span class="section-label mint">Layer 07 / Editorial Collage</span>
-            <h2>The Selected Works</h2>
-            <p>Pieces of a larger journey: where poetry, photography, and memoirs intersect.</p>
-          </div>
-
-          <div class="collage-grid">
-            <div class="collage-visual-stack">
-              <div class="collage-card-back">
-                <img src="assets/photos/IMG_20260131_141736567.jpg" alt="Prayer flags in Uttarakhand" loading="lazy">
-              </div>
-              <div class="collage-card-front">
-                <img src="assets/photos/1000165012_jpg.webp" alt="SAMBANDH Mural" loading="lazy">
-                <span class="hand-note">Sambandh &amp; Solitude</span>
-              </div>
-            </div>
-
-            <div class="collage-editorial-text">
-              <div class="editorial-collection-item">
-                <span class="category-tag">Mountain &amp; Silence</span>
-                <h3>Himalayan Ridges &amp; Prayer Flags</h3>
-                <p>The quiet roads where thoughts drift slower than the clouds over the valley.</p>
-                <a href="#layer03" class="btn-ghost-dark">View Photography →</a>
-              </div>
-
-              <div class="editorial-collection-item">
-                <span class="category-tag">Memoir &amp; Solitude</span>
-                <h3>The Skills I Don't Use Anymore</h3>
-                <p>An ongoing exploration of habits, unlearning, and finding words after silence.</p>
-                <a href="#layer05" class="btn-ghost-dark">Explore Chapters →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Torn paper transition -->
-      <div class="torn-edge torn-edge-top-to-paper" aria-hidden="true"></div>
-
-      <!-- =========================================================
-           LAYER 08 — ABOUT NIGHTWALKER
-           ========================================================= -->
-      <section id="layer08" class="layer-about">
-        <div class="about-container">
-          <div class="about-grid">
-            <div class="about-portrait-wrap">
-              <div class="about-portrait-frame">
-                <img src="assets/hero.webp" alt="Nightwalker by Mural" loading="lazy">
-                <span class="author-caption">Nightwalker — Writer &amp; Photographer</span>
-              </div>
-            </div>
-
-            <div class="about-content-panel">
-              <span class="section-label">Layer 08 / Creative Identity</span>
-              <h2>About Nightwalker</h2>
-              <span class="identity-sub">Solitude, Words, and Himalayan Trails</span>
-              <p class="about-statement">
-                Nightwalker is a pen name and an archive. Born out of quiet city streets, late-night writing desks, and the vast silence of mountain ridges.
-              </p>
-              <p class="about-statement">
-                I do not write to give answers or photograph to show pretty postcards. I create to capture the moments that would otherwise slip away unnoticed — the conversation with a stranger on a ridge, the inscription on an ordinary stone, and the thoughts that only speak when the world goes dark.
-              </p>
-              <div class="about-disciplines">
-                <span class="discipline-item">Poetry (Hindi &amp; English)</span>
-                <span class="discipline-item">Photography</span>
-                <span class="discipline-item">Novels &amp; Memoirs</span>
-                <span class="discipline-item">Travel Essays</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Torn paper transition -->
-      <div class="torn-edge torn-edge-bottom-to-dark" aria-hidden="true"></div>
-
-      <!-- =========================================================
-           LAYER 09 — THE CLOSING
-           ========================================================= -->
-      <section id="layer09" class="layer-closing">
-        <div class="closing-container">
-          <div class="closing-backdrop-accent">
-            <img src="assets/photos/IMG_20260130_174433512.jpg" alt="Mountains at Twilight" loading="lazy">
-          </div>
-
-          <p class="closing-quote devanagari">
-            "म्यूर पहाड़ — Somewhere along the way, the mountain had already reached him."
-          </p>
-          <p class="closing-subquote">
-            Until the next trail, keep walking.
-          </p>
-
-          <div class="closing-navigation-row">
-            <a href="#layer01">Back to Top</a>
-            <a href="#layer03">Photography</a>
-            <a href="#layer04">Poetry Room</a>
-            <a href="#layer05">म्यूर पहाड़</a>
-            <a href="#layer06">Journal</a>
-            <a href="#layer08">About</a>
-          </div>
-
-          <div class="closing-credits">
-            <span class="brand-footer">NIGHTWALKER</span>
-            <span>All original photographs, poems, and writings © Nightwalker</span>
-            <span>Handcrafted Creative Archive</span>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- =========================================================
-       READER MODAL (For Poems, Chapters & Journal Articles)
-       ========================================================= -->
-  <div class="reader-modal-backdrop" id="readerModal" aria-hidden="true">
-    <div class="reader-modal-content">
-      <button class="close-modal-btn" id="closeReaderBtn" aria-label="Close reader">✕</button>
-      <header class="reader-article-header">
-        <h2 id="readerTitle">Article Title</h2>
-        <p class="sub" id="readerSub">Subtitle and Metadata</p>
-      </header>
-      <div class="reader-prose" id="readerBody">
-        <!-- Content injected dynamically -->
-      </div>
+  <!-- Off-Canvas Slideout Sidebar Navigation -->
+  <div class="offcanvas-backdrop" id="offcanvasBackdrop" aria-hidden="true"></div>
+  <aside class="offcanvas-sidebar" id="offcanvasSidebar" aria-label="Archive Navigation Menu">
+    <div class="sidebar-top">
+      <span class="brand-stamp">Nightwalker Archive</span>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation">✕</button>
     </div>
-  </div>
 
-  <!-- =========================================================
-       LIGHTBOX MODAL (For High-Resolution Photography)
-       ========================================================= -->
-  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close Lightbox">✕</button>
-    <figure class="lightbox-figure">
-      <img src="" id="lightboxImg" alt="">
-      <figcaption class="lightbox-caption-area">
-        <h4 id="lightboxTitle">Photo Title</h4>
-        <p id="lightboxCaption">Photo Caption</p>
-      </figcaption>
-    </figure>
-  </div>
+    <ul class="sidebar-links">
+      <li>
+        <a href="index.html" class="active">
+          <span>01. Home &amp; Manifesto</span>
+          <span class="label-hi">शुरुआत</span>
+        </a>
+      </li>
+      <li>
+        <a href="poetry.html">
+          <span>02. Poetry Room</span>
+          <span class="label-hi">कविताएँ</span>
+        </a>
+      </li>
+      <li>
+        <a href="novel.html">
+          <span>03. Novel Library</span>
+          <span class="label-hi">म्यूर पहाड़</span>
+        </a>
+      </li>
+      <li>
+        <a href="photos.html">
+          <span>04. Photography Archive</span>
+          <span class="label-hi">तस्वीरें</span>
+        </a>
+      </li>
+      <li>
+        <a href="blog.html">
+          <span>05. Mountain Journal</span>
+          <span class="label-hi">डायरी</span>
+        </a>
+      </li>
+    </ul>
 
-  <!-- Scripts -->
-  <script src="data/moods.js"></script>
-  <script src="js/poems.js"></script>
-  <script src="js/photos.js"></script>
-  <script src="js/posts.js"></script>
-  <script src="js/novels_data.js"></script>
-  <script src="js/main.js"></script>
+    <div class="sidebar-bottom">
+      <span class="coord">29.6° N, 79.5° E · UTTARAKHAND</span>
+      <p>A quiet creative sanctuary for written words, memories, and mountain solitude.</p>
+    </div>
+  </aside>
+
+  <!-- Main Viewport: Dedicated Home Page (Hero + The Manifesto) -->
+  <main class="home-viewport">
+    
+    <!-- SECTION 1: THE OPENING / HERO -->
+    <section class="hero-stage">
+      <div class="hero-bg">
+        <img src="assets/photos/IMG_20260131_174910606.jpg" alt="Dusk over Uttarakhand mountain ridge" fetchpriority="high">
+      </div>
+      <div class="hero-scrim"></div>
+
+      <div class="hero-content">
+        <div class="hero-kicker">
+          <span>Issue 01 · Uttarakhand Mountains</span>
+        </div>
+        <h1 class="hero-heading">
+          NIGHTWALKER
+          <span>Literature, Solitude &amp; High Peaks</span>
+        </h1>
+        <p class="hero-prose">
+          Poems, photographs, novel chapters, and fragments of a life that keeps searching for meaning in the ordinary.
+        </p>
+        <div class="hero-button-row">
+          <a href="#manifesto" class="btn-primary">The Manifesto ↓</a>
+          <a href="poetry.html" class="btn-secondary">Poetry Room</a>
+          <a href="novel.html" class="btn-secondary">म्यूर पहाड़ Novel</a>
+          <a href="photos.html" class="btn-secondary">Photography</a>
+        </div>
+      </div>
+
+      <div class="hero-footer-bar">
+        <p class="hero-snippet devanagari">
+          ना परख तू उन लफ़्ज़ों को, जो रात लिखने बैठे हैं...<br>
+          समझ सका ना जो तू अंधेरे को, वो बात लिखने बैठे हैं...
+        </p>
+        <div class="hero-kicker" style="margin:0;">
+          <span>Midnight Notebook</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Torn paper edge divider -->
+    <div class="torn-divider torn-to-paper" aria-hidden="true"></div>
+
+    <!-- SECTION 2: THE MANIFESTO (Warm Ivory Paper Aesthetic) -->
+    <section class="manifesto-section" id="manifesto">
+      <div class="manifesto-inner">
+        
+        <div class="manifesto-titlebar">
+          <div>
+            <span class="hero-kicker" style="background:none;border-color:var(--line-paper);color:var(--ink-muted);padding-left:0;">Creative Philosophy</span>
+            <h2>The Manifesto</h2>
+          </div>
+          <div class="stamp">
+            ARCHIVE ENTRY № 01
+          </div>
+        </div>
+
+        <div class="manifesto-layout">
+          <div class="manifesto-copy">
+            <p class="lead-text">
+              Nightwalker is my way of collecting the pieces of a life that feels too much, too quiet, and too alive all at once.
+            </p>
+            <p>
+              A personal creative archive where literature meets mountains, where photographs hold conversations, and where stories find a home. It is not a conventional portfolio, generic blog, or template-based website. It is a memory room, a quiet rebellion, and a reminder that there is still beauty in the ordinary.
+            </p>
+
+            <div class="manifesto-quote-card">
+              <p>
+                "Why do you walk these trails? Because down there, people tell you who you are supposed to be. How you should live, what you should earn. But up here... the mountains don't tell you anything. They just let you be."
+              </p>
+              <span class="author">— Anshul, on the trail to म्यूर पहाड़</span>
+            </div>
+
+            <p>
+              Somewhere between high mountain passes and midnight silence, between questions that have no easy answers, I keep creating: to remember, to feel, and to return.
+            </p>
+          </div>
+
+          <div class="cutout-stack">
+            <div class="washi-tape" aria-hidden="true"></div>
+            <div class="cutout-stamp">Uttarakhand</div>
+            <div class="cutout-polaroid">
+              <img src="assets/photos/IMG_20260130_174343405_HDR_AE (1).jpg" alt="A traveller finding their own path in Uttarakhand" loading="lazy">
+              <div class="cutout-caption">
+                <span class="note">Finding one's own path</span>
+                <span class="meta">30 Jan 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direct Destinations to Distinct Dedicated Archive Pages -->
+        <div class="home-destinations">
+          <div class="destination-card">
+            <span class="tag">01. Written Verses</span>
+            <h3>Poetry Room</h3>
+            <p>99 original verses written late into the night. Authentic notebook reading experience.</p>
+            <a href="poetry.html" class="arrow-link">Open Notebook →</a>
+          </div>
+
+          <div class="destination-card">
+            <span class="tag">02. Literary Archive</span>
+            <h3>Novel Library</h3>
+            <p>म्यूर पहाड़ — The story of a mountain trail, a stranger named Anshul, and quiet answers.</p>
+            <a href="novel.html" class="arrow-link">Read Chapters →</a>
+          </div>
+
+          <div class="destination-card">
+            <span class="tag">03. Visual Memories</span>
+            <h3>Photography Archive</h3>
+            <p>A curated archive of authentic mountain and street photographs with true stories.</p>
+            <a href="photos.html" class="arrow-link">View Archive →</a>
+          </div>
+
+          <div class="destination-card">
+            <span class="tag">04. Personal Journal</span>
+            <h3>Mountain Journal</h3>
+            <p>Long-form travel essays, reflections, and StoryGrams from Himalayan trails.</p>
+            <a href="blog.html" class="arrow-link">Explore Journal →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Torn paper edge divider back to midnight dark -->
+    <div class="torn-divider torn-to-dark" aria-hidden="true"></div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="poetry.html">Poetry</a>
+      <a href="novel.html">Novels</a>
+      <a href="photos.html">Photography</a>
+      <a href="blog.html">Journal</a>
+    </div>
+    <p class="footer-copy">
+      © Nightwalker · All original photographs, poems, and writings are the creative property of Nightwalker.
+    </p>
+  </footer>
+
+  <script src="js/navigation.js"></script>
 </body>
 </html>

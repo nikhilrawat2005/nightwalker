@@ -1,77 +1,312 @@
 <!doctype html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0D0E1B">
-<title>तस्वीरें · Nightwalker</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Nightwalker">
-<meta name="color-scheme" content="dark light">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Yatra+One&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&family=Kalam:wght@300;400&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/gallery.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Photography Archive · Nightwalker</title>
+  <meta name="description" content="Visual memories from high mountain ridgelines and midnight street corners.">
+  <meta name="theme-color" content="#080909">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Kalam:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .archive-page-container {
+      max-width: 1360px;
+      margin: 90px auto 4rem auto;
+      padding: 0 clamp(1.5rem, 4vw, 3.5rem);
+    }
+    .archive-header-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--line-dark);
+      padding-bottom: 2rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .archive-header-banner h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .archive-header-banner h1 span {
+      display: block;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.45em;
+      color: var(--mint);
+      text-transform: none;
+      letter-spacing: 0.02em;
+    }
+    .photo-masonry-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2.2rem;
+    }
+    .photo-polaroid-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--line-dark);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.35s ease;
+    }
+    .photo-polaroid-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--mint);
+      box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.7);
+    }
+    .photo-polaroid-card .media-box {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #111;
+    }
+    .photo-polaroid-card.is-bw .media-box img {
+      filter: grayscale(100%) contrast(1.1);
+    }
+    .photo-polaroid-card .media-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .photo-polaroid-card:hover .media-box img {
+      transform: scale(1.05);
+    }
+    .photo-polaroid-card .info-bar {
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .photo-polaroid-card .info-bar .title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--text-primary);
+    }
+    .photo-polaroid-card .info-bar .loc {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mint);
+      font-family: monospace;
+    }
+    /* Filter Bar */
+    .filter-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--line-dark);
+      border-radius: 99px;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--mint);
+      border-color: var(--mint);
+      color: var(--bg-midnight);
+      font-weight: 600;
+    }
+    /* Lightbox */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 9, 9, 0.95);
+      backdrop-filter: blur(16px);
+      z-index: 3000;
+      padding: 2rem;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox-overlay.open { display: flex; }
+    .lightbox-exit {
+      position: absolute;
+      top: 2rem; right: 2.5rem;
+      font-size: 2.2rem;
+      color: #DDD;
+      cursor: pointer;
+    }
+    .lightbox-exit:hover { color: var(--mint); }
+    .lightbox-img-holder {
+      max-width: 90vw; max-height: 80vh;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .lightbox-img-holder img {
+      max-width: 100%; max-height: 72vh;
+      object-fit: contain;
+      border: 1px solid var(--line-dark);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.9);
+    }
+    .lightbox-meta {
+      margin-top: 1.2rem; text-align: center; max-width: 650px;
+    }
+    .lightbox-meta h4 {
+      font-family: var(--font-serif); font-size: 1.35rem; color: #FFF; margin-bottom: 0.4rem;
+    }
+    .lightbox-meta p { font-size: 0.95rem; color: var(--text-muted); }
+  </style>
 </head>
-<body class="gw photo">
-<div class="grain" aria-hidden="true"></div>
-<header class="top">
-  <div class="top-left">
-    <a class="back-btn" href="index.html" aria-label="Go back to Home">← Home</a>
-    <a class="mark" href="index.html" aria-label="Nightwalker home">Nightwalker <span>तस्वीरें</span></a>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-brand">
+      <a href="index.html" class="logo-text">Nightwalker</a>
+      <span class="logo-sub">तस्वीरें</span>
+    </div>
+
+    <div class="header-controls">
+      <a href="index.html" class="btn-secondary" style="padding:0.4rem 0.9rem;font-size:0.75rem;">← Home</a>
+      <button class="nav-toggle-btn" id="navToggleBtn" aria-label="Open Navigation Menu">
+        <span class="icon-bars">☰</span>
+        <span>Archive Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Off-Canvas Sidebar -->
+  <div class="offcanvas-backdrop" id="offcanvasBackdrop" aria-hidden="true"></div>
+  <aside class="offcanvas-sidebar" id="offcanvasSidebar">
+    <div class="sidebar-top">
+      <span class="brand-stamp">Nightwalker Archive</span>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Navigation">✕</button>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="index.html"><span>01. Home &amp; Manifesto</span><span class="label-hi">शुरुआत</span></a></li>
+      <li><a href="poetry.html"><span>02. Poetry Room</span><span class="label-hi">कविताएँ</span></a></li>
+      <li><a href="novel.html"><span>03. Novel Library</span><span class="label-hi">म्यूर पहाड़</span></a></li>
+      <li><a href="photos.html" class="active"><span>04. Photography Archive</span><span class="label-hi">तस्वीरें</span></a></li>
+      <li><a href="blog.html"><span>05. Mountain Journal</span><span class="label-hi">डायरी</span></a></li>
+    </ul>
+    <div class="sidebar-bottom">
+      <span class="coord">27 CURATED PHOTOGRAPHS</span>
+      <p>Original high-altitude Himalayan &amp; street photography</p>
+    </div>
+  </aside>
+
+  <!-- Main Archive Page Content -->
+  <main class="archive-page-container">
+    <div class="archive-header-banner">
+      <div>
+        <span class="hero-kicker" style="background:none;border-color:var(--line-dark);padding-left:0;">Visual Archive</span>
+        <h1>
+          Photography
+          <span>Places that stay after we leave</span>
+        </h1>
+      </div>
+      <div class="filter-pills">
+        <button class="filter-btn active" data-category="all">All Photos</button>
+        <button class="filter-btn" data-category="mountains">Mountains</button>
+        <button class="filter-btn" data-category="roads">Roads &amp; Trails</button>
+        <button class="filter-btn" data-category="streets">Streets</button>
+        <button class="filter-btn" data-category="nature">Nature</button>
+        <button class="filter-btn" data-category="moments">Moments</button>
+      </div>
+    </div>
+
+    <!-- Masonry Grid -->
+    <div class="photo-masonry-gallery" id="photoGalleryGrid">
+      <!-- Populated via js -->
+    </div>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-overlay" id="lightboxOverlay" aria-hidden="true">
+    <button class="lightbox-exit" id="lightboxExitBtn">✕</button>
+    <div class="lightbox-img-holder">
+      <img src="" id="lightboxLargeImg" alt="">
+      <div class="lightbox-meta">
+        <h4 id="lightboxLargeTitle">Title</h4>
+        <p id="lightboxLargeCaption">Caption</p>
+      </div>
+    </div>
   </div>
-  <nav aria-label="Main">
-    <a href="poetry.html">Poetry</a><a href="novel.html">Novels</a><a href="blog.html">Blog</a><a href="photos.html" aria-current="page">Photography</a><a href="sketches.html">Sketches</a>
-  </nav>
-  <span class="tools"><button class="mode" id="mode" aria-label="Switch between night and paper">Night ⇄ Paper</button></span>
-</header>
-<main>
-<section class="ghead">
-  <p class="eyebrow">Delhi Alleys · Himalayan Dawns</p>
-  <h1>Street &amp; Shadows <span class="hi-pill sage" style="font-size:.55em;vertical-align:middle">तस्वीरें</span></h1>
-  <p class="gsub">B&amp;W brutalist columns, metro murals, silhouettes, and the morning gold on mountain ridgelines.</p>
-  <div style="margin-top:1.2rem">
-    <a class="insta-badge lens" href="https://www.instagram.com/nikhil_through_lens/?next=%2F" target="_blank" rel="noopener noreferrer">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-      <span>Follow on Instagram @nikhil_through_lens →</span>
-    </a>
-  </div>
-</section>
-<section class="pinterest-mosaic" id="g" aria-label="Photography"></section>
-<p class="sample" id="sample" hidden>✎ namuna: asli photos/sketches aate hi ye note hat jaayega</p>
-</main>
-<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Bada dekhein">
-  <button class="lx" id="lx" aria-label="Band karo">✕</button>
-  <button class="lp" id="lp" aria-label="Pichli">←</button>
-  <figure><img id="li" alt=""><figcaption id="lc"></figcaption></figure>
-  <button class="ln2" id="ln" aria-label="Agli">→</button>
-</div>
-<footer>
-  <div class="footer-socials">
-    <a class="footer-link" href="https://www.instagram.com/restricted_room/?next=%2F" target="_blank" rel="noopener noreferrer">
-      <span>Instagram: @restricted_room</span>
-    </a>
-    <span style="opacity:.4">·</span>
-    <a class="footer-link" href="https://www.instagram.com/nikhil_through_lens/?next=%2F" target="_blank" rel="noopener noreferrer">
-      <span>Photography: @nikhil_through_lens</span>
-    </a>
-    <span style="opacity:.4">·</span>
-    <a class="footer-link" href="https://github.com/nikhilrawat2005/nightwalker" target="_blank" rel="noopener noreferrer">
-      <span>GitHub Repository</span>
-    </a>
-  </div>
-  <span>© Nightwalker · Street &amp; Shadows</span>
-</footer>
-<script src="js/photos.js"></script>
-<script src="js/gallery.js"></script>
-<noscript><p style="position:fixed;inset:auto 0 0 0;padding:1rem;text-align:center;background:#171A2E;color:#ECE8F2;font:1rem sans-serif">यह घर JavaScript के बिना नहीं खुलता। कृपया उसे चालू करें।</p></noscript>
-<script src="js/app.js" defer></script>
+
+  <footer class="site-footer">
+    <p class="footer-copy">© Nightwalker Photography Archive · Original Photographs</p>
+  </footer>
+
+  <script src="js/photos.js"></script>
+  <script src="js/navigation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('photoGalleryGrid');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const modal = document.getElementById('lightboxOverlay');
+      const exitBtn = document.getElementById('lightboxExitBtn');
+      const largeImg = document.getElementById('lightboxLargeImg');
+      const largeTitle = document.getElementById('lightboxLargeTitle');
+      const largeCaption = document.getElementById('lightboxLargeCaption');
+
+      if (!grid || !window.GALLERY || !window.GALLERY.items) return;
+
+      const items = window.GALLERY.items;
+
+      function render(cat = 'all') {
+        grid.innerHTML = '';
+        const list = cat === 'all'
+          ? items
+          : items.filter(it => it.cat && it.cat.toLowerCase() === cat.toLowerCase());
+
+        list.forEach(item => {
+          const card = document.createElement('div');
+          card.className = `photo-polaroid-card ${item.bw ? 'is-bw' : ''}`;
+          card.innerHTML = `
+            <div class="media-box">
+              <img src="${item.img}" alt="${item.alt || item.title}" loading="lazy">
+            </div>
+            <div class="info-bar">
+              <span class="title">${item.title}</span>
+              <span class="loc">${item.place || 'Uttarakhand'}</span>
+            </div>
+          `;
+
+          card.addEventListener('click', () => {
+            largeImg.src = item.img;
+            largeImg.alt = item.alt || item.title;
+            largeTitle.textContent = item.title;
+            largeCaption.textContent = item.caption || item.alt || '';
+            modal.classList.add('open');
+          });
+
+          grid.appendChild(card);
+        });
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render(btn.dataset.category);
+        });
+      });
+
+      if (exitBtn) exitBtn.addEventListener('click', () => modal.classList.remove('open'));
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.remove('open');
+        });
+      }
+
+      render('all');
+    });
+  </script>
 </body>
 </html>
