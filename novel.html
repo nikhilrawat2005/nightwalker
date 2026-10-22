@@ -222,11 +222,11 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      /* ---------- Level 3: Paginated Reader (280–300 words/page) ---------- */
+      /* ---------- Level 3: Paginated Reader (420 words/page) ---------- */
       function buildPages(chapters, onlyIdx) {
         allPages = [];
         const list = (typeof onlyIdx === 'number') ? [chapters[onlyIdx]] : chapters;
-        const TARGET_WORDS_PER_PAGE = 280; // Doubled word limit per page
+        const TARGET_WORDS_PER_PAGE = 420; // 50% increased word limit (280 -> 420)
 
         list.forEach((ch) => {
           const blocks = [];

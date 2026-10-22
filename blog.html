@@ -172,15 +172,14 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      /* ---------- Paginated Reader (100–150 words/page + slides) ---------- */
+      /* ---------- Paginated Reader (420 words/page + slides) ---------- */
       function buildBlogPages(postIdx) {
         blogPages = [];
         const post = posts[postIdx];
         if (!post || !post.body) return;
 
         const slides = post.slides || [];
-        // Doubled word limit per page for immersive full-reading spread
-        const PARAGRAPHS_PER_PAGE_TARGET = 280; // words (doubled from 140)
+        const PARAGRAPHS_PER_PAGE_TARGET = 420; // 50% increased word limit (280 -> 420)
 
         let currPageBlocks = [];
         let currWords = 0;
