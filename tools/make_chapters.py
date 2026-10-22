@@ -41,8 +41,19 @@ def process_novel(input_file=None):
 
     lines = []
     if input_file.lower().endswith('.docx'):
-        import docx
-        doc = docx.Document(input_file)
+        import docx, io, shutil, tempfile
+        # Copy to temp file or memory buffer in case Word/OneDrive has a lock on the file
+        temp_dir = tempfile.mkdtemp()
+        temp_copy = os.path.join(temp_dir, 'manuscript.docx')
+        try:
+            shutil.copy2(input_file, temp_copy)
+            doc = docx.Document(temp_copy)
+        finally:
+            if os.path.exists(temp_copy):
+                os.remove(temp_copy)
+            if os.path.exists(temp_dir):
+                os.rmdir(temp_dir)
+
         for p in doc.paragraphs:
             t = p.text.strip()
             if not t:

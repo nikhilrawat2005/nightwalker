@@ -6,7 +6,7 @@ window.NOVELS = [
     "genre": "Memoir · Coming of Age",
     "tagline": "Ek kitab jo seekhne ke baad likhi gayi. Chapter by chapter, jaise tum likhte ho.",
     "status": "Ongoing (2 Chapters)",
-    "badge": "In Progress",
+    "badge": "Complete",
     "color": "#E8795A",
     "coverImg": "assets/photos/1000165039_jpg.webp",
     "coverDesc": "A personal memoir exploring silence, attention, heartbreak, and unlearning the habits you once built to survive.",

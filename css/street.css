@@ -981,33 +981,33 @@ body.poetry-page {
 }
 
 .novel-index-badge {
-  font-family: var(--font-typewriter);
-  font-size: 0.7rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   background: var(--signal-red);
   color: #fff;
-  padding: 0.3rem 0.7rem;
-  transform: rotate(2deg);
+  padding: 0.35rem 0.8rem;
   box-shadow: 2px 2px 0 #000;
 }
 
 /* Back-to-library link inside the chapter board */
 .novel-back-link {
   display: inline-block;
-  font-family: var(--font-typewriter);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--old-paper);
   background: #1F2023;
   border: 1.5px solid rgba(244, 236, 216, 0.2);
-  padding: 0.45rem 0.95rem;
+  padding: 0.45rem 1rem;
   cursor: pointer;
   margin-bottom: 1.6rem;
   transition: all 0.2s ease;
+  border-radius: 2px;
 }
 
 .novel-back-link:hover {
@@ -1077,21 +1077,22 @@ body.poetry-page {
 
 /* Paginated Book Spread */
 .paginated-book-spread {
-  background-color: var(--old-paper);
-  color: var(--ink);
-  box-shadow: var(--shadow-book);
-  border: 2px solid #C4BAA3;
-  min-height: 640px;
+  background-color: #FAF7F0;
+  color: #1A1A1A;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.15);
+  border: 1px solid #DCD5C4;
+  border-radius: 4px;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  max-width: 1040px;
-  margin: 0 auto;
+  max-width: 820px;
+  margin: 0 auto 3rem auto;
 }
 
 .book-reading-content {
-  padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 5vw, 5.5rem);
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.8rem, 5vw, 4.5rem);
   flex: 1;
 }
 
@@ -1099,99 +1100,120 @@ body.poetry-page {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #DDD3BE;
+  padding-bottom: 0.75rem;
   margin-bottom: 2.2rem;
-  font-family: monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .book-page-header .header-label {
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink);
-  font-weight: 700;
+  color: #55524B;
+  font-weight: 600;
 }
 
 .book-page-header .sheet-number {
-  font-size: 0.82rem;
-  color: #555;
+  font-size: 0.8rem;
+  color: #7A766E;
+  font-weight: 500;
 }
 
 .book-prose-body {
-  font-family: var(--font-serif);
-  font-size: 1.28rem;
-  line-height: 2.1;
-  color: #1A1C1E;
+  font-family: 'Lora', 'EB Garamond', Georgia, serif;
+  font-size: 1.18rem;
+  line-height: 1.85;
+  color: #181818;
+  letter-spacing: 0.01em;
 }
 
 .book-prose-body h3 {
-  font-family: var(--font-marker);
-  font-size: 1.35rem;
-  color: var(--signal-red);
+  font-family: 'Lora', 'EB Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: -0.01em;
+  margin-top: 0.5rem;
   margin-bottom: 1.4rem;
+  line-height: 1.35;
+  border-left: 3px solid #111111;
+  padding-left: 0.8rem;
 }
 
 .book-prose-body p {
-  margin-bottom: 1.6rem;
-  text-align: justify;
+  margin-bottom: 1.35rem;
+  text-align: left;
+  hyphens: auto;
+  word-break: break-word;
 }
 
 .book-prose-body blockquote {
-  font-family: var(--font-hi-heavy);
-  font-size: 1.85rem;
-  color: var(--signal-red);
-  text-align: center;
-  margin: 2rem 0;
-  padding: 1rem 0;
-  border-top: 1px solid rgba(0,0,0,0.2);
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #222222;
+  text-align: left;
+  margin: 1.8rem 0;
+  padding: 0.8rem 1.4rem;
+  border-left: 3px solid #111111;
+  background: rgba(0, 0, 0, 0.025);
+  border-top: none;
+  border-bottom: none;
 }
 
 .book-turn-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
-  padding: 1rem clamp(1.8rem, 5vw, 4.5rem);
-  background: #EAE1CB;
+  border-top: 1px solid #DDD3BE;
+  padding: 0.9rem clamp(1.5rem, 5vw, 4rem);
+  background: #F2ECE0;
 }
 
 .turn-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-typewriter);
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-weight: 700;
-  color: var(--ink);
-  background: var(--old-paper);
-  border: 1.5px solid var(--ink);
-  padding: 0.5rem 1.2rem;
-  box-shadow: 3px 3px 0 #000;
-  transition: all 0.2s ease;
+  font-weight: 600;
+  color: #1A1A1A;
+  background: #FAF7F0;
+  border: 1px solid #C5BCAB;
+  border-radius: 3px;
+  padding: 0.55rem 1.2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  transition: all 0.18s ease;
   cursor: pointer;
 }
 
 .turn-btn:hover:not(:disabled) {
-  background: var(--acid-yellow);
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #000;
+  background: #111111;
+  color: #FAF7F0;
+  border-color: #111111;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
 }
 
 .turn-btn:disabled {
-  opacity: 0.3;
+  opacity: 0.35;
   cursor: not-allowed;
   box-shadow: none;
+  background: transparent;
+  border-color: #D6CEBE;
+  color: #888;
 }
 
 .page-counter-badge {
-  font-family: monospace;
-  font-size: 0.85rem;
-  color: #333;
-  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.82rem;
+  color: #55524B;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 /* Reader states: hide spread until a story/chapter is chosen */
@@ -1199,29 +1221,31 @@ body.poetry-page {
 
 .reader-arrow-hint {
   text-align: center;
-  font-family: var(--font-hand);
-  font-size: 1.15rem;
-  color: #777;
-  margin-top: 0.6rem;
-  padding: 0 clamp(1.8rem, 5vw, 4.5rem) 0.6rem;
-  background: #EAE1CB;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.82rem;
+  color: #7A766E;
+  margin-top: 0;
+  padding: 0.4rem clamp(1.5rem, 5vw, 4rem) 0.65rem;
+  background: #F2ECE0;
+  border-top: 1px dotted rgba(0,0,0,0.08);
 }
 
 .reader-arrow-hint kbd {
-  font-family: var(--font-typewriter);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--ink);
-  background: var(--old-paper);
-  border: 1.5px solid var(--ink);
-  padding: 0.1rem 0.45rem;
-  box-shadow: 2px 2px 0 #000;
-  margin: 0 0.15rem;
+  font-family: monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #222;
+  background: #FAF7F0;
+  border: 1px solid #CCC4B2;
+  border-radius: 3px;
+  padding: 0.15rem 0.4rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  margin: 0 0.2rem;
 }
 
 .paginated-book-spread:focus {
-  outline: 3px dashed var(--signal-red);
-  outline-offset: 4px;
+  outline: 2px solid #111111;
+  outline-offset: 3px;
 }
 
 .skip-hint {
@@ -1348,46 +1372,35 @@ body.poetry-page {
 
 /* In-page photo inside the reading spread */
 .blog-inpage-photo {
-  margin: 0 auto 2.2rem auto;
-  max-width: 580px;
+  margin: 0 auto 2rem auto;
+  max-width: 620px;
   background: #FFFFFF;
-  padding: 0.8rem 0.8rem 2.4rem 0.8rem;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.2);
-  transform: rotate(-1deg);
+  padding: 0.6rem 0.6rem 1.4rem 0.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #DCD5C4;
+  border-radius: 4px;
   text-align: center;
   position: relative;
-}
-
-.blog-inpage-photo::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 36%;
-  width: 70px;
-  height: 20px;
-  background: rgba(220, 215, 205, 0.85);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
-  transform: rotate(-2deg);
-  z-index: 5;
 }
 
 .blog-inpage-photo img {
   display: block;
   width: 100%;
-  max-height: 380px;
+  max-height: 420px;
   object-fit: contain;
-  background-color: #1A1A1A;
+  background-color: #111111;
   margin: 0 auto;
-  border: 1px solid #E8E2D6;
+  border-radius: 2px;
 }
 
 .blog-inpage-photo .photo-caption {
   display: block;
-  font-family: var(--font-hand);
-  font-size: 1.35rem;
-  color: #1A1A1A;
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #55524B;
   margin-top: 0.8rem;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 /* In-Story Photo Reel strip */

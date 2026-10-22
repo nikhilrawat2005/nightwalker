@@ -83,7 +83,7 @@ window.NOVEL = {
    "title": "Chapter 1",
    "sub": "How You Should Pursue Any Person",
    "sample": false,
-   "inProgress": true,
+   "inProgress": false,
    "blocks": [
     {
      "t": "p",
@@ -424,6 +424,54 @@ window.NOVEL = {
     {
      "t": "h",
      "x": "Third, Talk About the People Who Love Sports"
+    },
+    {
+     "t": "p",
+     "x": "So basically, sports wale persons ki personality kaafi basic bhi ho sakti hai, aur kabhi-kabhi arrogant bhi. A person who is involved in sports usually apne game mein har waqt jeetna chahta hai. And maybe, sometimes, wohi cheez dheere-dheere unke personal bonds mein bhi dikhne lagti hai."
+    },
+    {
+     "t": "p",
+     "x": "That competitive spirit can sometimes make things look a little different. Kabhi-kabhi unka behaviour tumhe aisa feel kara sakta hai jaise tum unke liye special hi nahi ho. Jaise unke liye har cheez mein jeetna, tumhare bond se zyada important ho gaya ho."
+    },
+    {
+     "t": "p",
+     "x": "But believe me, all that is not always true. Bas kuch waqt aisa hota hai jab us insaan ki life mein jeetne se zyada important kuch aur nahi reh jaata. And maybe, isi mentality ke chalte, woh kabhi-kabhi things ko sort out karne se zyada apni baat sahi prove karna pasand karte hain."
+    },
+    {
+     "t": "p",
+     "x": "But that doesn't necessarily mean ki tum unke liye important nahi ho. They want you in their life, they do care about you, but sometimes, apni us competitive mentality mein woh tumhe aur tumhare bond ko woh importance dena bhool jaate hain jo actually deni chahiye."
+    },
+    {
+     "t": "p",
+     "x": "And one more thing, this is not just about people who are involved in sports. Ye baatein har us insaan par apply ho sakti hain jiske andar woh competitive spirit hai, jo kabhi-kabhi unhe relationships mein bhi jeetne aur apni baat prove karne par focus karne ke liye push karti hai. Because at the end of the day, it's not about which sport you play, but about how that competitive mindset sometimes becomes a part of the way you deal with people."
+    },
+    {
+     "t": "h",
+     "x": "Fourth, Talk About the People Who Love Music."
+    },
+    {
+     "t": "p",
+     "x": "Believe me, they are the ones who love to escape."
+    },
+    {
+     "t": "p",
+     "x": "I know, saying this right at the beginning sounds a little weird, but these kinds of people, jinko normal conditions mein bhi overly songs sunna pasand hota hai, sometimes bas apne hi andar ki awaaz se bhaag rahe hote hain."
+    },
+    {
+     "t": "p",
+     "x": "Ye log overthinkers bhi hote hain, bahut zyada. Aur surprisingly, ye tab tak shaant rehte hain jab tak inke paas inke headphones hote hain. Otherwise, they can easily get lost in that same whirlwind of thoughts they are always trying to escape from."
+    },
+    {
+     "t": "p",
+     "x": "Agar tumhe in logon ke baare mein jaan na hai, toh kabhi inki playlist ko study karne ki koshish mat karna. Of course, ye un logon ke liye sahi ho sakta hai jo basic level par songs sunte hain, but jo log music ko apni escape bana lete hain, unke liye shayad unki playlist hi sab kuch explain na kar paaye."
+    },
+    {
+     "t": "p",
+     "x": "Instead, kabhi inke saath bas baithna. Apne earbuds share karna, unhe apne favourite songs play karne dena, aur dhyaan se sunna. Dheere-dheere, har gaane ke saath woh tumhe apni favourite lines batayenge. Aur jo bhi line unhe relatable lagegi, uske peeche ki story bhi shayad khud hi bata denge."
+    },
+    {
+     "t": "p",
+     "x": "And before you realise it, tumhe unki playlist se zyada unki kahaniyon ke baare mein pata chal chuka hoga."
     }
    ]
   }
