@@ -222,22 +222,28 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      /* ---------- Level 3: Paginated Reader (100–150 words/page) ---------- */
+      /* ---------- Level 3: Paginated Reader (280–300 words/page) ---------- */
       function buildPages(chapters, onlyIdx) {
         allPages = [];
         const list = (typeof onlyIdx === 'number') ? [chapters[onlyIdx]] : chapters;
+        const TARGET_WORDS_PER_PAGE = 280; // Doubled word limit per page
 
         list.forEach((ch) => {
           const blocks = [];
-          blocks.push({ t: 'h', x: `${ch.label || ''} — ${ch.sub || ch.title || ''}` });
+          // Chapter Title Header block explicitly separated
+          blocks.push({
+            t: 'ch-header',
+            label: ch.label || '',
+            sub: ch.sub || ch.title || ''
+          });
           (ch.blocks || []).forEach((b) => blocks.push(b));
 
           let currPage = [];
           let currWords = 0;
 
           blocks.forEach((b) => {
-            const w = String(b.x || '').split(/\s+/).filter(Boolean).length;
-            if (currWords + w > 140 && currPage.length > 0) {
+            const w = (b.t === 'ch-header') ? 8 : String(b.x || '').split(/\s+/).filter(Boolean).length;
+            if (currWords + w > TARGET_WORDS_PER_PAGE && currPage.length > 0) {
               allPages.push({ chapterLabel: `${activeNovel.title} · ${ch.label || ''}`, blocks: currPage });
               currPage = [b];
               currWords = w;
@@ -270,7 +276,16 @@
 
         textContent.innerHTML = '';
         pageData.blocks.forEach((b) => {
-          if (b.t === 'h') {
+          if (b.t === 'ch-header') {
+            const wrap = document.createElement('div');
+            wrap.className = 'chapter-title-hero';
+            wrap.innerHTML = `
+              <span class="chapter-title-num">${b.label}</span>
+              <h2 class="chapter-title-text">${b.sub}</h2>
+              <div class="chapter-title-divider"></div>
+            `;
+            textContent.appendChild(wrap);
+          } else if (b.t === 'h') {
             const h = document.createElement('h3');
             h.textContent = b.x;
             textContent.appendChild(h);
